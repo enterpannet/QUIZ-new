@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-white">
       <KioskNavbar />
-      <main className="flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-x-clip">
+      <main className="flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-x-clip pt-2 sm:pt-3 md:pt-4">
         <Page1 />
       </main>
     </div>
