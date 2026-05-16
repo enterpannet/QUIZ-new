@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 283.46 283.46">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#drop-shadow-5);
+      }
+
+      .cls-2 {
+        filter: url(#drop-shadow-4);
+      }
+
+      .cls-3 {
+        fill: url(#New_Gradient_Swatch);
+      }
+
+      .cls-3, .cls-4 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-5 {
+        fill: #231f20;
+      }
+
+      .cls-4 {
+        fill: #bbdb0c;
+      }
+    </style>
+    <filter id="drop-shadow-4" x="11.67" y="92.76" width="260.4" height="168.24" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy=".1"/>
+      <feGaussianBlur result="blur" stdDeviation=".1"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="New_Gradient_Swatch" data-name="New Gradient Swatch" x1="14" y1="176.75" x2="269.46" y2="176.75" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d4dbb0"/>
+      <stop offset="1" stop-color="#bbdb0c"/>
+    </linearGradient>
+    <filter id="drop-shadow-5" x="11.67" y="21.24" width="260.4" height="168.24" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy=".1"/>
+      <feGaussianBlur result="blur-2" stdDeviation=".1"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2">
+    <ellipse class="cls-3" cx="141.73" cy="176.75" rx="127.73" ry="81.62"/>
+    <path class="cls-5" d="M81.82,160.08c17.52,2.85,34.77,5.12,52.43,5.33,22.62.43,45.04-1.7,67.39-5.66,0,0,.13.38.13.38-14.44,4.76-29.68,7.29-44.8,8.64-1.45.09-8.23.49-9.51.57-1.2.02-4.47.06-5.72.08-10.14.05-20.36-.61-30.38-2.16-10.09-1.32-19.94-3.93-29.68-6.79,0,0,.12-.38.12-.38h0Z"/>
+  </g>
+  <g class="cls-1">
+    <ellipse class="cls-4" cx="141.73" cy="105.22" rx="127.73" ry="81.62"/>
+    <path class="cls-5" d="M81.82,88.55c17.52,2.85,34.77,5.12,52.43,5.33,22.62.43,45.04-1.7,67.39-5.66,0,0,.13.38.13.38-14.44,4.76-29.68,7.29-44.8,8.64-1.45.09-8.23.49-9.51.57-1.2.02-4.47.06-5.72.08-10.14.05-20.36-.61-30.38-2.16-10.09-1.32-19.94-3.93-29.68-6.79,0,0,.12-.38.12-.38h0Z"/>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 283.46 283.46">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: url(#Degradado_sin_nombre_23);
+        stroke-miterlimit: 10;
+        stroke-width: .83px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: url(#Degradado_sin_nombre_6);
+      }
+
+      .cls-4 {
+        opacity: .38;
+      }
+
+      .cls-2 {
+        opacity: .5;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 8.13px;
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_6" data-name="Degradado sin nombre 6" x1="-3272.12" y1="345.31" x2="-3217.55" y2="439.82" gradientTransform="translate(-255.35 -3098.17) rotate(-90)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8c8c8c"/>
+      <stop offset="1" stop-color="#d5d5d5"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_23" data-name="Degradado sin nombre 23" x1="-3299.81" y1="392.57" x2="-3189.87" y2="392.57" gradientTransform="translate(-255.35 -3098.17) rotate(-90)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <g class="cls-4">
+      <circle class="cls-3" cx="137.22" cy="146.67" r="54.56"/>
+    </g>
+    <circle class="cls-1" cx="137.22" cy="146.67" r="54.56"/>
+  </g>
+  <polyline class="cls-2" points="138.2 163.04 121.83 146.67 138.2 130.3"/>
+</svg>

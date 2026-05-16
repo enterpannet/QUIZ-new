@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 283.46 283.46">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#drop-shadow-6);
+      }
+
+      .cls-2 {
+        filter: url(#drop-shadow-5);
+      }
+
+      .cls-3 {
+        fill: #231f20;
+      }
+
+      .cls-4 {
+        fill: #4882d0;
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+    </style>
+    <filter id="drop-shadow-5" x="9.03" y="90.42" width="260.4" height="168.24" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy=".1"/>
+      <feGaussianBlur result="blur" stdDeviation=".1"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-6" x="9.03" y="18.9" width="260.4" height="168.24" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy=".1"/>
+      <feGaussianBlur result="blur-2" stdDeviation=".1"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2">
+    <ellipse class="cls-4" cx="139.11" cy="174.28" rx="127.73" ry="81.62"/>
+    <path class="cls-3" d="M79.19,157.61c17.52,2.85,34.77,5.12,52.43,5.33,22.62.43,45.04-1.7,67.39-5.66,0,0,.13.38.13.38-14.44,4.76-29.68,7.29-44.8,8.64-1.45.09-8.23.49-9.51.57-1.2.02-4.47.06-5.72.08-10.14.05-20.36-.61-30.38-2.16-10.09-1.32-19.94-3.93-29.68-6.79,0,0,.12-.38.12-.38h0Z"/>
+  </g>
+  <g class="cls-1">
+    <ellipse class="cls-4" cx="139.11" cy="102.75" rx="127.73" ry="81.62"/>
+    <path class="cls-3" d="M79.19,86.08c17.52,2.85,34.77,5.12,52.43,5.33,22.62.43,45.04-1.7,67.39-5.66,0,0,.13.38.13.38-14.44,4.76-29.68,7.29-44.8,8.64-1.45.09-8.23.49-9.51.57-1.2.02-4.47.06-5.72.08-10.14.05-20.36-.61-30.38-2.16-10.09-1.32-19.94-3.93-29.68-6.79,0,0,.12-.38.12-.38h0Z"/>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 283.46 283.46">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #231f20;
+      }
+
+      .cls-2 {
+        filter: url(#drop-shadow-13);
+      }
+
+      .cls-3 {
+        filter: url(#drop-shadow-12);
+      }
+
+      .cls-4 {
+        fill: #7ca0d0;
+      }
+
+      .cls-4, .cls-5 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: 3.96px;
+      }
+
+      .cls-5 {
+        fill: #4882d0;
+      }
+    </style>
+    <filter id="drop-shadow-12" x="11.66" y="100.54" width="260.4" height="168.24" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy=".1"/>
+      <feGaussianBlur result="blur" stdDeviation=".1"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-13" x="12.86" y="15.1" width="258" height="171.6" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy=".1"/>
+      <feGaussianBlur result="blur-2" stdDeviation=".1"/>
+      <feFlood flood-color="#000" flood-opacity=".1"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-3">
+    <ellipse class="cls-5" cx="141.73" cy="184.47" rx="127.73" ry="81.62"/>
+    <path class="cls-1" d="M81.83,167.75c15.25,1.91,29.82,3.82,44.99,4.31,14.78.47,29.99.08,44.72-1.16,9.97-.86,19.94-2.02,30.08-3.48l.17.47c-17.41,5.84-36.02,8.41-54.32,9.26-17.09.5-34.43-1-51.1-4.88-4.32-.87-10.41-2.87-14.69-4.05,0,0,.15-.48.15-.48h0Z"/>
+  </g>
+  <g class="cls-2">
+    <ellipse class="cls-4" cx="141.73" cy="100.78" rx="127.73" ry="81.62" transform="translate(-15.35 26.14) rotate(-10)"/>
+    <path class="cls-1" d="M79.84,94.72c15.35-.77,30.03-1.42,45.05-3.56,14.64-2.1,29.55-5.13,43.84-8.91,9.67-2.58,19.28-5.45,29.02-8.65l.25.43c-16.14,8.77-34.01,14.54-51.89,18.56-16.74,3.46-34.08,5-51.17,4.06-4.41-.11-10.75-1.02-15.17-1.43,0,0,.07-.5.07-.5h0Z"/>
+  </g>
+</svg>
