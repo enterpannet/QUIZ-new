@@ -7,36 +7,56 @@ import greenSpring from '../../assets/images/SVG/greenSpring.svg'
 import greenSpringWDS from '../../assets/images/SVG/greenSpringWDS.svg'
 import Beverages from '../../assets/images/SVG/Beverages.svg'
 
-/** ป้ายหัวข้อคอลัมน์ — ความสูงขั้นต่ำคงที่ให้ทั้งสามกรอบเท่ากัน */
+/** ป้ายหัวข้อคอลัมน์ — โตตาม breakpoint */
 const goalTitlePill =
-  'flex min-h-[3.5rem] w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug bg-neutral-100/50 rounded-full'
+  'flex min-h-[3.5rem] w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug bg-neutral-100/50 rounded-full sm:min-h-[4rem] sm:px-5 sm:text-sm md:min-h-[4.5rem] md:px-6 md:text-base lg:min-h-[5rem] lg:text-lg xl:min-h-[5.25rem] xl:text-xl'
 
-const goalSubtitle = 'mt-1 text-xs text-center text-neutral-900/90'
+const goalSubtitle =
+  'mt-1 max-w-[min(100%,22rem)] text-xs text-center text-neutral-900/90 sm:max-w-none sm:text-sm md:text-base lg:text-lg xl:text-xl'
 
-const pageShell =
-  'flex w-full max-w-none flex-1 flex-col items-stretch justify-start overflow-x-clip bg-neutral-100 text-neutral-900 max-xl:gap-5 max-xl:px-3 max-xl:py-5 max-xl:pb-6 max-xl:sm:px-4 max-xl:md:gap-9 max-xl:md:px-5 max-xl:md:py-8 max-xl:md:pb-10 max-xl:lg:gap-10 max-xl:lg:px-6 max-xl:lg:py-10 max-xl:lg:pb-12 xl:gap-6 xl:px-4 xl:py-6 xl:pb-8 xl:sm:gap-8 xl:sm:px-6 xl:sm:py-10 xl:sm:pb-10'
+/** คอลัมน์ — มือถือจัดชิดขอบล่างแถวให้ป้ายระดับเดียวกัน; md+ ยืดเต็มความสูง */
+const goalColumn =
+  'flex min-h-0 min-w-0 flex-1 flex-col items-center md:h-full'
+
+const goalSpringStack =
+  'flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1.5 md:flex-1 md:justify-end lg:gap-2'
+
+/** สปริงเล็ก */
+const imgSpringSm =
+  'h-auto w-[4.25rem] object-contain sm:w-20 md:w-24 lg:w-36 xl:w-40 2xl:w-48'
+
+/** ไอคอนตัวใหญ่คอลัมน์ */
+const imgGoalHero =
+  'h-auto w-24 object-contain sm:w-[6.75rem] md:w-36 lg:w-52 xl:w-56 2xl:w-64'
 
 
-/** คอลัมน์เป้าหมาย — รูปชิดขอบล่างของพื้นที่ยืดได้ เพื่อให้ป้ายข้อความเรียงระดับเดียวกัน */
-
+/** พื้นทราย — จัดคอลัมน์หลักให้อยู่กลางแนวนอน (ไม่ใช้ items-stretch ที่ดึงบล็อกให้เต็มความกว้างจนดูไม่กึ่งกลาง) */
+const HEALTH_STEP2_PAGE_SHELL = HEALTH_SAND_PAGE_SHELL.replace(
+  'items-stretch',
+  'items-center',
+)
 
 export default function HealthStep2() {
   return (
-    <div className={HEALTH_SAND_PAGE_SHELL + pageShell}>
-         <KioskStepHeader
+    <div className={`${HEALTH_STEP2_PAGE_SHELL} min-h-0`}>
+      <div className="flex w-full shrink-0 justify-center px-1">
+        <KioskStepHeader
           stepLabel="STEP 2"
           titleLine1="SELECT YOUR"
           titleLine2="HEALTH GOAL"
           description="เลือกเป้าหมายสุขภาพที่ต้องการดุแล เป้าหมายหลักของคุณคืออะไร?"
         />
-      <div className="flex flex-1 flex-col items-center justify-center gap-2  py-3 text-center sm:py-4">
-     
-        <div className='flex flex-row items-center justify-center gap-0.5'>
-          <div className='flex flex-col items-center justify-center flex-1'>
-            <div><img src={greenSpringW} alt="greenSpringW" className='w-18 h-auto scale-x-[-1]' /></div>
-            <div><img src={circleGreen} alt="circleGreen" className='w-18 h-auto' /></div>
-            <div><img src={SymptomManagement} alt="SymptomManagement" className='w-24 h-auto' /></div>
-            <div className='w-full'>
+      </div>
+      <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22  lg:gap-8 lg:py-32">
+
+        <div className='mx-auto flex min-h-0 w-full max-w-[min(100%,92rem)] flex-1 flex-row items-start gap-1 px-1 sm:gap-2 sm:px-2 md:items-stretch md:gap-5 md:px-4 lg:gap-8 lg:px-6 xl:gap-12 xl:px-8'>
+          <div className={goalColumn}>
+            <div className={goalSpringStack}>
+              <div><img src={greenSpringW} alt="" className={`${imgSpringSm} scale-x-[-1]`} /></div>
+              <div><img src={circleGreen} alt="" className={imgSpringSm} /></div>
+              <div><img src={SymptomManagement} alt="" className={imgGoalHero} /></div>
+            </div>
+            <div className='w-full shrink-0'>
               <p className={goalTitlePill}>
                 Symptom
                 <br />
@@ -45,11 +65,13 @@ export default function HealthStep2() {
               <p className={goalSubtitle}>ควบคุมอาการและลดภาวะแทรกซ้อน</p>
             </div>
           </div>
-          <div className='flex flex-col items-center justify-center flex-1'>
-            <div><img src={greenSpring} alt="greenSpring" className='w-18 h-auto rotate-10' /></div>
-            <div><img src={greenSpringWDS} alt="greenSpringWDS" className='w-18 h-auto' /></div>
-            <div><img src={Beverages} alt="Beverages" className='w-24 h-auto' /></div>
-            <div className='w-full'>
+          <div className={goalColumn}>
+            <div className={goalSpringStack}>
+              <div><img src={greenSpring} alt="" className={`${imgSpringSm} rotate-10`} /></div>
+              <div><img src={greenSpringWDS} alt="" className={imgSpringSm} /></div>
+              <div><img src={Beverages} alt="" className={imgGoalHero} /></div>
+            </div>
+            <div className='w-full shrink-0'>
               <p className={goalTitlePill}>
                 Nutritional
                 <br />
@@ -58,21 +80,21 @@ export default function HealthStep2() {
               <p className={goalSubtitle}>ฟื้นฟูร่างกาย และภาวะโภชนาการ</p>
             </div>
           </div>
-          <div className='flex flex-col items-center justify-center flex-1'>
-            <div><img src={greenSpringW} alt="greenSpringW" className='w-18 h-auto' /></div>
-            <div><img src={circleGreen} alt="circleGreen" className='w-18 h-auto' /></div>
-            <div><img src={Beverages} alt="Beverages" className='w-24 h-auto' /></div>
-            <div className='w-full'>
+          <div className={goalColumn}>
+            <div className={goalSpringStack}>
+              <div><img src={greenSpringW} alt="" className={imgSpringSm} /></div>
+              <div><img src={circleGreen} alt="" className={imgSpringSm} /></div>
+              <div><img src={Beverages} alt="" className={imgGoalHero} /></div>
+            </div>
+            <div className='w-full shrink-0'>
               <p className={goalTitlePill}>
                 Quality of
                 <br />
                 Life Support
               </p>
-              <p className={goalSubtitle}>เสริมคุณภาพชีวิต <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p className={goalSubtitle}>เสริมคุณภาพชีวิต</p>
             </div>
           </div>
-         
-         
         </div>
       </div>
     </div>
