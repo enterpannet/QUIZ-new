@@ -9,7 +9,7 @@ import {
 } from 'react'
 
 const wrapCls =
-  'relative mx-auto flex w-fit max-w-full touch-manipulation justify-center rounded-md [-webkit-tap-highlight-color:transparent] select-none'
+  'kiosk-touch-hit relative mx-auto flex w-fit max-w-full touch-manipulation justify-center rounded-md [-webkit-tap-highlight-color:transparent] select-none'
 
 function subscribeReducedMotion(cb: () => void) {
   const mq = matchMedia('(prefers-reduced-motion: reduce)')

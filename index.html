@@ -1,15 +1,28 @@
 <!doctype html>
-<html lang="en" class="[color-scheme:light]">
+<html lang="th" class="[color-scheme:light] touch-manipulation">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>quiz</title>
+    <link rel="icon" type="image/svg+xml" href="/logo1.svg" />
+    <link rel="alternate icon" href="/logo1.svg" />
+    <link rel="apple-touch-icon" href="/logo1.svg" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Spring Sort Quiz</title>
   </head>
-  <body class="m-0 bg-white">
+  <body class="m-0 touch-manipulation bg-white [--webkit-tap-highlight-color:transparent]">
     <div
       id="root"
-      class="mx-auto box-border flex min-h-svh min-w-0 w-full max-w-none flex-col overflow-x-clip bg-white text-base leading-[145%] tracking-wide text-[#6b6375] antialiased max-lg:text-base lg:text-lg"
+      class="mx-auto box-border flex min-h-svh min-w-0 w-full max-w-none flex-col overflow-x-clip bg-white pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] text-base leading-[145%] tracking-wide text-[#6b6375] antialiased max-lg:text-base lg:text-lg"
     ></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

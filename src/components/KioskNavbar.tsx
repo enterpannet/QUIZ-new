@@ -1,4 +1,3 @@
-import logo1 from '../assets/images/SVG/logo1.svg'
 import logo2 from '../assets/images/SVG/logo2.svg'
 import logo3 from '../assets/images/SVG/logo3.svg'
 
@@ -16,7 +15,7 @@ export function KioskNavbar() {
     >
       <div className="flex h-full min-w-0 flex-1 items-center justify-start overflow-hidden">
         <img
-          src={logo1}
+          src="/logo1.svg"
           alt=""
           width={400}
           height={100}

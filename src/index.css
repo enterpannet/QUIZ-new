@@ -1,6 +1,27 @@
 @import 'tailwindcss';
 
+@media (pointer: coarse) {
+  .kiosk-touch-hit {
+    padding: max(8px, 1.5vmin);
+    margin: max(-8px, -1.5vmin);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  @keyframes tap-hand-nudge {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.45rem);
+    }
+  }
+
+  .tap-hand-hint {
+    animation: tap-hand-nudge 1.25s ease-in-out infinite;
+  }
+
   @keyframes kiosk-spring-float {
     0%,
     100% {
