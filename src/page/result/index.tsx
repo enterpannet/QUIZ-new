@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import {
   HEALTH_CATEGORY_LABELS,
@@ -40,7 +40,7 @@ export default function HealthResultPage() {
     <div className={`${RESULT_PAGE_SHELL} min-h-0`}>
       <div className="flex max-w-[min(100%,48rem)] flex-1 flex-col items-center gap-5 px-4 py-10 text-center md:gap-8 md:py-14">
         {entry ? (
-          <>
+          <Fragment>
             <header className="flex flex-col gap-2 md:gap-3">
               <p className="text-[0.65rem] font-bold tracking-[0.2em] text-neutral-800/75 sm:text-xs">
               YOUR FUTURE <br /> FOOD MATCH
@@ -65,7 +65,7 @@ export default function HealthResultPage() {
                 ))}
               </ul>
             </section>
-          </>
+          </Fragment>
         ) : (
           <div className="flex flex-col gap-4 text-neutral-900">
             <p className="text-lg font-bold sm:text-xl">ยังโหลดผลการจับคู่ไม่ได้</p>
@@ -74,7 +74,10 @@ export default function HealthResultPage() {
               <code className="rounded bg-neutral-200/90 px-1">{HEALTH_GOAL_QUERY_KEY}</code> จาก STEP 2 และ{' '}
               <code className="rounded bg-neutral-200/90 px-1">{HEALTH_CATEGORY_QUERY_KEY}</code> จาก STEP 3{' '}
               (รูปแบบคีย์ใน JSON เช่น{' '}
-              <code className="rounded bg-neutral-200/90 px-1 text-xs">{HEALTH_GOAL_QUERY_KEY}? + category</code>).
+              <code className="rounded bg-neutral-200/90 px-1 text-xs">
+                {`${HEALTH_GOAL_QUERY_KEY}? + category`}
+              </code>
+              ).
             </p>
             {!goalId && categoryId ? (
               <p className="text-sm text-amber-900/90">
