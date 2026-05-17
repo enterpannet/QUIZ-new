@@ -102,4 +102,30 @@
   .kiosk-img-wobble {
     animation: kiosk-img-wobble 0.76s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
   }
+
+  /** Health step2 — คอลัมน์โผล่ทีละกลุ่ม */
+  @keyframes health-goal-col-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(0.85rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .health-goal-col-grid > .health-goal-column {
+    animation: health-goal-col-reveal 0.58s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .health-goal-col-grid > .health-goal-column:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .health-goal-col-grid > .health-goal-column:nth-child(2) {
+    animation-delay: 0.16s;
+  }
+  .health-goal-col-grid > .health-goal-column:nth-child(3) {
+    animation-delay: 0.27s;
+  }
 }

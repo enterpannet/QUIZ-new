@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { KioskNavbar } from './components/KioskNavbar'
 import HealthStep2 from './page/Health/step2'
 import HealthStep3 from './page/Health/step3'
+import HealthResultPage from './page/result'
 import SpecialStep2 from './page/Special/step2'
 import SpecialStep3 from './page/Special/step3'
 import Page1 from './page/page1'
@@ -19,6 +20,7 @@ function App() {
           <Route path="/page3" element={<Page3 />} />
           <Route path="/health/step2" element={<HealthStep2 />} />
           <Route path="/health/step3" element={<HealthStep3 />} />
+          <Route path="/health/result" element={<HealthResultPage />} />
           <Route path="/special/step2" element={<SpecialStep2 />} />
           <Route path="/special/step3" element={<SpecialStep3 />} />
         </Routes>
