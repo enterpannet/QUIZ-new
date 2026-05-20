@@ -1,6 +1,11 @@
 # Deploy ไฟล์ static (`dist/` หลัง Vite build) ไปยัง Ubuntu ผ่าน rsync over SSH — เสิร์ฟด้วย Caddy
 # Caddy example: deploy/ubuntu-caddy.Caddyfile.example
 #
+# ตั้งใน GitHub: Repo → Settings → Secrets and variables → Actions
+# ⚠️ แยกให้ถูก:
+#   - DEPLOY_REMOTE_PATH อยู่แท็บ "Variables" (ไม่ใช่ Secrets)
+#   - ชื่อเหล่านี้อยู่แท็บ "Repository secrets"
+#
 # Secrets:
 #   DEPLOY_HOST       — เช่น deploy.example.com
 #   DEPLOY_USER       — user SSH เช่น deploy
@@ -56,6 +61,34 @@ jobs:
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
+      - name: Verify deploy secrets & variables
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          REMOTE: ${{ vars.DEPLOY_REMOTE_PATH }}
+        run: |
+          MISSING=""
+          VARIABLES_PAGE="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/settings/variables/actions"
+          SECRETS_PAGE="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/settings/secrets/actions"
+          [ -z "${HOST}" ] && MISSING="${MISSING}"$'\n'"  • DEPLOY_HOST (repository secret)"
+          [ -z "${SSH_USER}" ] && MISSING="${MISSING}"$'\n'"  • DEPLOY_USER (repository secret)"
+          [ -z "${REMOTE}" ] && MISSING="${MISSING}"$'\n'"  • DEPLOY_REMOTE_PATH (repository variable — แท็บ Variables เท่านั้น)"
+          if ! [ -s "$HOME/.ssh/deploy_key" ]; then
+            MISSING="${MISSING}"$'\n'"  • DEPLOY_SSH_KEY (repository secret — ต้องไม่ว่าง)"
+          fi
+          if [ -n "$MISSING" ]; then
+            echo "::group:: Deploy configuration incomplete"
+            echo "ยังขาดหรือว่างอยู่:${MISSING}"
+            echo ""
+            echo "Secrets: $SECRETS_PAGE"
+            echo "Variables (สำหรับ DEPLOY_REMOTE_PATH): $VARIABLES_PAGE"
+            echo ""
+            echo "ตัวอย่าง DEPLOY_REMOTE_PATH: /var/www/quiz"
+            echo "::endgroup::"
+            echo "::error::ตั้ง repository Secrets + Variable ให้ครบแล้วรันใหม่"
+            exit 1
+          fi
+
       - name: Deploy (rsync)
         env:
           SSH_PORT: ${{ vars.DEPLOY_SSH_PORT || '22' }}
@@ -64,10 +97,6 @@ jobs:
           REMOTE: ${{ vars.DEPLOY_REMOTE_PATH }}
         run: |
           set -euo pipefail
-          if [ -z "${HOST:-}" ] || [ -z "${SSH_USER:-}" ] || [ -z "${REMOTE:-}" ]; then
-            echo "::error::ตั้ง DEPLOY_HOST, DEPLOY_USER (secrets) และ DEPLOY_REMOTE_PATH (variables) ให้ครบ"
-            exit 1
-          fi
           ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
 
           RSHELL="ssh -p ${SSH_PORT} -i ${HOME}/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"

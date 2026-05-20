@@ -12,7 +12,7 @@
 - Workflow [.github/workflows/deploy-ubuntu-caddy.yml](.github/workflows/deploy-ubuntu-caddy.yml): `bun` build แล้ว **`rsync dist/` → เซิร์ฟเวอร์** และพยายาม **`sudo systemctl reload caddy`** (ล้มได้เงียบ ๆ ถ้าไม่ได้ตั้ง sudo)
 - ตัวอย่าง Caddy: [deploy/ubuntu-caddy.Caddyfile.example](deploy/ubuntu-caddy.Caddyfile.example) (แก้ `quiz.example.com` และ `root` ให้ตรง **`DEPLOY_REMOTE_PATH`**)
 - **Secrets**: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`  
-- **Variables**: `DEPLOY_REMOTE_PATH` (เช่น `/var/www/quiz`) • ทางเลือก: `DEPLOY_SSH_PORT`
+- **Variables** (ไม่ใส่เป็น Secret): `DEPLOY_REMOTE_PATH` — เช่น `/var/www/quiz` • ทางเลือก: `DEPLOY_SSH_PORT` (พอร์ต SSH ค่าเริ่มต้น `22`)
 - เซิร์ฟเวอร์: ให้ user SSH เขียนโฟลเดอร์ปลายทางได้ และสำหรับ reload ให้ NOPASSWD แค่ `systemctl reload caddy` เท่านั้น
 
 ---
