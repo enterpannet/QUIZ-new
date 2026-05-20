@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import circleBlueBlank from '../../assets/images/SVG/circleBlueBlank.svg'
 import circleGreenBlank from '../../assets/images/SVG/circleGreenBlank.svg'
 import { HEALTH_CATEGORY_QUERY_KEY, parseHealthCategoryId } from '../Health/healthCategorySelection'
@@ -77,6 +78,13 @@ export default function DetailsPage() {
     return `${window.location.origin}${pathForAbsolute}`
   }, [pathNoHash])
 
+  /** ลิงก์หน้า details ปัจจุบัน — QR บนจอใหญ่ให้สแกนเปิดบนมือถือแล้วดาวน์โหลด */
+  const detailsShareUrl = useMemo(() => {
+    if (typeof window === 'undefined') return ''
+    const qs = searchParams.toString()
+    return `${window.location.origin}${window.location.pathname}${qs ? `?${qs}` : ''}`
+  }, [searchParams])
+
   const handleDownloadCurrent = useCallback(async () => {
     if (!pathNoHash) return
     const stem =
@@ -99,17 +107,34 @@ export default function DetailsPage() {
           Sorting Again
         </Link>
 
-        <button
-          type="button"
-          className={HEALTH_RESULT_FOOTER_BUTTON_CLASS}
-          disabled={!pathNoHash || downloading}
-          aria-busy={downloading}
-          onClick={() => {
-            void handleDownloadCurrent()
-          }}
-        >
-          {downloading ? 'Downloading…' : 'Download This Result'}
-        </button>
+        {pathNoHash ? (
+          <>
+            <button
+              type="button"
+              className={`${HEALTH_RESULT_FOOTER_BUTTON_CLASS} lg:hidden`}
+              disabled={downloading}
+              aria-busy={downloading}
+              onClick={() => {
+                void handleDownloadCurrent()
+              }}
+            >
+              {downloading ? 'Downloading…' : 'Download This Result'}
+            </button>
+            {detailsShareUrl ? (
+              <div className="hidden shrink-0 lg:block">
+                <HealthResultDownloadQr url={detailsShareUrl} compact />
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <button
+            type="button"
+            className={HEALTH_RESULT_FOOTER_BUTTON_CLASS}
+            disabled
+          >
+            Download This Result
+          </button>
+        )}
 
         <Link to="/end-session" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
           End session
