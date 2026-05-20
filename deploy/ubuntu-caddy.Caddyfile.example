@@ -1,0 +1,46 @@
+# ติดตั้งบนเซิร์ฟเวอร์: Ubuntu + Caddy
+# ใช้: sudo cp เข้า /etc/caddy/Caddyfile หรือ include จากไฟล์หลัก
+#
+# เตรียมไดเรกทอรีเว็บ และสิทธิ์ให้ผู้ที่รัน caddy เขียนได้ (หรือ deploy เป็น root แล้ว chown)
+#   sudo mkdir -p /var/www/quiz
+#   sudo chown -R caddy:caddy /var/www/quiz
+#
+# หลัง rsync เสิร์ฟไฟล์จากโฟลเดอร์ root ใน dist (--delete จาก workflow)
+#
+# ⚠️ แก้โดเมน/tls ให้ตรงกับ DNS ของคุณ — เก็บ example.com เดิมได้ถ้ายังไม่มีโดเมน (เฉพาะทดสอบ)
+
+quiz.example.com {
+    root * /var/www/quiz
+    encode zstd gzip
+
+    # ถ้ามีไฟล์จริงใน dist → เสิร์ฟตาม path ; ถ้าไม่มี → SPA เป็นตัวอย่าง /index.html (React Router / PWA)
+    route {
+        @static file
+        handle @static {
+            file_server
+        }
+        handle {
+            rewrite * /index.html
+            file_server
+        }
+    }
+
+    # log {
+    #     output discard
+    # }
+}
+
+# เวอร์ชันทดสอบ HTTP ใน LAN (ถ้าต้องการ — ให้เปิดฟ้าเฉพาะ port ภายใน)
+# :8080 {
+#     bind 127.0.0.1
+#     root * /var/www/quiz
+#     encode gzip
+#     route {
+#         @static file
+#         handle @static { file_server }
+#         handle {
+#             rewrite * /index.html
+#             file_server
+#         }
+#     }
+# }

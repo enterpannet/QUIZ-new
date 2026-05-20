@@ -1,0 +1,91 @@
+# Deploy ไฟล์ static (`dist/` หลัง Vite build) ไปยัง Ubuntu ผ่าน rsync over SSH — เสิร์ฟด้วย Caddy
+# Caddy example: deploy/ubuntu-caddy.Caddyfile.example
+#
+# Secrets:
+#   DEPLOY_HOST       — เช่น deploy.example.com
+#   DEPLOY_USER       — user SSH เช่น deploy
+#   DEPLOY_SSH_KEY    — private key แบบ multiline (OpenSSH PEM / ed25519)
+#
+# Variables:
+#   DEPLOY_REMOTE_PATH — เป้าหมายบนเซิร์ฟเวอร์ ไม่มีท้าย / เช่น /var/www/quiz
+#
+# Optional variables:
+#   DEPLOY_SSH_PORT   — พอร์ต SSH (ค่าเริ่มต้น 22)
+#
+# บน Ubuntu: ให้ user deploy เขียนโฟลเดอร์นั้นได้ ; reload caddy เช่น
+#   deploy ALL=(ALL) NOPASSWD: /bin/systemctl reload caddy
+#
+name: Deploy to Ubuntu (Caddy)
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ubuntu-caddy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        env:
+          VITE_BASE_PATH: /
+        run: bun run build
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+      - name: Deploy (rsync)
+        env:
+          SSH_PORT: ${{ vars.DEPLOY_SSH_PORT || '22' }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+          REMOTE: ${{ vars.DEPLOY_REMOTE_PATH }}
+        run: |
+          set -euo pipefail
+          if [ -z "${HOST:-}" ] || [ -z "${SSH_USER:-}" ] || [ -z "${REMOTE:-}" ]; then
+            echo "::error::ตั้ง DEPLOY_HOST, DEPLOY_USER (secrets) และ DEPLOY_REMOTE_PATH (variables) ให้ครบ"
+            exit 1
+          fi
+          ssh-keyscan -p "$SSH_PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          RSHELL="ssh -p ${SSH_PORT} -i ${HOME}/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+
+          REMOTE_Q="$(printf '%q' "$REMOTE")"
+          $RSHELL "${SSH_USER}@${HOST}" "mkdir -p ${REMOTE_Q}"
+
+          rsync -az --delete \
+            --exclude '.DS_Store' \
+            -e "$RSHELL" \
+            dist/ "${SSH_USER}@${HOST}:${REMOTE}/"
+
+      - name: Reload Caddy (optional)
+        env:
+          SSH_PORT: ${{ vars.DEPLOY_SSH_PORT || '22' }}
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+        continue-on-error: true
+        run: |
+          RSHELL="ssh -p ${SSH_PORT} -i ${HOME}/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+          $RSHELL "${SSH_USER}@${HOST}" 'sudo systemctl reload caddy'

@@ -7,6 +7,14 @@
 - ค่า `base`/`basename` เวลาบิลด์มาจาก **`VITE_BASE_PATH`**: ค่าเริ่มต้นคือ **`/<ชื่อ-repo>/`** เหมาะกับ URL `https://<user>.github.io/<ชื่อ-repo>/`
 - เผยแพร่จากโดเมนรากของ repo (ไม่มี prefix โฟลเดอร์ชื่อ repo): เพิ่ม **Repository variable** **`BASE_PATH`** = **`/`** (ใน Settings → Secrets and variables → Actions → Variables)
 
+## Deploy Ubuntu + Caddy (self-hosted)
+
+- Workflow [.github/workflows/deploy-ubuntu-caddy.yml](.github/workflows/deploy-ubuntu-caddy.yml): `bun` build แล้ว **`rsync dist/` → เซิร์ฟเวอร์** และพยายาม **`sudo systemctl reload caddy`** (ล้มได้เงียบ ๆ ถ้าไม่ได้ตั้ง sudo)
+- ตัวอย่าง Caddy: [deploy/ubuntu-caddy.Caddyfile.example](deploy/ubuntu-caddy.Caddyfile.example) (แก้ `quiz.example.com` และ `root` ให้ตรง **`DEPLOY_REMOTE_PATH`**)
+- **Secrets**: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`  
+- **Variables**: `DEPLOY_REMOTE_PATH` (เช่น `/var/www/quiz`) • ทางเลือก: `DEPLOY_SSH_PORT`
+- เซิร์ฟเวอร์: ให้ user SSH เขียนโฟลเดอร์ปลายทางได้ และสำหรับ reload ให้ NOPASSWD แค่ `systemctl reload caddy` เท่านั้น
+
 ---
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
