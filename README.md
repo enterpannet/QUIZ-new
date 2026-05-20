@@ -1,5 +1,14 @@
 # React + TypeScript + Vite
 
+## Deploy (GitHub Pages)
+
+- ที่ **Settings → Pages** เลือก **Source: GitHub Actions**
+- Push ไป `master` หรือ `main` จะรัน workflow [.github/workflows/deploy-github-pages.yml](.github/workflows/deploy-github-pages.yml): `bun install` → `bun run build` → อัปโหลด `dist/` (รวม `404.html` สำหรับ SPA routing)
+- ค่า `base`/`basename` เวลาบิลด์มาจาก **`VITE_BASE_PATH`**: ค่าเริ่มต้นคือ **`/<ชื่อ-repo>/`** เหมาะกับ URL `https://<user>.github.io/<ชื่อ-repo>/`
+- เผยแพร่จากโดเมนรากของ repo (ไม่มี prefix โฟลเดอร์ชื่อ repo): เพิ่ม **Repository variable** **`BASE_PATH`** = **`/`** (ใน Settings → Secrets and variables → Actions → Variables)
+
+---
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
