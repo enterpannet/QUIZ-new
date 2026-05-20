@@ -1,5 +1,6 @@
 import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import {
   HEALTH_CATEGORY_LABELS,
   HEALTH_CATEGORY_QUERY_KEY,
@@ -35,6 +36,13 @@ export default function HealthResultPage() {
   }, [searchParams])
 
   const { goalId, categoryId, entry } = parsed
+
+  /** ลิงก์เดียวกับหน้านี้ — ใช้ใน QR บนจอใหญ่ (สแกนแล้วเปิดบนมือถือเพื่อดาวน์โหลด) */
+  const resultShareUrl = useMemo(() => {
+    if (typeof window === 'undefined') return ''
+    const qs = searchParams.toString()
+    return `${window.location.origin}${window.location.pathname}${qs ? `?${qs}` : ''}`
+  }, [searchParams])
 
   const [downloading, setDownloading] = useState(false)
 
@@ -112,17 +120,24 @@ export default function HealthResultPage() {
           </Link>
 
           {entry ? (
-            <button
-              type="button"
-              className={HEALTH_RESULT_FOOTER_BUTTON_CLASS}
-              disabled={downloading}
-              aria-busy={downloading}
-              onClick={() => {
-                void handleDownloadAll()
-              }}
-            >
-              {downloading ? 'Downloading…' : 'Download This Result'}
-            </button>
+            <>
+              <button
+                type="button"
+                className={`${HEALTH_RESULT_FOOTER_BUTTON_CLASS} lg:hidden`}
+                disabled={downloading}
+                aria-busy={downloading}
+                onClick={() => {
+                  void handleDownloadAll()
+                }}
+              >
+                {downloading ? 'Downloading…' : 'Download This Result'}
+              </button>
+              {resultShareUrl ? (
+                <div className="hidden shrink-0 lg:block">
+                  <HealthResultDownloadQr url={resultShareUrl} compact />
+                </div>
+              ) : null}
+            </>
           ) : null}
 
           <Link to="/end-session" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>

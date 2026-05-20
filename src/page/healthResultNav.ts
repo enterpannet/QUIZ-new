@@ -7,7 +7,7 @@ export const E_BOOKLET_PDF_URL = '/ebooklet.pdf'
 
 /** แถบปุ่มด้านล่างแบบเดียวกับหน้า /health/result */
 export const HEALTH_RESULT_FOOTER_ACTIONS_ROW =
-  'flex max-w-[min(100%,48rem)] flex-wrap justify-center gap-3 px-2 pt-4 pb-8'
+  'flex max-w-[min(100%,48rem)] flex-wrap items-center justify-center gap-3 px-2 pt-4 pb-8'
 
 /** พื้นฐานโทนปุ่มฟุตเทอร์ — เหมือนกันทุกปุ่ม (โครงเดียวกับ Sorting Again) */
 const HEALTH_RESULT_FOOTER_BTN_VISUAL =
