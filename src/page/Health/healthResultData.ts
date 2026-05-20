@@ -1,4 +1,5 @@
 import healthResultLookup from '../../data/healthResultLookup.json'
+import { HEALTH_CATEGORY_LABELS } from './healthCategorySelection'
 
 export type HealthResultProductPdf = {
   titleTh: string
@@ -19,8 +20,28 @@ export type HealthResultLookupMap = Record<string, HealthResultEntry>
 export const HEALTH_RESULT_LOOKUP =
   healthResultLookup as unknown as HealthResultLookupMap
 
+function deriveSeasoningsFromFoodEntry(base: HealthResultEntry): HealthResultEntry {
+  const seasoningTh = HEALTH_CATEGORY_LABELS.seasonings.titleTh
+  const [lhs] = base.title.split(/\s*×\s*/)
+  return {
+    ...base,
+    title: lhs ? `${lhs} × ${seasoningTh}` : `${base.title} × ${seasoningTh}`,
+    summaryTh: base.summaryTh
+      .replaceAll('ผลิตภัณฑ์ประเภทอาหาร', 'ผลิตภัณฑ์ประเภทเครื่องปรุง')
+      .replaceAll('ประเภทอาหาร', 'ประเภทเครื่องปรุง'),
+  }
+}
+
 export function getHealthResultEntry(comboKey: string): HealthResultEntry | undefined {
-  return HEALTH_RESULT_LOOKUP[comboKey]
+  const direct = HEALTH_RESULT_LOOKUP[comboKey]
+  if (direct) return direct
+
+  /** ชุด JSON มีแค่ food/beverages/snacks — เครื่องปรุงชั่วคราวอิงเมนูเดียวกับอาหาร */
+  const m = /^(.+)__seasonings$/u.exec(comboKey)
+  if (!m?.[1]) return undefined
+  const food = HEALTH_RESULT_LOOKUP[`${m[1]}__food`]
+  if (!food) return undefined
+  return deriveSeasoningsFromFoodEntry(food)
 }
 
 /** พาธรูปคู่กันกับ PDF: /health-product-pdfs/…/NNN.pdf → /health-product-images/…/NNN.svg */

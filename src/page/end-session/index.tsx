@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom'
 import Group from '../../assets/images/SVG/Group.svg'
 import { E_BOOKLET_PDF_URL, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
 
+/** ดึงรูปกราฟิกเต็มความกว้าง viewport — หักลบ px ข้างของ HEALTH_RESULT_PAGE_SHELL */
+const END_SESSION_GROUP_BLEED =
+  'w-full max-w-none shrink-0 self-stretch -mx-3 max-xl:sm:-mx-4 max-xl:md:-mx-5 max-xl:lg:-mx-6 xl:-mx-4 xl:sm:-mx-6'
+
 /** ปุ่มสีเหลืองโค้งมน — ตามม็อกหน้า End session; ใหญ่ตาม breakpoint จอ kiosk */
 const END_SESSION_CTA_BTN =
   'inline-flex min-h-[2.875rem] min-w-[min(100%,13rem)] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#ffdd33] px-6 py-2.5 text-center text-sm font-bold leading-tight text-neutral-800 shadow-none transition-opacity active:opacity-85 md:min-h-[3.125rem] md:min-w-[14rem] md:px-8 md:text-base xl:min-h-[3.375rem] xl:min-w-[15.75rem] xl:px-10 xl:text-lg 2xl:min-h-[3.75rem] 2xl:min-w-[18rem] 2xl:px-12 2xl:text-xl'
@@ -20,8 +24,8 @@ export default function EndSessionPage() {
         }}
       />
 
-      <div className="relative flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-12 text-center sm:py-16">
-        <div className="max-w-xl space-y-5 text-neutral-900 sm:max-w-[36rem] sm:space-y-6 lg:max-w-[40rem] xl:max-w-[48rem] xl:space-y-7 2xl:max-w-[56rem] 2xl:space-y-8">
+      <div className="relative flex min-h-0 flex-1 flex-col items-center justify-center py-12 text-center sm:py-16">
+        <div className="w-full max-w-xl space-y-5 px-4 text-neutral-900 sm:max-w-[36rem] sm:space-y-6 lg:max-w-[40rem] xl:max-w-[48rem] xl:space-y-7 2xl:max-w-[56rem] 2xl:space-y-8">
           <section className="space-y-3 md:space-y-4 xl:space-y-5">
             <h1 className="text-balance text-xl font-bold leading-snug md:text-[1.625rem] xl:text-[1.875rem] xl:leading-snug 2xl:text-[2.125rem]">
               Thank you for discovering your Future Food Match
@@ -70,11 +74,9 @@ export default function EndSessionPage() {
           </footer>
         </div>
 
-        <img
-          src={Group}
-          alt=""
-          className="mx-auto mt-8 w-full max-w-4xl shrink-0 object-contain px-2 md:mt-10 xl:mt-12 xl:max-w-6xl 2xl:mt-14 2xl:max-w-[min(92rem,96vw)]"
-        />
+        <div className={`${END_SESSION_GROUP_BLEED} mt-8 sm:mt-10 xl:mt-12 2xl:mt-14`}>
+          <img src={Group} alt="" className="block h-auto w-full max-w-none object-contain" />
+        </div>
       </div>
     </div>
   )

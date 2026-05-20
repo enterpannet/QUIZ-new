@@ -1,9 +1,9 @@
 /** query: `?category=food` เมื่อเปิดผลจาก step3 */
 export const HEALTH_CATEGORY_QUERY_KEY = 'category' as const
 
-export type HealthCategoryId = 'food' | 'beverages' | 'snacks'
+export type HealthCategoryId = 'food' | 'beverages' | 'snacks' | 'seasonings'
 
-const CATEGORY_IDS = new Set<string>(['food', 'beverages', 'snacks'])
+const CATEGORY_IDS = new Set<string>(['food', 'beverages', 'snacks', 'seasonings'])
 
 export function parseHealthCategoryId(raw: string | null | undefined): HealthCategoryId | null {
   if (raw == null || raw === '') return null
@@ -15,4 +15,5 @@ export const HEALTH_CATEGORY_LABELS: Record<HealthCategoryId, { titleEn: string;
   food: { titleEn: 'Food', titleTh: 'อาหาร' },
   beverages: { titleEn: 'Beverages', titleTh: 'เครื่องดื่ม' },
   snacks: { titleEn: 'Snacks', titleTh: 'ขนมทานเล่น' },
+  seasonings: { titleEn: 'Seasonings', titleTh: 'เครื่องปรุง' },
 }

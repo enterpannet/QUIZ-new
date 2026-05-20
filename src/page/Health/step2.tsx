@@ -62,7 +62,7 @@ export default function HealthStep2() {
           stepLabel="STEP 2"
           titleLine1="SELECT YOUR"
           titleLine2="HEALTH GOAL"
-          description="เลือกเป้าหมายสุขภาพที่ต้องการดุแล เป้าหมายหลักของคุณคืออะไร?"
+          description="เลือกเป้าหมายสุขภาพที่ต้องการดูแล เป้าหมายหลักของคุณคืออะไร?"
         />
       </div>
       <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22  lg:gap-8 lg:py-32">
