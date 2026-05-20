@@ -30,14 +30,16 @@ const choiceHeroImg =
 export default function Page3() {
   return (
     <div className={pageShell}>
-      <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-5 px-1 py-2 min-[400px]:gap-6 sm:gap-8 sm:px-3 sm:py-4 md:gap-10 md:py-5 lg:gap-12 lg:py-6">
-        <KioskStepHeader
-          stepLabel={page3HeaderCopy.stepLabel}
-          titleLine1={page3HeaderCopy.titleLine1}
-          titleLine2={page3HeaderCopy.titleLine2}
-          description={page3HeaderCopy.description}
-        />
-        <div className="flex w-full max-w-[min(100%,40rem)] flex-row items-start justify-center gap-2 px-0.5 min-[390px]:gap-3 min-[400px]:max-w-[min(100%,44rem)] sm:gap-5 md:max-w-3xl md:gap-8 lg:max-w-4xl lg:gap-12 xl:max-w-5xl xl:gap-16 2xl:max-w-6xl 2xl:gap-20">
+      <div className="kiosk-enter flex min-h-0 w-full flex-1 flex-col items-center gap-5 px-1 py-2 min-[400px]:gap-6 sm:gap-8 sm:px-3 sm:py-4 md:gap-10 md:py-5 lg:gap-12 lg:py-6">
+        <div className="kiosk-enter-item w-full">
+          <KioskStepHeader
+            stepLabel={page3HeaderCopy.stepLabel}
+            titleLine1={page3HeaderCopy.titleLine1}
+            titleLine2={page3HeaderCopy.titleLine2}
+            description={page3HeaderCopy.description}
+          />
+        </div>
+        <div className="kiosk-enter-cols flex w-full max-w-[min(100%,40rem)] flex-row items-start justify-center gap-2 px-0.5 min-[390px]:gap-3 min-[400px]:max-w-[min(100%,44rem)] sm:gap-5 md:max-w-3xl md:gap-8 lg:max-w-4xl lg:gap-12 xl:max-w-5xl xl:gap-16 2xl:max-w-6xl 2xl:gap-20">
           <Link
             to="/health/step2"
             className="flex min-w-0 flex-1 touch-manipulation flex-col items-center gap-3 rounded-2xl px-2 py-2 text-inherit no-underline [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-700 sm:gap-4 sm:px-3 sm:py-3 md:py-4"
