@@ -8,6 +8,8 @@ import SpecialStep3 from './page/Special/step3'
 import Page1 from './page/page1'
 import Page2 from './page/page2'
 import Page3 from './page/page3'
+import DetailsPage from './page/details'
+import EndSessionPage from './page/end-session'
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/health/result" element={<HealthResultPage />} />
           <Route path="/special/step2" element={<SpecialStep2 />} />
           <Route path="/special/step3" element={<SpecialStep3 />} />
+          <Route path="/details" element={<DetailsPage />} />
+          <Route path="/end-session" element={<EndSessionPage />} />
         </Routes>
       </main>
     </div>

@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import {
   HEALTH_CATEGORY_LABELS,
@@ -12,14 +12,14 @@ import {
 import { HealthResultProductPdfSlider } from '../../components/HealthResultProductPdfSlider'
 import { getHealthResultEntry } from '../Health/healthResultData'
 import { toHealthComboKey } from '../Health/healthResultCombo'
-
-const RESULT_PAGE_SHELL =
-  'flex w-full max-w-none flex-1 flex-col items-center justify-start overflow-x-clip bg-neutral-100 text-neutral-900 max-xl:gap-5 max-xl:px-3 max-xl:py-5 max-xl:pb-6 max-xl:sm:px-4 max-xl:md:gap-9 max-xl:md:px-5 max-xl:md:py-8 max-xl:md:pb-10 max-xl:lg:gap-10 max-xl:lg:px-6 max-xl:lg:py-10 max-xl:lg:pb-12 xl:gap-6 xl:px-4 xl:py-6 xl:pb-8 xl:sm:gap-8 xl:sm:px-6 xl:sm:py-10 xl:sm:pb-10'
-
-function step3BackHref(goalId: ReturnType<typeof parseHealthGoalId>) {
-  if (goalId == null) return '/health/step3'
-  return `/health/step3?${new URLSearchParams({ [HEALTH_GOAL_QUERY_KEY]: goalId })}`
-}
+import { downloadListedPdfsSequentially } from '../healthResultDownload'
+import {
+  HEALTH_RESULT_FOOTER_ACTIONS_ROW,
+  HEALTH_RESULT_FOOTER_BUTTON_CLASS,
+  HEALTH_RESULT_FOOTER_LINK_CLASS,
+  HEALTH_RESULT_PAGE_SHELL,
+} from '../healthResultNav'
+import Group from '../../assets/images/SVG/Group.svg'
 
 export default function HealthResultPage() {
   const [searchParams] = useSearchParams()
@@ -36,35 +36,49 @@ export default function HealthResultPage() {
 
   const { goalId, categoryId, entry } = parsed
 
+  const [downloading, setDownloading] = useState(false)
+
+  const handleDownloadAll = useCallback(async () => {
+    if (!entry?.products?.length) return
+    setDownloading(true)
+    try {
+      await downloadListedPdfsSequentially(entry.products)
+    } finally {
+      setDownloading(false)
+    }
+  }, [entry])
+
   return (
-    <div className={`${RESULT_PAGE_SHELL} min-h-0`}>
-      <div className="flex max-w-[min(100%,48rem)] flex-1 flex-col items-center gap-5 px-4 py-10 text-center md:gap-8 md:py-14">
+    <div className={`${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>
+      <div className="flex max-w-[min(100%,92rem)] flex-1 flex-col items-center gap-5 px-4  text-center md:gap-8 ">
         {entry ? (
           <Fragment>
             <header className="flex flex-col gap-2 md:gap-3">
-              <p className="text-[0.65rem] font-bold tracking-[0.2em] text-neutral-800/75 sm:text-xs">
+              <p className="text-xl font-bold tracking-[0.2em] text-neutral-800/75 md:text-6xl lg:text-8xl">
               YOUR FUTURE <br /> FOOD MATCH
               </p>
-            
+            <p className="text-sm md:text-base lg:text-lg">
+              จากคำตอบของคุณระบบได้ตัดเลือกกลุ่มผลิตภัณฑ์ Future Food <br />
+              ที่สอดคล้องกับสุขภาพ ไลฟ์สไตล์ และเป่าหมายของคุณ
+            </p>
              
             </header>
             
             <section className="w-full self-stretch text-left">
-              <h2 className="mb-2 text-sm font-bold tracking-wide text-neutral-900 sm:text-base">
-                สินค้าในกลุ่มนี้ (สไลด์ครั้งละหนึ่ง PDF — {entry.products.length} รายการ)
-              </h2>
-              <HealthResultProductPdfSlider products={entry.products} />
+              <HealthResultProductPdfSlider
+                products={entry.products}
+                detailsPdfLinkExtras={
+                  goalId != null && categoryId != null
+                    ? {
+                        [HEALTH_GOAL_QUERY_KEY]: goalId,
+                        [HEALTH_CATEGORY_QUERY_KEY]: categoryId,
+                      }
+                    : undefined
+                }
+              />
             </section>
-            <section className="w-full self-stretch text-left">
-              <h2 className="mb-2 text-sm font-bold tracking-wide text-neutral-900 sm:text-base">
-                เคล็ดลับ
-              </h2>
-              <ul className="list-inside list-disc space-y-2 text-sm text-neutral-800 sm:text-base">
-                {entry.tips.map((t, i) => (
-                  <li key={i}>{t}</li>
-                ))}
-              </ul>
-            </section>
+
+            <img src={Group} alt="" className="mx-auto mt-8 w-full max-w-4xl object-contain px-2" />
           </Fragment>
         ) : (
           <div className="flex flex-col gap-4 text-neutral-900">
@@ -92,18 +106,27 @@ export default function HealthResultPage() {
           </div>
         )}
 
-        <div className="mt-auto flex flex-wrap justify-center gap-3 pt-6">
-          <Link
-            to={step3BackHref(goalId)}
-            className="rounded-full border border-neutral-700 px-5 py-2 text-sm font-semibold text-neutral-900 no-underline transition-opacity active:opacity-80 md:text-base"
-          >
-            ← กลับ STEP 3
+        <div className={`mt-auto ${HEALTH_RESULT_FOOTER_ACTIONS_ROW}`}>
+          <Link to="/" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
+            Sorting Again
           </Link>
-          <Link
-            to="/health/step2"
-            className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-neutral-50 no-underline transition-opacity active:opacity-85 md:text-base"
-          >
-            เลือกเป้าหมายใหม่
+
+          {entry ? (
+            <button
+              type="button"
+              className={HEALTH_RESULT_FOOTER_BUTTON_CLASS}
+              disabled={downloading}
+              aria-busy={downloading}
+              onClick={() => {
+                void handleDownloadAll()
+              }}
+            >
+              {downloading ? 'Downloading…' : 'Download This Result'}
+            </button>
+          ) : null}
+
+          <Link to="/end-session" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
+            End session
           </Link>
         </div>
       </div>

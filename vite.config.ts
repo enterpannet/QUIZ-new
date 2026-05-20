@@ -4,8 +4,17 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 import { VitePWA } from 'vite-plugin-pwa'
 
+/** GitHub Actions ส่ง VITE_BASE_PATH เช่น `/repo/` ; ว่างหรือ `/` = รากโดเมน */
+function viteBase(): string {
+  const env = process.env.VITE_BASE_PATH
+  if (env === undefined || env === '' || env === '/') return '/'
+  const trimmed = env.replace(/^\/+|\/+$/g, '')
+  return trimmed ? `/${trimmed}/` : '/'
+}
+
 // https://vite.dev/config/
 export default defineConfig({
+  base: viteBase(),
   plugins: [
     tailwindcss(),
     react(),

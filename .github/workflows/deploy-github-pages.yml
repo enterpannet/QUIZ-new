@@ -1,0 +1,62 @@
+# Build Vite SPA with Bun และ deploy static จากโฟลเดอร์ `dist/` ไปที่ GitHub Pages
+#
+# หลัง merge: Settings → Pages → Source = GitHub Actions
+# URL ประเภท https://<user>.github.io/<ชื่อ-repo>/
+#
+# Deploy จากรากของโดเมน (ไม่มี /ชื่อ-repo/): เพิ่ม Repository variables ชื่อ BASE_PATH = /
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        env:
+          # ไม่ตั้งค่า BASE_PATH → ใช้ /ชื่อ-repo/ ตาม GitHub Pages แบบ project site
+          VITE_BASE_PATH: ${{ vars.BASE_PATH != '' && vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+        run: bun run build
+
+      # GitHub Pages ไม่ redirect ถึง index.html เสมอเมื่อเข้าลิงก์ย่อย — ให้ SPA เปิดจาก 404 เหมือน Netlify rewrite
+      - name: SPA fallback for GitHub Pages
+        run: cp dist/index.html dist/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

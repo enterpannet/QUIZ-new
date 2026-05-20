@@ -1,146 +1,267 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import type { HealthResultProductPdf } from '../page/Health/healthResultData'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import chevronPrev from '../assets/images/SVG/back.svg'
+import chevronNext from '../assets/images/SVG/Next.svg'
+import { Link } from 'react-router-dom'
+import { buildDetailsPdfHref } from '../page/details/detailsPdfRoute'
+import { resolveHealthProductImageUrl, type HealthResultProductPdf } from '../page/Health/healthResultData'
 
-type Props = { products: HealthResultProductPdf[] }
+type Props = {
+  products: HealthResultProductPdf[]
+  /**
+   * เมื่อกำหนด การแตะการ์ดจะนำไปหน้า /details และแสดง PDF กลางจอ
+   * (แทนการเปิดแท็บใหม่จากลิงก์ตรง)
+   */
+  detailsPdfLinkExtras?: Record<string, string>
+}
 
-const sliderBtn =
-  'flex size-11 shrink-0 touch-manipulation items-center justify-center rounded-full border border-neutral-400 bg-white text-xl font-semibold leading-none text-neutral-900 shadow-sm transition-[opacity,background-color] active:bg-neutral-100 disabled:pointer-events-none disabled:opacity-30 sm:size-12 sm:text-2xl'
+/** ควบคุมเลื่อนด้วยแค่รูป SVG (ไม่มีวงปุ่มห่อ) — เก็บ <button> เพื่อ a11y */
+const sliderNavHit =
+  'inline-flex shrink-0 touch-manipulation items-center justify-center rounded-full border-0 bg-transparent p-0 shadow-none outline-offset-4 transition-opacity active:opacity-80 disabled:pointer-events-none disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900'
 
-export function HealthResultProductPdfSlider({ products }: Props) {
+/** จัดการ์ด: <xl = เลื่อนแนวนอน, ≥xl = ห่อครบจำนวนคอลัมน์ เห็นทั้งหมดโดยไม่ต้องเลื่อน */
+const slideSlideClass =
+  'w-[calc((100%-0.75rem)/2)] shrink-0 snap-start py-2 sm:w-[calc((100%-2*0.75rem)/3)] lg:w-[calc((100%-3rem)/5)] xl:w-[calc((100%-3rem)/5)] xl:snap-normal'
+
+/** ภาพรองเมื่อเบราว์เซอร์ฝัง PDF เป็น object ไม่ได้ */
+function StaticPreviewImage({ src }: { src: string }) {
+  const [srcCurrent, setSrcCurrent] = useState(src)
+
+  useEffect(() => {
+    setSrcCurrent(src)
+  }, [src])
+
+  return (
+    <img
+      src={srcCurrent}
+      alt=""
+      decoding="async"
+      draggable={false}
+      loading="lazy"
+      className="pointer-events-none absolute inset-0 h-full w-full object-contain p-2 sm:p-3"
+      onError={() => setSrcCurrent('/logo1.svg')}
+    />
+  )
+}
+
+function PdfEmbeddedPreview({
+  pdfUrl,
+  fallbackSrc,
+}: {
+  pdfUrl: string
+  fallbackSrc: string
+}) {
+  const src = `${pdfUrl}#toolbar=0&navpanes=0&view=FitH`
+
+  return (
+    <div
+      data-health-slider-preview
+      className="pointer-events-none relative aspect-[5/7] w-full shrink-0 overflow-hidden rounded-t-lg bg-neutral-900/45 sm:rounded-t-xl"
+    >
+      <p className="pointer-events-none absolute left-2 top-1.5 z-[1] rounded-full bg-neutral-950/70 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-white backdrop-blur-sm sm:left-3 sm:text-[0.6rem]">
+        PDF
+      </p>
+      <object
+        type="application/pdf"
+        data={src}
+        aria-label="ภาพตัวอย่างจากหน้าแรกของไฟล์ PDF"
+        className="pointer-events-none absolute inset-0 h-full w-full border-0"
+      >
+        <StaticPreviewImage src={fallbackSrc} />
+      </object>
+    </div>
+  )
+}
+
+export function HealthResultProductPdfSlider({ products, detailsPdfLinkExtras }: Props) {
+  const carouselTrackRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
   const settleRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
-  const [viewportW, setViewportW] = useState(0)
-  const [active, setActive] = useState(0)
 
-  const clampIndex = useCallback(
-    (i: number) => Math.min(products.length - 1, Math.max(0, i)),
-    [products.length],
-  )
+  const [canPrev, setCanPrev] = useState(false)
+  const [canNext, setCanNext] = useState(true)
+  const [pdfPreviewMidPx, setPdfPreviewMidPx] = useState<number | null>(null)
 
-  const syncViewport = useCallback(() => {
-    const el = scrollerRef.current
-    if (!el) return
-    setViewportW(Math.max(1, Math.round(el.clientWidth)))
-  }, [])
-
-  const syncActiveFromScroll = useCallback(() => {
+  const syncThumbState = useCallback(() => {
     const el = scrollerRef.current
     if (!el || products.length === 0) return
-    const w = Math.max(1, Math.round(el.clientWidth))
-    setViewportW(w)
-    setActive(Math.min(products.length - 1, Math.max(0, Math.round(el.scrollLeft / w))))
+
+    const sl = el.scrollLeft
+    const vw = el.clientWidth
+    const sw = el.scrollWidth
+    const eps = 2
+
+    setCanPrev(sl > eps)
+    setCanNext(sl + vw < sw - eps)
   }, [products.length])
 
-  const scrollToIndex = useCallback(
-    (i: number) => {
-      const el = scrollerRef.current
-      if (!el) return
-      const idx = clampIndex(i)
-      const w = Math.max(1, Math.round(el.clientWidth))
-      el.scrollTo({ left: idx * w, behavior: 'smooth' })
-    },
-    [clampIndex],
-  )
+  const onScrollDebounced = useCallback(() => {
+    if (settleRef.current) clearTimeout(settleRef.current)
+    settleRef.current = setTimeout(() => {
+      settleRef.current = undefined
+      syncThumbState()
+    }, 48)
+  }, [syncThumbState])
 
   useEffect(() => {
-    syncViewport()
-  }, [products.length, syncViewport])
-
-  useEffect(() => {
-    setActive((a) => clampIndex(a))
-  }, [products.length, clampIndex])
+    syncThumbState()
+  }, [products.length, syncThumbState])
 
   useEffect(() => {
     const el = scrollerRef.current
     if (!el) return
 
-    const ro = new ResizeObserver(syncViewport)
+    const ro = new ResizeObserver(() => {
+      syncThumbState()
+    })
     ro.observe(el)
 
     const onScroll = () => {
-      if (settleRef.current) clearTimeout(settleRef.current)
-      settleRef.current = setTimeout(() => {
-        settleRef.current = undefined
-        syncActiveFromScroll()
-      }, 64)
+      syncThumbState()
+      onScrollDebounced()
     }
 
     el.addEventListener('scroll', onScroll, { passive: true })
-    el.addEventListener('scrollend', syncActiveFromScroll)
+    el.addEventListener('scrollend', syncThumbState)
+    window.addEventListener('resize', syncThumbState)
 
-    syncActiveFromScroll()
+    syncThumbState()
 
     return () => {
       if (settleRef.current) clearTimeout(settleRef.current)
       ro.disconnect()
       el.removeEventListener('scroll', onScroll)
-      el.removeEventListener('scrollend', syncActiveFromScroll)
+      el.removeEventListener('scrollend', syncThumbState)
+      window.removeEventListener('resize', syncThumbState)
     }
-  }, [syncViewport, syncActiveFromScroll])
+  }, [onScrollDebounced, syncThumbState])
+
+  /** จัดให้ปุ่มอยู่กึ่งความสูงของบล็อกพรีวิว PDF (จากการ์ดซ้ายสุดในรายการ — ความสูงพรีวิวเท่ากันทุกใบ) */
+  useLayoutEffect(() => {
+    const track = carouselTrackRef.current
+    if (!track || products.length === 0) {
+      setPdfPreviewMidPx(null)
+      return
+    }
+
+    const compute = () => {
+      const previewEl = track.querySelector<HTMLElement>('[data-health-slider-preview]')
+      if (!previewEl) {
+        setPdfPreviewMidPx(null)
+        return
+      }
+      const t = track.getBoundingClientRect()
+      const p = previewEl.getBoundingClientRect()
+      setPdfPreviewMidPx(p.top - t.top + p.height / 2)
+    }
+
+    compute()
+    const ro = new ResizeObserver(compute)
+    ro.observe(track)
+    const preview = track.querySelector<HTMLElement>('[data-health-slider-preview]')
+    if (preview) ro.observe(preview)
+    window.addEventListener('resize', compute)
+
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', compute)
+    }
+  }, [products.length])
+
+  const scrollPage = (delta: number) => {
+    const el = scrollerRef.current
+    if (!el) return
+    el.scrollBy({ left: delta * el.clientWidth, behavior: 'smooth' })
+  }
+
+  const goPrev = () => scrollPage(-1)
+  const goNext = () => scrollPage(1)
 
   if (products.length === 0) return null
 
-  const slideW = viewportW || undefined
+  const navImgClass = 'pointer-events-none h-24 w-24 select-none sm:h-28 sm:w-28 md:h-32 md:w-32'
 
-  const goPrev = () => {
-    const next = clampIndex(active - 1)
-    setActive(next)
-    scrollToIndex(next)
-  }
-
-  const goNext = () => {
-    const next = clampIndex(active + 1)
-    setActive(next)
-    scrollToIndex(next)
-  }
+  /** ให้ปุ่มอยู่กึ่งความสูงบล็อกพรีวิว PDF; ถ้ายังวัดพิกัดไม่ทันให้ชิดกึ่งกลางแนวตั้งของแถบชั่วคราว */
+  const navVertStyle =
+    pdfPreviewMidPx !== null ? ({ top: pdfPreviewMidPx, transform: 'translateY(-50%)' } as const) : ({ top: '50%', transform: 'translateY(-50%)' } as const)
 
   return (
-    <div className="w-full rounded-lg border border-neutral-200/80 bg-white/60 pb-4 pt-1">
-      <div
-        ref={scrollerRef}
-        role="region"
-        aria-label="รายการสินค้า PDF เลื่อนแนวนอน"
-        className="-webkit-overflow-scrolling-touch flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {products.map((p, i) => (
-          <div
-            key={i}
-            className="shrink-0 snap-start py-3"
-            style={slideW !== undefined ? { width: slideW } : { width: '100%', minWidth: '100%', maxWidth: '100%', boxSizing: 'border-box' }}
-          >
-            <a
-              href={p.pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mx-auto flex min-h-[7.75rem] w-[calc(100%-1.5rem)] max-w-none flex-col justify-center gap-2 rounded-xl border border-neutral-200/95 bg-neutral-50/90 px-4 py-5 text-center no-underline shadow-sm transition-colors active:bg-neutral-100/90 sm:min-h-[8rem]"
-            >
-              <span className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-neutral-500 sm:text-xs">
-                {i + 1} / {products.length}
-              </span>
-              <span className="font-semibold leading-snug text-neutral-950 sm:text-lg">{p.titleTh}</span>
-              <span className="text-sm text-neutral-600">แตะเพื่อเปิด PDF →</span>
-            </a>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex items-center justify-between gap-2 px-4 pt-1">
-        <button type="button" className={sliderBtn} aria-label="การ์ดก่อนหน้า" disabled={active === 0} onClick={goPrev}>
-          ‹
-        </button>
-        <span className="min-w-[4.5rem] text-center text-sm font-semibold text-neutral-800 tabular-nums sm:text-base">
-          {active + 1}/{products.length}
-        </span>
+    <div className="relative w-full overflow-visible">
+      <div ref={carouselTrackRef} className="relative px-1 pb-3 pt-3 sm:px-2 xl:py-3">
         <button
           type="button"
-          className={sliderBtn}
-          aria-label="การ์ดถัดไป"
-          disabled={active >= products.length - 1}
+          className={`${sliderNavHit} pointer-events-auto absolute left-0 z-30 max-xl:-translate-x-0.5 sm:max-xl:-translate-x-1 xl:hidden`}
+          style={navVertStyle}
+          aria-label="เลื่อนย้อนหนึ่งหน้าจอ"
+          disabled={!canPrev}
+          onClick={goPrev}
+        >
+          <img src={chevronPrev} alt="" className={navImgClass} draggable={false} aria-hidden />
+        </button>
+        <button
+          type="button"
+          className={`${sliderNavHit} pointer-events-auto absolute right-0 z-30 max-xl:translate-x-0.5 sm:max-xl:translate-x-1 xl:hidden`}
+          style={navVertStyle}
+          aria-label="เลื่อนหน้าจอถัดไป"
+          disabled={!canNext}
           onClick={goNext}
         >
-          ›
+          <img src={chevronNext} alt="" className={navImgClass} draggable={false} aria-hidden />
         </button>
+
+        <div
+          ref={scrollerRef}
+          role="region"
+          aria-label="เลื่อนดูสินค้าหลายการ์ดพร้อมกัน ภาพตัวอย่างจาก PDF"
+          className="-webkit-overflow-scrolling-touch flex min-h-0 min-w-0 w-full gap-3 py-2 max-xl:flex-nowrap max-xl:snap-x max-xl:snap-mandatory max-xl:overflow-x-auto max-xl:scroll-smooth max-xl:[scrollbar-width:none] max-xl:[&::-webkit-scrollbar]:hidden xl:flex-wrap xl:snap-normal xl:overflow-visible"
+        >
+          {products.map((p, i) => {
+            const cardClass =
+              'flex h-full min-h-0 cursor-pointer touch-manipulation flex-col overflow-hidden rounded-lg border-0 bg-transparent text-center text-inherit no-underline outline-offset-[-2px] [-webkit-tap-highlight-color:transparent] transition-opacity active:opacity-90 focus-visible:z-[2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900 sm:rounded-xl'
+
+            const body = (
+              <>
+                <PdfEmbeddedPreview pdfUrl={p.pdfUrl} fallbackSrc={resolveHealthProductImageUrl(p)} />
+                <div className="flex flex-1 flex-col justify-center gap-1.5 px-2 py-3 sm:gap-2 sm:px-3 sm:py-4">
+                  <span className="text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-neutral-500 sm:text-[0.7rem]">
+                    {i + 1} / {products.length}
+                  </span>
+                  <span className="line-clamp-2 text-xs font-semibold leading-snug text-neutral-950 sm:text-sm">{p.titleTh}</span>
+                </div>
+              </>
+            )
+
+            const label = `แตะเพื่อดู datasheet — ${p.titleTh}`
+
+            return (
+              <div key={i} className={slideSlideClass}>
+                {detailsPdfLinkExtras != null ? (
+                  <Link
+                    to={buildDetailsPdfHref(p.pdfUrl, p.titleTh, detailsPdfLinkExtras)}
+                    aria-label={label}
+                    className={cardClass}
+                  >
+                    {body}
+                  </Link>
+                ) : (
+                  <a
+                    href={p.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`เปิด datasheet ในแท็บใหม่ — ${p.titleTh}`}
+                    className={cardClass}
+                  >
+                    {body}
+                  </a>
+                )}
+              </div>
+            )
+          })}
+        </div>
       </div>
+
+      <p className="sr-only">
+        หน้าจอเล็กถึงกลางมีปุ่มเลื่อนที่ขอบซ้ายขวา จัดกึ่งความสูงของพื้นที่พรีวิว PDF ของการ์ดในแถบเลื่อน จอขนาด xl ขึ้นไปเรียงการ์ดครบโดยไม่ต้องเลื่อนซ้ายขวา
+      </p>
     </div>
   )
 }
