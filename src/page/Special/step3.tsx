@@ -7,11 +7,7 @@ import blueSpringW from '../../assets/images/SVG/blueSpringW.svg'
 import Bluemushrooms from '../../assets/images/SVG/Bluemushrooms.svg'
 import DrinkBlue from '../../assets/images/SVG/DrinkBlue.svg'
 import FoodBlue from '../../assets/images/SVG/FoodBlue.svg'
-import SpecialSandFood from '../../assets/images/SVG/SpecialSandFood.svg'
-/** ห่วง 4 ชั้น — Beverages ใช้ชุดเดียวกับ Food (เทียบ Health step3 ที่ใช้ Beverages.svg ร่วมกัน) */
-import specialSandTowerFour from '../../assets/images/SVG/SpecialSandBeverages.svg'
-import SpecialSandDiseasePrevention from '../../assets/images/SVG/SpecialSandDiseasePrevention.svg'
-import specialSandSnacksHero from '../../assets/images/SVG/(2) elements-10.svg'
+import specialSandHero from '../../assets/images/SVG/elements-10.svg'
 import condimentBlue from '../../assets/images/SVG/condimentBlue.svg'
 import Group from '../../assets/images/SVG/Group.svg'
 
@@ -26,6 +22,7 @@ import {
   SPECIAL_STEP3_HEADER,
 } from './specialStepContent'
 import {
+  KIOSK_HERO_IMG_INTRINSIC,
   KIOSK_STEP_GROUP_IMG_CLASS,
   KIOSK_STEP_HEADER_SECTION,
   KIOSK_TITLE_BAND_CLASS,
@@ -57,8 +54,9 @@ const goalSpringStack =
 const imgSpringSm =
   'h-auto w-[4.25rem] object-contain sm:w-20 md:w-24 lg:w-36 xl:w-40 2xl:w-48'
 
+/** viewBox 388.96×598.04 — กำหนดสัดส่วนลด layout shift; SVG เวกเตอร์คมทุกขนาด */
 const imgGoalHero =
-  'h-auto w-24 object-contain sm:w-[6.75rem] md:w-36 lg:w-52 xl:w-56 2xl:w-64'
+  'h-auto w-24 max-w-full object-contain object-center sm:w-[6.75rem] md:w-36 lg:w-52 xl:w-56 2xl:w-64'
 
 const goalTextBlock =
   'w-full shrink-0 touch-manipulation transition-transform duration-150 will-change-transform active:scale-[0.98]'
@@ -137,7 +135,13 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={Bluemushrooms} alt="" className={imgSpringSm} />
               </div>
               <div>
-              <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={specialSandHero}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -159,7 +163,13 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={condimentBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-              <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
+              <InteractiveSpringImg
+                src={specialSandHero}
+                alt=""
+                className={imgGoalHero}
+                priority
+                {...KIOSK_HERO_IMG_INTRINSIC}
+              />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -181,7 +191,13 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={DrinkBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-              <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
+              <InteractiveSpringImg
+                src={specialSandHero}
+                alt=""
+                className={imgGoalHero}
+                priority
+                {...KIOSK_HERO_IMG_INTRINSIC}
+              />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -207,7 +223,13 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={FoodBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={specialSandHero}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>

@@ -5,7 +5,11 @@ import {
   HEALTH_GOAL_QUERY_KEY,
   type HealthGoalId,
 } from '../Health/healthGoalSelection'
-import { KIOSK_STEP_GROUP_IMG_CLASS, KIOSK_STEP_HEADER_SECTION } from '../kioskStepLayout'
+import {
+  KIOSK_HERO_IMG_INTRINSIC,
+  KIOSK_STEP_GROUP_IMG_CLASS,
+  KIOSK_STEP_HEADER_SECTION,
+} from '../kioskStepLayout'
 import {
   SPECIAL_SAND_BACKGROUND,
   SPECIAL_SAND_CONTENT_PAD,
@@ -117,7 +121,13 @@ export default function SpecialStep2() {
                 <InteractiveSpringImg src={circleBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={page2towelblue} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={page2towelblue}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -138,7 +148,13 @@ export default function SpecialStep2() {
                 <InteractiveSpringImg src={blueSpringWs} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={page2towelblue} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={page2towelblue}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -163,7 +179,13 @@ export default function SpecialStep2() {
                 <InteractiveSpringImg src={circleBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={page2towelblue} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={page2towelblue}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>

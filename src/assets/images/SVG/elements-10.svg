@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 389 598">
+  <defs>
+    <filter id="drop-shadow-5" x="26.5" y="72.8" width="347" height="487.2" filterUnits="userSpaceOnUse">
+      <feOffset dx="5.6" dy="5.6"/>
+      <feGaussianBlur result="blur" stdDeviation="5.6"/>
+      <feFlood flood-color="#000" flood-opacity="0"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="66.6" y1="407.4" x2="322" y2="407.4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2970d0"/>
+      <stop offset="1" stop-color="#4882d0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="66.6" y1="248.6" x2="322" y2="248.6" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7ca0d0"/>
+      <stop offset="1" stop-color="#2970d0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient2" x1="66.6" y1="167.7" x2="322" y2="167.7" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7ca0d0"/>
+      <stop offset="1" stop-color="#2970d0"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#drop-shadow-5)">
+    <ellipse fill="#cbdcef" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" cx="194.3" cy="436.5" rx="154.4" ry="98.7"/>
+    <ellipse fill="url(#linear-gradient)" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" cx="194.3" cy="407.4" rx="127.7" ry="81.6"/>
+    <ellipse fill="#7ca0d0" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" cx="194.3" cy="330" rx="127.7" ry="81.6"/>
+    <ellipse fill="url(#linear-gradient1)" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" cx="194.3" cy="248.6" rx="127.7" ry="81.6"/>
+    <ellipse fill="url(#linear-gradient2)" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" cx="194.3" cy="167.7" rx="127.7" ry="81.6"/>
+    <path fill="#241f20" d="M254.4,164.3c-32.1,23.2-88.2,22.8-120.3-.3,0,0,.3-.9.3-.9,18,5.4,37.2,8.1,56,8.5,6.2.1,12.7,0,18.9-.3,7.5-.6,15.1-1.4,22.6-2.7,4.2-.9,10.7-2.1,14.8-3.3,0,0,7.3-1.9,7.3-1.9,0,0,.3.9.3.9h0Z"/>
+    <g>
+      <path fill="#cbdcef" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" d="M226.6,165.2v2.1c0,1.2-1.2,2.2-3.6,2.9-2.4.8-6,1.4-10.8,1.8-4.8.4-10.7.6-17.8.6s-13.1-.2-17.8-.6c-4.8-.4-8.4-1-10.8-1.8-2.4-.8-3.6-1.8-3.6-2.9v-49.5h64.5v47.4Z"/>
+      <ellipse fill="#241f20" stroke="#241f20" stroke-miterlimit="10" stroke-width="4" cx="194.3" cy="117.8" rx="32.3" ry="20.7"/>
+    </g>
+  </g>
+</svg>

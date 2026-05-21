@@ -7,7 +7,11 @@ import SpecialGreen from '../assets/images/SVG/SpecialGreen.svg'
 import touchHint from '../assets/images/SVG/touch-svgrepo-com.svg'
 import { InteractiveSpringImg } from '../components/InteractiveSpringImg'
 import { KioskStepHeader } from '../components/KioskStepHeader'
-import { KIOSK_STEP_CONTENT_PAD, KIOSK_STEP_HEADER_SECTION } from './kioskStepLayout'
+import {
+  KIOSK_HERO_IMG_INTRINSIC,
+  KIOSK_STEP_CONTENT_PAD,
+  KIOSK_STEP_HEADER_SECTION,
+} from './kioskStepLayout'
 import { Link } from 'react-router-dom'
 import { trackKioskButton } from '../lib/kioskMetrics'
 
@@ -66,7 +70,13 @@ export default function Page3() {
                 <InteractiveSpringImg src={circleGreen} alt="" className={choiceIconSm} />
               </div>
               <div className={staggerSlot}>
-                <InteractiveSpringImg src={SpecialGreen} alt="" className={choiceHeroImg} />
+                <InteractiveSpringImg
+                  src={SpecialGreen}
+                  alt=""
+                  className={choiceHeroImg}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div id="page3-option-green-title" className="flex flex-col items-center gap-1 text-center text-[#4a4456]">
@@ -79,7 +89,16 @@ export default function Page3() {
               </p>
             </div>
             <div className="tap-hand-hint mt-auto flex shrink-0 justify-center pt-2 sm:pt-2.5 md:pt-3" aria-hidden>
-              <img src={touchHint} alt="" width={512} height={512} draggable={false} className={tapHintImgCls} />
+              <img
+                src={touchHint}
+                alt=""
+                width={512}
+                height={512}
+                draggable={false}
+                loading="lazy"
+                decoding="async"
+                className={tapHintImgCls}
+              />
             </div>
           </Link>
 
@@ -110,7 +129,16 @@ export default function Page3() {
               </p>
             </div>
             <div className="tap-hand-hint mt-auto flex shrink-0 justify-center pt-2 sm:pt-2.5 md:pt-3" aria-hidden>
-              <img src={touchHint} alt="" width={512} height={512} draggable={false} className={tapHintImgCls} />
+              <img
+                src={touchHint}
+                alt=""
+                width={512}
+                height={512}
+                draggable={false}
+                loading="lazy"
+                decoding="async"
+                className={tapHintImgCls}
+              />
             </div>
           </Link>
         </div>

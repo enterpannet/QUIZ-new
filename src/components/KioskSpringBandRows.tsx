@@ -13,6 +13,12 @@ import circleBlueBlank from '../assets/images/SVG/circleBlueBlank.svg'
 import { InteractiveSpringImg } from './InteractiveSpringImg'
 import { springCell, springImg, springRowGrid } from './springBandLayout'
 
+const plainImgProps = {
+  className: `kiosk-spring-img ${springImg}`,
+  loading: 'lazy' as const,
+  decoding: 'async' as const,
+}
+
 /** แถบสปริงซ้อนหลายเลเยอร์ด้านบน (หน้า 1 / หน้า 2 เหมือนกัน) */
 export function KioskSpringBandTop() {
   return (
@@ -87,24 +93,24 @@ export function KioskSpringBackdropBand() {
   return (
     <div className={kioskSpringBackdropGridClass}>
       <div className={springCell}>
-        <img src={circleGreenBlank} alt="" className={springImg} />
-        <img src={blueSpring} alt="" className={springImg} />
+        <img src={circleGreenBlank} alt="" {...plainImgProps} />
+        <img src={blueSpring} alt="" {...plainImgProps} />
       </div>
       <div className={springCell}>
-        <img src={greenSpringWhiteDarkBlue} alt="" className={springImg} />
-        <img src={circleBlueBlank} alt="" className={springImg} />
+        <img src={greenSpringWhiteDarkBlue} alt="" {...plainImgProps} />
+        <img src={circleBlueBlank} alt="" {...plainImgProps} />
       </div>
       <div className={springCell}>
-        <img src={circleGreenBlank} alt="" className={springImg} />
-        <img src={greenSpringWhite} alt="" className={springImg} />
+        <img src={circleGreenBlank} alt="" {...plainImgProps} />
+        <img src={greenSpringWhite} alt="" {...plainImgProps} />
       </div>
       <div className={springCell}>
-        <img src={circleGreenBlank} alt="" className={springImg} />
-        <img src={blueSpring} alt="" className={springImg} />
+        <img src={circleGreenBlank} alt="" {...plainImgProps} />
+        <img src={blueSpring} alt="" {...plainImgProps} />
       </div>
       <div className={springCell}>
-        <img src={blueSpring} alt="" className={springImg} />
-        <img src={circleGreenBlank} alt="" className={springImg} />
+        <img src={blueSpring} alt="" {...plainImgProps} />
+        <img src={circleGreenBlank} alt="" {...plainImgProps} />
       </div>
     </div>
   )

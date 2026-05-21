@@ -22,26 +22,23 @@ import {
 const DETAILS_PAGE_SHELL =
   'relative flex min-h-0 w-full flex-1 flex-col overflow-x-clip text-neutral-900'
 
-/** ผลัดสลับวงเขียว/น้ำเงิน — โชว์สีจาก SVG เต็มที่ (ไม่ลดความเข้มด้วย opacity) */
-const BACKDROP_TILE_CLASSES =
-  'h-[clamp(5rem,min(22vmin,13rem),12rem)] w-[clamp(5rem,min(22vmin,13rem),12rem)] flex-shrink-0 object-contain select-none'
-const BACKDROP_TILE_COUNT = 260
+/** พื้นหลังวงสลับสี — CSS repeat แทน 260 รูป (โหลดเร็ว คมชัด) */
+const DETAILS_BACKDROP_TILE = 'clamp(5rem, min(22vmin, 13rem), 12rem)'
 
 function DetailsCircleBlankBackdrop() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-white">
-      <div className="flex min-h-[125%] min-w-[118%] -translate-x-[4%] -translate-y-[2%] flex-wrap content-start justify-center gap-0">
-        {Array.from({ length: BACKDROP_TILE_COUNT }, (_, i) => (
-          <img
-            key={i}
-            src={i % 2 === 0 ? circleGreenBlank : circleBlueBlank}
-            alt=""
-            draggable={false}
-            className={BACKDROP_TILE_CLASSES}
-          />
-        ))}
-      </div>
-    </div>
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-white"
+      style={{
+        backgroundImage: `url(${circleGreenBlank}), url(${circleBlueBlank})`,
+        backgroundSize: `${DETAILS_BACKDROP_TILE} ${DETAILS_BACKDROP_TILE}`,
+        backgroundPosition: '0 0, 50% 50%',
+        backgroundRepeat: 'repeat',
+        transform: 'translate(-4%, -2%) scale(1.05)',
+        transformOrigin: 'center center',
+      }}
+    />
   )
 }
 

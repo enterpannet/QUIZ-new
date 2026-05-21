@@ -13,3 +13,6 @@ export const KIOSK_TITLE_BAND_CLASS =
 /** Group.svg ตกแต่งชิดล่าง — โปร่งจาง ไม่แย่งสายตาเนื้อหา */
 export const KIOSK_STEP_GROUP_IMG_CLASS =
   'h-auto w-full max-h-[min(40vh,22rem)] max-w-none object-contain object-bottom opacity-[0.12] sm:max-h-[min(42vh,24rem)] sm:opacity-[0.14] md:max-h-[min(44vh,26rem)] md:opacity-[0.16]'
+
+/** สัดส่วน hero ห่วงทราย — ใช้กับ priority เพื่อโหลดก่อนบนเน็ตช้า */
+export const KIOSK_HERO_IMG_INTRINSIC = { width: 389, height: 598 } as const

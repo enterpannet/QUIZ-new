@@ -1,6 +1,10 @@
 import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { KIOSK_STEP_GROUP_IMG_CLASS, KIOSK_STEP_HEADER_SECTION } from '../kioskStepLayout'
+import {
+  KIOSK_HERO_IMG_INTRINSIC,
+  KIOSK_STEP_GROUP_IMG_CLASS,
+  KIOSK_STEP_HEADER_SECTION,
+} from '../kioskStepLayout'
 import {
   HEALTH_SAND_CONTENT_PAD,
   HEALTH_YELLOW_BACKGROUND,
@@ -44,7 +48,8 @@ const imgSpringSm =
 
 /** ไอคอนตัวใหญ่คอลัมน์ */
 const imgGoalHero =
-  'h-auto w-24 object-contain sm:w-[6.75rem] md:w-36 lg:w-52 xl:w-56 2xl:w-64'
+  'h-auto w-24 max-w-full object-contain object-center sm:w-[6.75rem] md:w-36 lg:w-52 xl:w-56 2xl:w-64'
+
 
 /** กลุ่มป้าย — แตะแล้วย่อเล็กน้อย (ทำง用品กับแอนิเมชันเข้า) */
 const goalTextBlock =
@@ -126,6 +131,8 @@ export default function HealthStep3() {
                   src={page3towel}
                   alt=""
                   className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
                 />
               </div>
             </div>
@@ -155,6 +162,8 @@ export default function HealthStep3() {
                   src={page3towel}
                   alt=""
                   className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
                 />
               </div>
             </div>
@@ -180,6 +189,8 @@ export default function HealthStep3() {
                   src={page3towel}
                   alt=""
                   className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
                 />
               </div>
             </div>

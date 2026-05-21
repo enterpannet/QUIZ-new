@@ -6,6 +6,7 @@ import {
 import { InteractiveSpringImg } from '../../components/InteractiveSpringImg'
 import { KioskStepHeader } from '../../components/KioskStepHeader'
 import {
+  KIOSK_HERO_IMG_INTRINSIC,
   KIOSK_STEP_GROUP_IMG_CLASS,
   KIOSK_STEP_HEADER_SECTION,
   KIOSK_TITLE_BAND_CLASS,
@@ -123,6 +124,8 @@ export default function HealthStep2() {
                   src={page2towel}
                   alt=""
                   className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
                 />
               </div>
             </div>
@@ -152,7 +155,13 @@ export default function HealthStep2() {
                 <InteractiveSpringImg src={greenSpringWDS} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={Beverages} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={Beverages}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -177,7 +186,13 @@ export default function HealthStep2() {
                 <InteractiveSpringImg src={circleGreen} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={Beverages} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg
+                  src={Beverages}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
               </div>
             </div>
             <div className={goalTextBlock}>

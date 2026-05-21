@@ -11,6 +11,9 @@ import {
 const wrapCls =
   'kiosk-touch-hit relative mx-auto flex w-fit max-w-full touch-manipulation justify-center rounded-md [-webkit-tap-highlight-color:transparent] select-none'
 
+/** คมชัดบนจอ kiosk — ไม่ย่อ raster จาก lazy / 3D บน wrapper */
+const imgCls = 'kiosk-spring-img block max-w-full h-auto'
+
 function subscribeReducedMotion(cb: () => void) {
   const mq = matchMedia('(prefers-reduced-motion: reduce)')
   mq.addEventListener('change', cb)
@@ -21,10 +24,23 @@ function prefersReducedMotionSnapshot() {
   return matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
-export function InteractiveSpringImg(
-  props: ImgHTMLAttributes<HTMLImageElement>,
-) {
-  const { className, src, alt, ...rest } = props
+type InteractiveSpringImgProps = ImgHTMLAttributes<HTMLImageElement> & {
+  /** โหลดก่อน — ใช้กับไอคอน hero หลักที่ต้องคมชัดทันที */
+  priority?: boolean
+}
+
+export function InteractiveSpringImg({
+  className,
+  src,
+  alt,
+  priority = false,
+  decoding = 'async',
+  loading,
+  fetchPriority,
+  width,
+  height,
+  ...rest
+}: InteractiveSpringImgProps) {
   const reduceMotion = useSyncExternalStore(
     subscribeReducedMotion,
     prefersReducedMotionSnapshot,
@@ -71,22 +87,20 @@ export function InteractiveSpringImg(
     setWobble(false)
   }, [])
 
-  const transformStyle:
-    | { transform: string; transition: string; backfaceVisibility: 'hidden' }
+  const imgTiltStyle:
+    | { transform: string; transition: string }
     | undefined =
     reduceMotion || wobble
       ? undefined
       : {
           transform: `perspective(480px) rotateZ(${tilt.rz}deg) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
           transition: 'transform 110ms cubic-bezier(0.2, 0.75, 0.35, 1)',
-          backfaceVisibility: 'hidden',
         }
 
   return (
     <div
       ref={host}
       className={[wrapCls, wobble ? 'kiosk-img-wobble' : ''].join(' ').trim()}
-      style={reduceMotion ? undefined : transformStyle}
       onPointerMove={updateTilt}
       onPointerLeave={resetTilt}
       onPointerCancel={resetTilt}
@@ -97,8 +111,14 @@ export function InteractiveSpringImg(
         {...rest}
         src={src}
         alt={alt ?? ''}
-        className={className}
+        className={[imgCls, className].filter(Boolean).join(' ')}
+        style={imgTiltStyle}
         draggable={false}
+        decoding={decoding ?? (priority ? 'sync' : 'async')}
+        loading={loading ?? (priority ? 'eager' : 'lazy')}
+        fetchPriority={fetchPriority ?? (priority ? 'high' : 'auto')}
+        width={width}
+        height={height}
       />
     </div>
   )

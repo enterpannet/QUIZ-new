@@ -20,7 +20,8 @@ export function KioskNavbar() {
           width={400}
           height={100}
           decoding="async"
-          className={`${LOGO_IN_BAR} max-w-[min(88vw,520px)] object-left`}
+          loading="eager"
+          className={`kiosk-spring-img ${LOGO_IN_BAR} max-w-[min(88vw,520px)] object-left`}
         />
       </div>
       <div className="flex h-full shrink-0 items-center justify-end gap-1.5 overflow-hidden sm:gap-2 md:gap-3">
@@ -30,7 +31,8 @@ export function KioskNavbar() {
           width={400}
           height={100}
           decoding="async"
-          className={`${LOGO_IN_BAR} max-w-[min(34vw,240px)] sm:max-w-[min(38vw,260px)] md:max-w-[min(40vw,280px)]`}
+          loading="eager"
+          className={`kiosk-spring-img ${LOGO_IN_BAR} max-w-[min(34vw,240px)] sm:max-w-[min(38vw,260px)] md:max-w-[min(40vw,280px)]`}
         />
         <img
           src={logo3}
@@ -38,7 +40,8 @@ export function KioskNavbar() {
           width={400}
           height={100}
           decoding="async"
-          className={`${LOGO_IN_BAR} max-w-[min(34vw,240px)] sm:max-w-[min(38vw,260px)] md:max-w-[min(40vw,280px)]`}
+          loading="eager"
+          className={`kiosk-spring-img ${LOGO_IN_BAR} max-w-[min(34vw,240px)] sm:max-w-[min(38vw,260px)] md:max-w-[min(40vw,280px)]`}
         />
       </div>
     </header>
