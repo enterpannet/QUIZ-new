@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom'
 import Group from '../../assets/images/SVG/Group.svg'
 import { trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
-import { E_BOOKLET_PDF_URL, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
-
-/** ดึงรูปกราฟิกเต็มความกว้าง viewport — หักลบ px ข้างของ HEALTH_RESULT_PAGE_SHELL */
-const END_SESSION_GROUP_BLEED =
-  'w-full max-w-none shrink-0 self-stretch -mx-3 max-xl:sm:-mx-4 max-xl:md:-mx-5 max-xl:lg:-mx-6 xl:-mx-4 xl:sm:-mx-6'
+import { E_BOOKLET_PDF_URL, HEALTH_RESULT_CONTENT_PAD, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
 
 const END_SESSION_GROUP_IMG =
   'block h-[clamp(12rem,32vh,24rem)] w-full max-w-none object-contain object-bottom sm:h-[clamp(14rem,36vh,28rem)] md:h-[clamp(16rem,40vh,32rem)] xl:h-[clamp(18rem,44vh,36rem)] 2xl:h-[clamp(20rem,48vh,40rem)]'
@@ -29,7 +25,9 @@ export default function EndSessionPage() {
       />
 
       <div className="relative flex min-h-0 flex-1 flex-col text-center">
-        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12 sm:py-16">
+        <div
+          className={`mx-auto flex w-full max-w-[min(100%,92rem)] flex-1 flex-col items-center justify-center py-12 sm:py-16 ${HEALTH_RESULT_CONTENT_PAD}`}
+        >
         <div className="w-full max-w-xl space-y-5 text-neutral-900 sm:max-w-[36rem] sm:space-y-6 lg:max-w-[40rem] xl:max-w-[48rem] xl:space-y-7 2xl:max-w-[56rem] 2xl:space-y-8">
           <section className="space-y-3 md:space-y-4 xl:space-y-5">
             <h1 className="font-heading text-balance text-xl font-bold leading-snug md:text-[1.625rem] xl:text-[1.875rem] xl:leading-snug 2xl:text-[2.125rem] text-blue-500">
@@ -85,7 +83,7 @@ export default function EndSessionPage() {
         </div>
         </div>
 
-        <div className={`${END_SESSION_GROUP_BLEED}`}>
+        <div className="w-full max-w-none shrink-0 self-stretch">
           <img src={Group} alt="" className={END_SESSION_GROUP_IMG} />
         </div>
       </div>

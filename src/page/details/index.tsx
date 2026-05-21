@@ -22,23 +22,26 @@ import {
 const DETAILS_PAGE_SHELL =
   'relative flex min-h-0 w-full flex-1 flex-col overflow-x-clip text-neutral-900'
 
-/** พื้นหลังวงสลับสี — CSS repeat แทน 260 รูป (โหลดเร็ว คมชัด) */
-const DETAILS_BACKDROP_TILE = 'clamp(5rem, min(22vmin, 13rem), 12rem)'
+/** ผลัดสลับวงเขียว/น้ำเงิน — โชว์สีจาก SVG เต็มที่ (ไม่ลดความเข้มด้วย opacity) */
+const BACKDROP_TILE_CLASSES =
+  'h-[clamp(5rem,min(22vmin,13rem),12rem)] w-[clamp(5rem,min(22vmin,13rem),12rem)] flex-shrink-0 object-contain select-none'
+const BACKDROP_TILE_COUNT = 260
 
 function DetailsCircleBlankBackdrop() {
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-white"
-      style={{
-        backgroundImage: `url(${circleGreenBlank}), url(${circleBlueBlank})`,
-        backgroundSize: `${DETAILS_BACKDROP_TILE} ${DETAILS_BACKDROP_TILE}`,
-        backgroundPosition: '0 0, 50% 50%',
-        backgroundRepeat: 'repeat',
-        transform: 'translate(-4%, -2%) scale(1.05)',
-        transformOrigin: 'center center',
-      }}
-    />
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-white">
+      <div className="flex min-h-[125%] min-w-[118%] -translate-x-[4%] -translate-y-[2%] flex-wrap content-start justify-center gap-0">
+        {Array.from({ length: BACKDROP_TILE_COUNT }, (_, i) => (
+          <img
+            key={i}
+            src={i % 2 === 0 ? circleGreenBlank : circleBlueBlank}
+            alt=""
+            draggable={false}
+            className={BACKDROP_TILE_CLASSES}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -167,30 +170,34 @@ export default function DetailsPage() {
       <DetailsCircleBlankBackdrop />
 
       {hasPdf ? (
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-5 px-3 py-6 sm:px-6 lg:gap-7 lg:py-10">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-6 lg:gap-6 lg:py-8">
+          <div className="flex w-full max-w-[min(94%,46rem)] shrink-0 items-center justify-between gap-3 px-1">
+            <Link
+              to={backToResultHref}
+              className="font-thai shrink-0 rounded-full border border-neutral-700 bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 no-underline shadow-sm transition-opacity active:opacity-80"
+            >
+              ← กลับผลการจับคู่
+            </Link>
+            <a
+              href={fullOpenUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-thai shrink-0 text-sm font-semibold text-neutral-800 underline underline-offset-4"
+            >
+              เปิดเต็มจอ
+            </a>
+          </div>
+
           <h1 id="details-pdf-heading" className="sr-only">
             {titleDisplay}
           </h1>
 
           <div className={`${pdfCardShell} ${pdfCardHeight}`}>
-            <object
-              type="application/pdf"
-              data={objectSrc}
+            <iframe
+              src={objectSrc}
               title={titleDisplay}
-              className="h-full min-h-0 w-full flex-1 bg-neutral-50"
-            >
-              <div className="flex h-full min-h-[10rem] flex-col items-center justify-center gap-3 bg-neutral-100 p-8 text-center text-neutral-900">
-                <p className="font-thai max-w-xs text-sm">เบราว์เซอร์เปิดไฟล์ภายในไม่ได้</p>
-                <a
-                  href={fullOpenUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-thai rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white no-underline"
-                >
-                  เปิด PDF ในแท็บใหม่
-                </a>
-              </div>
-            </object>
+              className="h-full min-h-0 w-full flex-1 border-0 bg-neutral-50"
+            />
           </div>
         </div>
       ) : (

@@ -17,6 +17,8 @@ type KioskStepHeaderProps = {
   titleBandBg?: string
   /** class แถบหัวข้อ — ค่าเริ่มต้น KIOSK_TITLE_BAND_CLASS */
   titleBandClassName?: string
+  /** ซ่อนป้าย STEP (เช่น หน้า result) */
+  hideStepLabel?: boolean
 }
 
 const headerWrap =
@@ -46,6 +48,7 @@ export function KioskStepHeader({
   hideTitleBand = false,
   titleBandBg,
   titleBandClassName = KIOSK_TITLE_BAND_CLASS,
+  hideStepLabel = false,
 }: KioskStepHeaderProps) {
   const titleBlock = (
     <h1 className={titleCls}>
@@ -58,7 +61,7 @@ export function KioskStepHeader({
 
   return (
     <header className={headerWrap}>
-      <p className={stepBadgeCls}>{stepLabel}</p>
+      {hideStepLabel ? null : <p className={stepBadgeCls}>{stepLabel}</p>}
       {showTitleBand ? (
         <div
           className={`${titleBandShell} ${titleBandClassName}`.trim()}

@@ -19,10 +19,13 @@ import { downloadListedPdfsSequentially } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
   HEALTH_RESULT_FOOTER_BUTTON_CLASS,
+  HEALTH_RESULT_CONTENT_PAD,
   HEALTH_RESULT_FOOTER_LINK_CLASS,
   HEALTH_RESULT_PAGE_SHELL,
 } from '../healthResultNav'
+import { KioskStepHeader } from '../../components/KioskStepHeader'
 import Group from '../../assets/images/SVG/Group.svg'
+import { KIOSK_STEP_HEADER_SECTION } from '../kioskStepLayout'
 
 export default function HealthResultPage() {
   const [searchParams] = useSearchParams()
@@ -70,20 +73,26 @@ export default function HealthResultPage() {
 
   return (
     <div className={`${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>
-      <div className="flex max-w-[min(100%,92rem)] flex-1 flex-col items-center gap-5 px-4  text-center md:gap-8 ">
+      {entry ? (
+        <section
+          className={`relative z-10 ${KIOSK_STEP_HEADER_SECTION}`}
+          aria-label="หัวข้อผลการจับคู่"
+        >
+          <KioskStepHeader
+            stepLabel=""
+            hideStepLabel
+            titleLine1="YOUR FUTURE"
+            titleLine2="FOOD MATCH"
+            description="จากคำตอบของคุณระบบได้ตัดเลือกกลุ่มผลิตภัณฑ์ Future Food ที่สอดคล้องกับสุขภาพ ไลฟ์สไตล์ และเป้าหมายของคุณ"
+          />
+        </section>
+      ) : null}
+
+      <div
+        className={`relative z-10 mx-auto flex w-full max-w-[min(100%,92rem)] flex-1 flex-col items-center gap-5 text-center md:gap-8 ${HEALTH_RESULT_CONTENT_PAD}`}
+      >
         {entry ? (
           <Fragment>
-            <header className="flex flex-col gap-2 md:gap-3">
-              <p className="font-heading text-xl font-bold tracking-[0.2em] text-neutral-800/75 md:text-6xl lg:text-8xl">
-              YOUR FUTURE <br /> FOOD MATCH
-              </p>
-            <p className="font-thai text-sm md:text-base lg:text-lg">
-              จากคำตอบของคุณระบบได้ตัดเลือกกลุ่มผลิตภัณฑ์ Future Food <br />
-              ที่สอดคล้องกับสุขภาพ ไลฟ์สไตล์ และเป่าหมายของคุณ
-            </p>
-             
-            </header>
-            
             <section className="w-full self-stretch text-left">
               <HealthResultProductPdfSlider
                 products={entry.products}
@@ -98,7 +107,13 @@ export default function HealthResultPage() {
               />
             </section>
 
-            <img src={Group} alt="" className="mx-auto mt-8 w-full max-w-4xl object-contain px-2" />
+            <img
+              src={Group}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="mx-auto mt-8 w-full max-w-4xl object-contain px-2"
+            />
           </Fragment>
         ) : (
           <div className="flex flex-col gap-4 text-neutral-900">

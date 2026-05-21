@@ -1,6 +1,11 @@
-/** Shell ครอบเนื้อหาหน้าผลการจับคู่ / จบเซสชัน — ให้ภาพรวมเดียวกัน */
+import { KIOSK_STEP_CONTENT_PAD } from './kioskStepLayout'
+
+/** Shell ไม่ใส่ padding แนวนอน — padding บนเท่า Health step, pb ใหญ่กว่าสำหรับฟุตเทอร์ */
 export const HEALTH_RESULT_PAGE_SHELL =
-  'flex w-full max-w-none flex-1 flex-col items-center justify-start overflow-x-clip bg-neutral-100 text-neutral-900 max-xl:gap-5 max-xl:px-3 max-xl:py-5 max-xl:pb-6 max-xl:sm:px-4 max-xl:md:gap-9 max-xl:md:px-5 max-xl:md:py-8 max-xl:md:pb-10 max-xl:lg:gap-10 max-xl:lg:px-6 max-xl:lg:py-10 max-xl:lg:pb-12 xl:gap-6 xl:px-4 xl:py-6 xl:pb-8 xl:sm:gap-8 xl:sm:px-6 xl:sm:py-10 xl:sm:pb-10'
+  'flex w-full max-w-none flex-1 flex-col items-stretch justify-start overflow-x-clip bg-neutral-100 text-neutral-900 max-xl:gap-5 max-xl:py-2 max-xl:pb-6 max-xl:md:gap-9 max-xl:md:py-4 max-xl:md:pb-10 max-xl:lg:gap-10 max-xl:lg:py-4 max-xl:lg:pb-12 xl:gap-6 xl:py-3 xl:pb-8 xl:sm:gap-8 xl:sm:py-5 xl:sm:pb-10'
+
+/** padding แนวนอนเฉพาะเนื้อหากลาง + ฟุตเทอร์ */
+export const HEALTH_RESULT_CONTENT_PAD = KIOSK_STEP_CONTENT_PAD
 
 /** ใส่ไฟล์ `public/ebooklet.pdf` เมื่อมีต้นฉบับของ E booklet */
 export const E_BOOKLET_PDF_URL = '/ebooklet.pdf'
