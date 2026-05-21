@@ -24,7 +24,11 @@ import {
   SPECIAL_STEP3_COLUMNS,
   SPECIAL_STEP3_HEADER,
 } from './specialStepContent'
-import { KIOSK_STEP_HEADER_SECTION, KIOSK_TITLE_BAND_CLASS } from '../kioskStepLayout'
+import {
+  KIOSK_STEP_GROUP_IMG_CLASS,
+  KIOSK_STEP_HEADER_SECTION,
+  KIOSK_TITLE_BAND_CLASS,
+} from '../kioskStepLayout'
 import {
   HEALTH_SAND_CONTENT_PAD,
   HEALTH_YELLOW_BACKGROUND,
@@ -77,9 +81,6 @@ const specialStep3PageBg =
 const specialStep3GroupBg =
   'pointer-events-none absolute inset-x-0 bottom-0 z-[1] flex items-end justify-center'
 
-const specialStep3GroupImg =
-  'h-auto w-full max-h-[min(40vh,22rem)] max-w-none object-contain object-bottom opacity-[0.32] sm:max-h-[min(42vh,24rem)] sm:opacity-[0.36] md:max-h-[min(44vh,26rem)] md:opacity-[0.4]'
-
 const goalColumnLink =
   'text-inherit no-underline rounded-xl focus-visible:z-[1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-700 [-webkit-tap-highlight-color:transparent]'
 
@@ -98,7 +99,7 @@ export default function SpecialStep3() {
     <div className={`relative isolate ${SPECIAL_STEP3_PAGE_SHELL} min-h-0`}>
       <div aria-hidden className={specialStep3PageBg} />
       <div aria-hidden className={specialStep3GroupBg}>
-        <img src={Group} alt="" className={specialStep3GroupImg} />
+        <img src={Group} alt="" className={KIOSK_STEP_GROUP_IMG_CLASS} />
       </div>
 
       <section

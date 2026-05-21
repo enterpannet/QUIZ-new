@@ -5,7 +5,11 @@ import {
 } from './healthStepShell'
 import { InteractiveSpringImg } from '../../components/InteractiveSpringImg'
 import { KioskStepHeader } from '../../components/KioskStepHeader'
-import { KIOSK_STEP_HEADER_SECTION, KIOSK_TITLE_BAND_CLASS } from '../kioskStepLayout'
+import {
+  KIOSK_STEP_GROUP_IMG_CLASS,
+  KIOSK_STEP_HEADER_SECTION,
+  KIOSK_TITLE_BAND_CLASS,
+} from '../kioskStepLayout'
 import { Link } from 'react-router-dom'
 import {
   HEALTH_GOAL_QUERY_KEY,
@@ -72,15 +76,13 @@ const healthStep2SandBg =
 const healthStep2GroupBg =
   'pointer-events-none absolute inset-x-0 bottom-0 z-[1] flex items-end justify-center'
 
-const healthStep2GroupImg =
-  'h-auto w-full max-h-[min(40vh,22rem)] max-w-none object-contain object-bottom opacity-[0.32] sm:max-h-[min(42vh,24rem)] sm:opacity-[0.36] md:max-h-[min(44vh,26rem)] md:opacity-[0.4]'
 
 export default function HealthStep2() {
   return (
     <div className={`relative isolate ${HEALTH_STEP2_PAGE_SHELL} min-h-0`}>
       <div aria-hidden className={healthStep2SandBg} />
       <div aria-hidden className={healthStep2GroupBg}>
-        <img src={Group} alt="" className={healthStep2GroupImg} />
+        <img src={Group} alt="" className={KIOSK_STEP_GROUP_IMG_CLASS} />
       </div>
 
       <section
