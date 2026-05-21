@@ -11,6 +11,7 @@ import SpecialSandFood from '../../assets/images/SVG/SpecialSandFood.svg'
 /** ห่วง 4 ชั้น — Beverages ใช้ชุดเดียวกับ Food (เทียบ Health step3 ที่ใช้ Beverages.svg ร่วมกัน) */
 import specialSandTowerFour from '../../assets/images/SVG/SpecialSandBeverages.svg'
 import SpecialSandDiseasePrevention from '../../assets/images/SVG/SpecialSandDiseasePrevention.svg'
+import specialSandSnacksHero from '../../assets/images/SVG/(2) elements-10.svg'
 import condimentBlue from '../../assets/images/SVG/condimentBlue.svg'
 import Group from '../../assets/images/SVG/Group.svg'
 
@@ -136,7 +137,7 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={Bluemushrooms} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={SpecialSandFood} alt="" className={imgGoalHero} />
+              <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -158,7 +159,7 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={condimentBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={SpecialSandDiseasePrevention} alt="" className={imgGoalHero} />
+              <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -180,11 +181,7 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={DrinkBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg
-                  src={specialSandTowerFour}
-                  alt=""
-                  className={imgGoalHero}
-                />
+              <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
@@ -210,7 +207,7 @@ export default function SpecialStep3() {
                 <InteractiveSpringImg src={FoodBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={SpecialSandDiseasePrevention} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg src={specialSandSnacksHero} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
