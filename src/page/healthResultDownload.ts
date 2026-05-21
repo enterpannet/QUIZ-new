@@ -1,3 +1,5 @@
+import type { KioskMetricMeta } from '../lib/kioskMetrics'
+import { trackKioskEvent } from '../lib/kioskMetrics'
 import type { HealthResultProductPdf } from './Health/healthResultData'
 
 function suggestedFilenameFromPdfUrl(pdfUrl: string, fallbackBase: string) {
@@ -7,7 +9,11 @@ function suggestedFilenameFromPdfUrl(pdfUrl: string, fallbackBase: string) {
 }
 
 /** โหลดไฟล์ PDF จาก path/url เดียว (เหมือนปุ่มดาวน์โหลดแต่เลือกเฉพาะไฟล์นี้) */
-export async function downloadSinglePdfUrl(pdfUrl: string, fallbackBase = 'document'): Promise<boolean> {
+export async function downloadSinglePdfUrl(
+  pdfUrl: string,
+  fallbackBase = 'document',
+  metricsMeta?: KioskMetricMeta,
+): Promise<boolean> {
   const href = pdfUrl.trim()
   if (!href) return false
   try {
@@ -24,6 +30,7 @@ export async function downloadSinglePdfUrl(pdfUrl: string, fallbackBase = 'docum
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(blobUrl)
+    trackKioskEvent('download_single', { pdfUrl: href, fileName, ...metricsMeta })
     return true
   } catch {
     return false
@@ -34,7 +41,12 @@ export async function downloadSinglePdfUrl(pdfUrl: string, fallbackBase = 'docum
 export async function downloadListedPdfsSequentially(
   products: readonly HealthResultProductPdf[],
   staggerMs = 140,
+  metricsMeta?: KioskMetricMeta,
 ) {
+  const list = products.filter((p) => p.pdfUrl?.trim())
+  if (list.length) {
+    trackKioskEvent('download_result_all', { productCount: list.length, ...metricsMeta })
+  }
   for (let i = 0; i < products.length; i++) {
     const pdfUrl = products[i]?.pdfUrl
     if (!pdfUrl?.trim()) continue

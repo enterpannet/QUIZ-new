@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Group from '../../assets/images/SVG/Group.svg'
+import { trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
 import { E_BOOKLET_PDF_URL, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
 
 /** ดึงรูปกราฟิกเต็มความกว้าง viewport — หักลบ px ข้างของ HEALTH_RESULT_PAGE_SHELL */
@@ -53,13 +54,18 @@ export default function EndSessionPage() {
           </section>
 
           <div className="flex flex-wrap items-stretch justify-center gap-4 pt-4 xl:gap-5 xl:pt-6 2xl:gap-6 2xl:pt-8">
-            <Link to="/" className={`${END_SESSION_CTA_BTN} no-underline`}>
+            <Link
+              to="/"
+              className={`${END_SESSION_CTA_BTN} no-underline`}
+              onClick={() => trackKioskButton('sorting_again', { screen: 'end_session' })}
+            >
               Sorting Again
             </Link>
             <a
               href={E_BOOKLET_PDF_URL}
               download="ebooklet.pdf"
               className={`${END_SESSION_CTA_BTN} flex-col no-underline`}
+              onClick={() => trackKioskEvent('download_ebooklet', { screen: 'end_session' })}
             >
               <span className="flex flex-col items-center gap-0 leading-tight">
                 <span>Download</span>

@@ -13,6 +13,8 @@ import {
 import { HealthResultProductPdfSlider } from '../../components/HealthResultProductPdfSlider'
 import { getHealthResultEntry } from '../Health/healthResultData'
 import { toHealthComboKey } from '../Health/healthResultCombo'
+import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
+import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
 import { downloadListedPdfsSequentially } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
@@ -24,6 +26,7 @@ import Group from '../../assets/images/SVG/Group.svg'
 
 export default function HealthResultPage() {
   const [searchParams] = useSearchParams()
+  useKioskQrLanding('result')
 
   const parsed = useMemo(() => {
     const goalId = parseHealthGoalId(searchParams.get(HEALTH_GOAL_QUERY_KEY))
@@ -44,17 +47,26 @@ export default function HealthResultPage() {
     return `${window.location.origin}${window.location.pathname}${qs ? `?${qs}` : ''}`
   }, [searchParams])
 
+  const resultQrShareUrl = useMemo(
+    () => (resultShareUrl ? appendQrSourceToUrl(resultShareUrl) : ''),
+    [resultShareUrl],
+  )
+
   const [downloading, setDownloading] = useState(false)
 
   const handleDownloadAll = useCallback(async () => {
     if (!entry?.products?.length) return
     setDownloading(true)
     try {
-      await downloadListedPdfsSequentially(entry.products)
+      await downloadListedPdfsSequentially(entry.products, 140, {
+        screen: 'result',
+        goalId: goalId ?? '',
+        categoryId: categoryId ?? '',
+      })
     } finally {
       setDownloading(false)
     }
-  }, [entry])
+  }, [entry, goalId, categoryId])
 
   return (
     <div className={`${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>
@@ -115,7 +127,11 @@ export default function HealthResultPage() {
         )}
 
         <div className={`mt-auto ${HEALTH_RESULT_FOOTER_ACTIONS_ROW}`}>
-          <Link to="/" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
+          <Link
+            to="/"
+            className={HEALTH_RESULT_FOOTER_LINK_CLASS}
+            onClick={() => trackKioskButton('sorting_again', { screen: 'result' })}
+          >
             Sorting Again
           </Link>
 
@@ -132,15 +148,19 @@ export default function HealthResultPage() {
               >
                 {downloading ? 'Downloading…' : 'Download This Result'}
               </button>
-              {resultShareUrl ? (
+              {resultQrShareUrl ? (
                 <div className="hidden shrink-0 lg:block">
-                  <HealthResultDownloadQr url={resultShareUrl} compact />
+                  <HealthResultDownloadQr url={resultQrShareUrl} compact placement="result" />
                 </div>
               ) : null}
             </>
           ) : null}
 
-          <Link to="/end-session" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
+          <Link
+            to="/end-session"
+            className={HEALTH_RESULT_FOOTER_LINK_CLASS}
+            onClick={() => trackKioskButton('end_session', { screen: 'result' })}
+          >
             End session
           </Link>
         </div>

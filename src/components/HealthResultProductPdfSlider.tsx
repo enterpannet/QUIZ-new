@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import chevronPrev from '../assets/images/SVG/back.svg'
 import chevronNext from '../assets/images/SVG/Next.svg'
 import { Link } from 'react-router-dom'
+import { trackKioskEvent } from '../lib/kioskMetrics'
 import { buildDetailsPdfHref } from '../page/details/detailsPdfRoute'
 import { resolveHealthProductImageUrl, type HealthResultProductPdf } from '../page/Health/healthResultData'
 
@@ -231,6 +232,12 @@ export function HealthResultProductPdfSlider({ products, detailsPdfLinkExtras }:
                     to={buildDetailsPdfHref(p.pdfUrl, p.titleTh, detailsPdfLinkExtras)}
                     aria-label={label}
                     className={cardClass}
+                    onClick={() =>
+                      trackKioskEvent('product_open', {
+                        productIndex: i,
+                        titleTh: p.titleTh,
+                      })
+                    }
                   >
                     {body}
                   </Link>

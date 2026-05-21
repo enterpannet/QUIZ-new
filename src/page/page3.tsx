@@ -9,6 +9,7 @@ import { InteractiveSpringImg } from '../components/InteractiveSpringImg'
 import { KioskStepHeader } from '../components/KioskStepHeader'
 import { KIOSK_STEP_CONTENT_PAD, KIOSK_STEP_HEADER_SECTION } from './kioskStepLayout'
 import { Link } from 'react-router-dom'
+import { trackKioskButton } from '../lib/kioskMetrics'
 
 const page3HeaderCopy = {
   stepLabel: 'STEP 1',
@@ -55,6 +56,7 @@ export default function Page3() {
             to="/health/step2"
             className="flex min-h-0 min-w-0 flex-1 touch-manipulation flex-col items-center gap-3 self-stretch rounded-2xl px-2 py-2 text-inherit no-underline [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-700 sm:gap-4 sm:px-3 sm:py-3 md:py-4"
             aria-labelledby="page3-option-green-title"
+            onClick={() => trackKioskButton('path_health', { screen: 'page3' })}
           >
             <div className="spring-float-stagger flex flex-col items-center gap-1.5 sm:gap-2 md:gap-2.5">
               <div className={staggerSlot}>
@@ -85,6 +87,7 @@ export default function Page3() {
             to="/special/step2"
             className="flex min-h-0 min-w-0 flex-1 touch-manipulation flex-col items-center gap-3 self-stretch rounded-2xl px-2 py-2 text-inherit no-underline [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-700 sm:gap-4 sm:px-3 sm:py-3 md:py-4"
             aria-labelledby="page3-option-blue-title"
+            onClick={() => trackKioskButton('path_special', { screen: 'page3' })}
           >
             <div className="spring-float-stagger spring-float-stagger--bottom flex flex-col items-center gap-1.5 sm:gap-2 md:gap-2.5">
               <div className={staggerSlot}>

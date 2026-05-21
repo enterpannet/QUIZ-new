@@ -1,11 +1,14 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import QRCode from 'qrcode'
+import { trackKioskEvent } from '../lib/kioskMetrics'
 
 type HealthResultDownloadQrProps = {
   url: string
   className?: string
   /** ขนาดเล็กสำหรับแถบปุ่มฟุตเทอร์ — ไม่ดึงความสูงปุ่มข้างๆ */
   compact?: boolean
+  /** ระบุตำแหน่งใน metrics (result | details) */
+  placement?: 'result' | 'details'
 }
 
 const QR_SIZE = { default: 168, compact: 96, expanded: 280 } as const
@@ -24,10 +27,12 @@ export function HealthResultDownloadQr({
   url,
   className = '',
   compact = false,
+  placement = 'result',
 }: HealthResultDownloadQrProps) {
   const [dataUrl, setDataUrl] = useState<string | null>(null)
   const [expanded, setExpanded] = useState(false)
   const [expandedDataUrl, setExpandedDataUrl] = useState<string | null>(null)
+  const displayedRef = useRef(false)
   const size = compact ? QR_SIZE.compact : QR_SIZE.default
 
   useEffect(() => {
@@ -65,6 +70,17 @@ export function HealthResultDownloadQr({
       cancelled = true
     }
   }, [expanded, url])
+
+  useEffect(() => {
+    if (!dataUrl || displayedRef.current) return
+    displayedRef.current = true
+    trackKioskEvent('qr_display', { placement, compact })
+  }, [dataUrl, placement, compact])
+
+  useEffect(() => {
+    if (!expanded) return
+    trackKioskEvent('qr_expand', { placement, compact })
+  }, [expanded, placement, compact])
 
   useEffect(() => {
     if (!expanded) return
@@ -107,7 +123,9 @@ export function HealthResultDownloadQr({
         {dataUrl ? (
           <button
             type="button"
-            onClick={() => setExpanded(true)}
+            onClick={() => {
+              setExpanded(true)
+            }}
             className="cursor-pointer rounded-lg border-0 bg-transparent p-0 transition-shadow hover:ring-2 hover:ring-neutral-500/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-700"
             aria-label="ขยาย QR code เพื่อสแกน"
           >

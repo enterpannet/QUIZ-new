@@ -5,6 +5,8 @@ import circleBlueBlank from '../../assets/images/SVG/circleBlueBlank.svg'
 import circleGreenBlank from '../../assets/images/SVG/circleGreenBlank.svg'
 import { HEALTH_CATEGORY_QUERY_KEY, parseHealthCategoryId } from '../Health/healthCategorySelection'
 import { HEALTH_GOAL_QUERY_KEY, parseHealthGoalId } from '../Health/healthGoalSelection'
+import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
+import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
@@ -51,6 +53,7 @@ const pdfCardHeight =
 
 export default function DetailsPage() {
   const [searchParams] = useSearchParams()
+  useKioskQrLanding('details')
 
   const [downloading, setDownloading] = useState(false)
 
@@ -85,17 +88,26 @@ export default function DetailsPage() {
     return `${window.location.origin}${window.location.pathname}${qs ? `?${qs}` : ''}`
   }, [searchParams])
 
+  const detailsQrShareUrl = useMemo(
+    () => (detailsShareUrl ? appendQrSourceToUrl(detailsShareUrl) : ''),
+    [detailsShareUrl],
+  )
+
   const handleDownloadCurrent = useCallback(async () => {
     if (!pathNoHash) return
     const stem =
       decodeURIComponent(pathNoHash.split('/').pop() ?? 'document.pdf').replace(/\.pdf$/i, '') || 'document'
     setDownloading(true)
     try {
-      await downloadSinglePdfUrl(pathNoHash, stem)
+      await downloadSinglePdfUrl(pathNoHash, stem, {
+        screen: 'details',
+        goalId: goalId ?? '',
+        categoryId: categoryId ?? '',
+      })
     } finally {
       setDownloading(false)
     }
-  }, [pathNoHash])
+  }, [pathNoHash, goalId, categoryId])
 
   const objectSrc =
     pathNoHash != null ? `${pathNoHash}#toolbar=0&navpanes=0&view=FitH` : ''
@@ -103,7 +115,11 @@ export default function DetailsPage() {
   const footer = (
     <div className="relative z-10 mt-auto shrink-0 w-full border-t border-neutral-200/95 bg-neutral-100 py-8">
       <div className={`mx-auto ${HEALTH_RESULT_FOOTER_ACTIONS_ROW}`}>
-        <Link to="/" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
+        <Link
+          to="/"
+          className={HEALTH_RESULT_FOOTER_LINK_CLASS}
+          onClick={() => trackKioskButton('sorting_again', { screen: 'details' })}
+        >
           Sorting Again
         </Link>
 
@@ -120,9 +136,9 @@ export default function DetailsPage() {
             >
               {downloading ? 'Downloading…' : 'Download This Result'}
             </button>
-            {detailsShareUrl ? (
+            {detailsQrShareUrl ? (
               <div className="hidden shrink-0 lg:block">
-                <HealthResultDownloadQr url={detailsShareUrl} compact />
+                <HealthResultDownloadQr url={detailsQrShareUrl} compact placement="details" />
               </div>
             ) : null}
           </>
@@ -136,7 +152,11 @@ export default function DetailsPage() {
           </button>
         )}
 
-        <Link to="/end-session" className={HEALTH_RESULT_FOOTER_LINK_CLASS}>
+        <Link
+          to="/end-session"
+          className={HEALTH_RESULT_FOOTER_LINK_CLASS}
+          onClick={() => trackKioskButton('end_session', { screen: 'details' })}
+        >
           End session
         </Link>
       </div>

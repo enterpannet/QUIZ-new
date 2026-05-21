@@ -1,6 +1,7 @@
 import touchHint from '../assets/images/SVG/touch-svgrepo-com.svg'
 import { KioskSpringBackdropBand, KioskSpringBandBottom, KioskSpringBandTop } from '../components/KioskSpringBandRows'
 import { Link } from 'react-router-dom'
+import { trackKioskButton } from '../lib/kioskMetrics'
 const pageShell =
 
   'flex w-full max-w-none flex-1 flex-col items-stretch justify-start overflow-x-clip bg-neutral-100 text-neutral-900 max-xl:gap-5 max-xl:px-3 max-xl:py-5 max-xl:pb-6 max-xl:sm:px-4 max-xl:md:gap-9 max-xl:md:px-5 max-xl:md:py-8 max-xl:md:pb-10 max-xl:lg:gap-10 max-xl:lg:px-6 max-xl:lg:py-10 max-xl:lg:pb-12 xl:gap-6 xl:px-4 xl:py-6 xl:pb-8 xl:sm:gap-8 xl:sm:px-6 xl:sm:py-10 xl:sm:pb-10'
@@ -38,13 +39,10 @@ export default function Page1() {
       >
 
         <Link
-
           to="/page2"
-
           className="absolute inset-0 z-[30] touch-manipulation  max-xl:rounded-xl focus-visible:z-[55] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-700"
-
           aria-label="แตะเพื่อไปหน้าเกม — หน้าถัดไป"
-
+          onClick={() => trackKioskButton('start_game', { screen: 'page1' })}
         />
 
         <div className="kiosk-enter-lines pointer-events-none absolute inset-0 z-50 flex flex-col items-center justify-center gap-1 px-2 text-center text-sm font-medium leading-snug text-neutral-800 [text-shadow:0_1px_0_rgb(255_255_255/0.4),0_0_14px_rgb(245_245_245/0.9)] max-xl:gap-1 max-xl:py-3 max-xl:sm:gap-1.5 max-xl:sm:px-4 max-xl:sm:text-base max-xl:md:gap-2 max-xl:md:py-8 max-xl:md:px-5 max-xl:md:text-lg max-xl:lg:gap-2.5 max-xl:lg:py-11 max-xl:lg:px-6 max-xl:lg:text-xl xl:gap-1 xl:px-4 xl:text-inherit xl:sm:gap-1.5 xl:sm:px-6 xl:sm:text-lg xl:md:text-xl">

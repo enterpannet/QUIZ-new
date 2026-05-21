@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { KioskNavbar } from './components/KioskNavbar'
+import { useKioskRouteMetrics } from './hooks/useKioskRouteMetrics'
 import HealthStep2 from './page/Health/step2'
 import HealthStep3 from './page/Health/step3'
 import HealthResultPage from './page/result'
@@ -10,8 +11,11 @@ import Page2 from './page/page2'
 import Page3 from './page/page3'
 import DetailsPage from './page/details'
 import EndSessionPage from './page/end-session'
+import KioskStatsPage from './page/kiosk-stats'
 
 function App() {
+  useKioskRouteMetrics()
+
   return (
     <div className="flex min-h-0 flex-1 touch-manipulation flex-col bg-neutral-100 [-webkit-overflow-scrolling:touch] [-webkit-touch-callout:none] select-none">
       <KioskNavbar />
@@ -27,6 +31,7 @@ function App() {
           <Route path="/special/step3" element={<SpecialStep3 />} />
           <Route path="/details" element={<DetailsPage />} />
           <Route path="/end-session" element={<EndSessionPage />} />
+          <Route path="/kiosk-stats" element={<KioskStatsPage />} />
         </Routes>
       </main>
     </div>
