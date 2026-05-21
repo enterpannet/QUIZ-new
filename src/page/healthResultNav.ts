@@ -11,7 +11,7 @@ export const HEALTH_RESULT_FOOTER_ACTIONS_ROW =
 
 /** พื้นฐานโทนปุ่มฟุตเทอร์ — เหมือนกันทุกปุ่ม (โครงเดียวกับ Sorting Again) */
 const HEALTH_RESULT_FOOTER_BTN_VISUAL =
-  'inline-flex min-h-[2.75rem] shrink-0 items-center justify-center rounded-full border border-neutral-700 px-5 py-2 text-center text-sm font-semibold text-neutral-900 transition-opacity active:opacity-80 md:min-h-12 md:text-base'
+  'font-heading inline-flex min-h-[2.75rem] shrink-0 items-center justify-center rounded-full border border-neutral-700 px-5 py-2 text-center text-sm font-semibold text-neutral-900 transition-opacity active:opacity-80 md:min-h-12 md:text-base'
 
 export const HEALTH_RESULT_FOOTER_LINK_CLASS = `${HEALTH_RESULT_FOOTER_BTN_VISUAL} no-underline`
 

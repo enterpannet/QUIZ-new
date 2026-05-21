@@ -219,15 +219,7 @@ export function HealthResultProductPdfSlider({ products, detailsPdfLinkExtras }:
               'flex h-full min-h-0 cursor-pointer touch-manipulation flex-col overflow-hidden rounded-lg border-0 bg-transparent text-center text-inherit no-underline outline-offset-[-2px] [-webkit-tap-highlight-color:transparent] transition-opacity active:opacity-90 focus-visible:z-[2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900 sm:rounded-xl'
 
             const body = (
-              <>
-                <PdfEmbeddedPreview pdfUrl={p.pdfUrl} fallbackSrc={resolveHealthProductImageUrl(p)} />
-                <div className="flex flex-1 flex-col justify-center gap-1.5 px-2 py-3 sm:gap-2 sm:px-3 sm:py-4">
-                  <span className="text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-neutral-500 sm:text-[0.7rem]">
-                    {i + 1} / {products.length}
-                  </span>
-                  <span className="line-clamp-2 text-xs font-semibold leading-snug text-neutral-950 sm:text-sm">{p.titleTh}</span>
-                </div>
-              </>
+              <PdfEmbeddedPreview pdfUrl={p.pdfUrl} fallbackSrc={resolveHealthProductImageUrl(p)} />
             )
 
             const label = `แตะเพื่อดู datasheet — ${p.titleTh}`

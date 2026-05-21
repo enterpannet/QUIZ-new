@@ -4,12 +4,12 @@ import type { SpecialPillEn } from './specialStepContent'
 export function SpecialEnglishPill({ className, parts }: { className: string; parts: SpecialPillEn }) {
   if (parts.length === 2) {
     return (
-      <p className={className}>
+      <p className={`font-heading ${className}`}>
         {parts[0]}
         <br />
         {parts[1]}
       </p>
     )
   }
-  return <p className={className}>{parts[0]}</p>
+  return <p className={`font-heading ${className}`}>{parts[0]}</p>
 }

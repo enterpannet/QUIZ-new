@@ -12,6 +12,7 @@ import SpecialSandFood from '../../assets/images/SVG/SpecialSandFood.svg'
 import specialSandTowerFour from '../../assets/images/SVG/SpecialSandBeverages.svg'
 import SpecialSandDiseasePrevention from '../../assets/images/SVG/SpecialSandDiseasePrevention.svg'
 import condimentBlue from '../../assets/images/SVG/condimentBlue.svg'
+import Group from '../../assets/images/SVG/Group.svg'
 
 import {
   HEALTH_GOAL_QUERY_KEY,
@@ -23,11 +24,21 @@ import {
   SPECIAL_STEP3_COLUMNS,
   SPECIAL_STEP3_HEADER,
 } from './specialStepContent'
-import { SPECIAL_SAND_PAGE_SHELL } from './specialStepShell'
+import { KIOSK_STEP_HEADER_SECTION, KIOSK_TITLE_BAND_CLASS } from '../kioskStepLayout'
+import {
+  HEALTH_SAND_CONTENT_PAD,
+  HEALTH_YELLOW_BACKGROUND,
+  HEALTH_YELLOW_SHELL_BASE,
+} from '../Health/healthStepShell'
 import { SpecialEnglishPill } from './SpecialEnglishPill'
 
 const goalTitlePill =
-  'flex min-h-[3.5rem] shadow-md shadow-neutral-900/10 w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug bg-neutral-100/50 rounded-full sm:min-h-[4rem] sm:px-5 sm:text-sm md:min-h-[4.5rem] md:px-6 md:text-base lg:min-h-[5rem] lg:text-lg xl:min-h-[5.25rem] xl:text-xl'
+  'font-thai flex min-h-[3.5rem] shadow-md shadow-neutral-900/10 w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug rounded-full sm:min-h-[4rem] sm:px-5 sm:text-sm md:min-h-[4.5rem] md:px-6 md:text-base lg:min-h-[5rem] lg:text-lg xl:min-h-[5.25rem] xl:text-xl'
+
+const goalTitlePillCol1 = `${goalTitlePill} bg-[#4882d0]`
+const goalTitlePillCol2 = `${goalTitlePill} bg-[#4882d0]`
+const goalTitlePillCol3 = `${goalTitlePill} bg-[#4882d0]`
+const goalTitlePillCol4 = `${goalTitlePill} bg-[#4882d0]`
 
 const goalSubtitle =
   'mt-1 max-w-[min(100%,22rem)] text-xs text-center text-neutral-900/90 sm:max-w-none sm:text-sm md:text-base lg:text-lg xl:text-xl'
@@ -47,10 +58,27 @@ const imgGoalHero =
 const goalTextBlock =
   'w-full shrink-0 touch-manipulation transition-transform duration-150 will-change-transform active:scale-[0.98]'
 
-const SPECIAL_STEP3_PAGE_SHELL = SPECIAL_SAND_PAGE_SHELL.replace(
+/** แถบหัวข้อ EN — สีฟ้า (พื้นหน้ายังเหลืองแบบ Health step3) */
+const SPECIAL_STEP3_TITLE_BAND_CLASS = KIOSK_TITLE_BAND_CLASS.replace(
+  'bg-yellow-400',
+  'bg-[#4882d0]',
+)
+
+const SPECIAL_STEP3_PAGE_SHELL = HEALTH_YELLOW_SHELL_BASE.replace(
   'items-stretch',
   'items-center',
 )
+  .replace(HEALTH_YELLOW_BACKGROUND, '')
+  .replace('overflow-x-clip', 'overflow-x-clip overflow-y-visible')
+
+const specialStep3PageBg =
+  `pointer-events-none absolute inset-0 z-0 ${HEALTH_YELLOW_BACKGROUND}`
+
+const specialStep3GroupBg =
+  'pointer-events-none absolute inset-x-0 bottom-0 z-[1] flex items-end justify-center'
+
+const specialStep3GroupImg =
+  'h-auto w-full max-h-[min(40vh,22rem)] max-w-none object-contain object-bottom opacity-[0.32] sm:max-h-[min(42vh,24rem)] sm:opacity-[0.36] md:max-h-[min(44vh,26rem)] md:opacity-[0.4]'
 
 const goalColumnLink =
   'text-inherit no-underline rounded-xl focus-visible:z-[1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-700 [-webkit-tap-highlight-color:transparent]'
@@ -67,16 +95,27 @@ export default function SpecialStep3() {
     buildHealthResultHref(selectedGoal, category)
 
   return (
-    <div className={`${SPECIAL_STEP3_PAGE_SHELL} min-h-0`}>
-      <div className="flex w-full shrink-0 justify-center px-1">
+    <div className={`relative isolate ${SPECIAL_STEP3_PAGE_SHELL} min-h-0`}>
+      <div aria-hidden className={specialStep3PageBg} />
+      <div aria-hidden className={specialStep3GroupBg}>
+        <img src={Group} alt="" className={specialStep3GroupImg} />
+      </div>
+
+      <section
+        className={`relative z-10 ${KIOSK_STEP_HEADER_SECTION}`}
+        aria-label="หัวข้อ Special STEP 3"
+      >
         <KioskStepHeader
           stepLabel={SPECIAL_STEP3_HEADER.stepLabel}
           titleLine1={SPECIAL_STEP3_HEADER.titleLine1}
           titleLine2={SPECIAL_STEP3_HEADER.titleLine2}
           description={SPECIAL_STEP3_HEADER.description}
+          titleBandClassName={SPECIAL_STEP3_TITLE_BAND_CLASS}
         />
-      </div>
-      <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22 lg:gap-8 lg:py-32">
+      </section>
+      <div
+        className={`relative z-10 flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22 lg:gap-8 lg:py-32 ${HEALTH_SAND_CONTENT_PAD}`}
+      >
         <div className="health-goal-col-grid mx-auto flex min-h-0 w-full max-w-[min(100%,120rem)] flex-1 flex-row flex-wrap items-start justify-center gap-1 px-1 sm:gap-2 sm:px-2 md:flex-nowrap md:items-stretch md:gap-3 md:px-4 lg:gap-5 lg:px-6 xl:gap-8 xl:px-8">
           {/* Food */}
           <Link
@@ -100,7 +139,7 @@ export default function SpecialStep3() {
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP3_COLUMNS[0].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol1} parts={SPECIAL_STEP3_COLUMNS[0].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP3_COLUMNS[0].subtitle}</p>
             </div>
           </Link>
@@ -122,7 +161,7 @@ export default function SpecialStep3() {
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP3_COLUMNS[1].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol2} parts={SPECIAL_STEP3_COLUMNS[1].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP3_COLUMNS[1].subtitle}</p>
             </div>
           </Link>
@@ -148,7 +187,7 @@ export default function SpecialStep3() {
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP3_COLUMNS[2].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol3} parts={SPECIAL_STEP3_COLUMNS[2].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP3_COLUMNS[2].subtitle}</p>
             </div>
           </Link>
@@ -174,7 +213,7 @@ export default function SpecialStep3() {
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP3_COLUMNS[3].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol4} parts={SPECIAL_STEP3_COLUMNS[3].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP3_COLUMNS[3].subtitle}</p>
             </div>
           </Link>

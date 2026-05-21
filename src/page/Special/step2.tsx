@@ -5,14 +5,19 @@ import {
   HEALTH_GOAL_QUERY_KEY,
   type HealthGoalId,
 } from '../Health/healthGoalSelection'
-import { SPECIAL_SAND_PAGE_SHELL } from './specialStepShell'
+import { KIOSK_STEP_HEADER_SECTION } from '../kioskStepLayout'
+import {
+  SPECIAL_SAND_BACKGROUND,
+  SPECIAL_SAND_CONTENT_PAD,
+  SPECIAL_SAND_SHELL_BASE,
+} from './specialStepShell'
 
 import blueSpringW from '../../assets/images/SVG/blueSpringW.svg'
 import circleBlue from '../../assets/images/SVG/circleBlue.svg'
-import DiseasePreventionHero from '../../assets/images/SVG/SpecialSandDiseasePrevention.svg'
-import PerformanceSupportHero from '../../assets/images/SVG/SpecialSandPerformanceSupport.svg'
+import page2towelblue from '../../assets/images/SVG/page2towelblue.svg'
 import blueSpring from '../../assets/images/SVG/blueSpring.svg'
 import blueSpringWs from '../../assets/images/SVG/blueSpringWs.svg'
+import Group from '../../assets/images/SVG/Group.svg'
 
 import {
   SPECIAL_STEP2_COLUMNS,
@@ -20,9 +25,14 @@ import {
 } from './specialStepContent'
 import { SpecialEnglishPill } from './SpecialEnglishPill'
 
-/** ป้ายหัวข้อคอลัมน์ — โตตาม breakpoint */
+/** ป้ายหัวข้อคอลัมน์ — โตตาม breakpoint (ไม่ใส่ bg ตรงนี้ ให้กำหนดสีต่อคอลัมน์) */
 const goalTitlePill =
-  'flex min-h-[3.5rem] shadow-md shadow-neutral-900/10 w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug bg-neutral-100/50 rounded-full sm:min-h-[4rem] sm:px-5 sm:text-sm md:min-h-[4.5rem] md:px-6 md:text-base lg:min-h-[5rem] lg:text-lg xl:min-h-[5.25rem] xl:text-xl'
+  'font-thai flex min-h-[3.5rem] shadow-md shadow-neutral-900/10 w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug rounded-full sm:min-h-[4rem] sm:px-5 sm:text-sm md:min-h-[4.5rem] md:px-6 md:text-base lg:min-h-[5rem] lg:text-lg xl:min-h-[5.25rem] xl:text-xl'
+
+/** สีพื้นหลังป้ายแต่ละคอลัมน์ — แก้ได้ที่นี่ */
+const goalTitlePillCol1 = `${goalTitlePill} bg-yellow-400`
+const goalTitlePillCol2 = `${goalTitlePill} bg-yellow-400`
+const goalTitlePillCol3 = `${goalTitlePill} bg-yellow-400`
 
 const goalSubtitle =
   'mt-1 max-w-[min(100%,22rem)] text-xs text-center text-neutral-900/90 sm:max-w-none sm:text-sm md:text-base lg:text-lg xl:text-xl'
@@ -54,23 +64,44 @@ function specialStep3Href(goal: HealthGoalId) {
 const goalColumnLink =
   'text-inherit no-underline rounded-xl focus-visible:z-[1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-700 [-webkit-tap-highlight-color:transparent]'
 
-const SPECIAL_STEP2_PAGE_SHELL = SPECIAL_SAND_PAGE_SHELL.replace(
+const SPECIAL_STEP2_PAGE_SHELL = SPECIAL_SAND_SHELL_BASE.replace(
   'items-stretch',
   'items-center',
 )
+  .replace(SPECIAL_SAND_BACKGROUND, '')
+  .replace('overflow-x-clip', 'overflow-x-clip overflow-y-visible')
+
+const specialStep2SandBg =
+  `pointer-events-none absolute inset-0 z-0 ${SPECIAL_SAND_BACKGROUND}`
+
+const specialStep2GroupBg =
+  'pointer-events-none absolute inset-x-0 bottom-0 z-[1] flex items-end justify-center'
+
+const specialStep2GroupImg =
+  'h-auto w-full max-h-[min(40vh,22rem)] max-w-none object-contain object-bottom opacity-[0.32] sm:max-h-[min(42vh,24rem)] sm:opacity-[0.36] md:max-h-[min(44vh,26rem)] md:opacity-[0.4]'
 
 export default function SpecialStep2() {
   return (
-    <div className={`${SPECIAL_STEP2_PAGE_SHELL} min-h-0`}>
-      <div className="flex w-full shrink-0 justify-center px-1">
+    <div className={`relative isolate ${SPECIAL_STEP2_PAGE_SHELL} min-h-0`}>
+      <div aria-hidden className={specialStep2SandBg} />
+      <div aria-hidden className={specialStep2GroupBg}>
+        <img src={Group} alt="" className={specialStep2GroupImg} />
+      </div>
+
+      <section
+        className={`relative z-10 ${KIOSK_STEP_HEADER_SECTION}`}
+        aria-label="หัวข้อ Special STEP 2"
+      >
         <KioskStepHeader
           stepLabel={SPECIAL_STEP2_HEADER.stepLabel}
           titleLine1={SPECIAL_STEP2_HEADER.titleLine1}
           titleLine2={SPECIAL_STEP2_HEADER.titleLine2}
           description={SPECIAL_STEP2_HEADER.description}
         />
-      </div>
-      <div className="flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22 lg:gap-8 lg:py-32">
+      </section>
+      <div
+        className={`relative z-10 flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22 lg:gap-8 lg:py-32 ${SPECIAL_SAND_CONTENT_PAD}`}
+      >
         <div className="health-goal-col-grid mx-auto flex min-h-0 w-full max-w-[min(100%,92rem)] flex-1 flex-row items-start gap-1 px-1 sm:gap-2 sm:px-2 md:items-stretch md:gap-5 md:px-4 lg:gap-8 lg:px-6 xl:gap-12 xl:px-8">
           <Link
             to={specialStep3Href(SPECIAL_STEP2_COLUMNS[0].goal)}
@@ -89,11 +120,11 @@ export default function SpecialStep2() {
                 <InteractiveSpringImg src={circleBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={DiseasePreventionHero} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg src={page2towelblue} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP2_COLUMNS[0].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol1} parts={SPECIAL_STEP2_COLUMNS[0].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP2_COLUMNS[0].subtitle}</p>
             </div>
           </Link>
@@ -110,11 +141,11 @@ export default function SpecialStep2() {
                 <InteractiveSpringImg src={blueSpringWs} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={PerformanceSupportHero} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg src={page2towelblue} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP2_COLUMNS[1].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol2} parts={SPECIAL_STEP2_COLUMNS[1].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP2_COLUMNS[1].subtitle}</p>
             </div>
           </Link>
@@ -135,11 +166,11 @@ export default function SpecialStep2() {
                 <InteractiveSpringImg src={circleBlue} alt="" className={imgSpringSm} />
               </div>
               <div>
-                <InteractiveSpringImg src={PerformanceSupportHero} alt="" className={imgGoalHero} />
+                <InteractiveSpringImg src={page2towelblue} alt="" className={imgGoalHero} />
               </div>
             </div>
             <div className={goalTextBlock}>
-              <SpecialEnglishPill className={goalTitlePill} parts={SPECIAL_STEP2_COLUMNS[2].pillParts} />
+              <SpecialEnglishPill className={goalTitlePillCol3} parts={SPECIAL_STEP2_COLUMNS[2].pillParts} />
               <p className={goalSubtitle}>{SPECIAL_STEP2_COLUMNS[2].subtitle}</p>
             </div>
           </Link>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 389 598">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        filter: url(#drop-shadow-2);
+      }
+
+      .st2 {
+        fill: #c8dc6b;
+        stroke-width: 4px;
+      }
+
+      .st2, .st3, .st4, .st5, .st6 {
+        stroke: #241f20;
+        stroke-miterlimit: 10;
+      }
+
+      .st7 {
+        mix-blend-mode: soft-light;
+        opacity: .2;
+      }
+
+      .st8 {
+        isolation: isolate;
+      }
+
+      .st9 {
+        clip-path: url(#clippath-1);
+      }
+
+      .st10 {
+        clip-path: url(#clippath-3);
+      }
+
+      .st11 {
+        clip-path: url(#clippath-2);
+      }
+
+      .st12 {
+        fill: #4882d0;
+      }
+
+      .st3 {
+        fill: url(#New_Gradient_Swatch_4);
+      }
+
+      .st3, .st5, .st6 {
+        stroke-width: 4px;
+      }
+
+      .st4 {
+        fill: #bbdb0c;
+        stroke-width: 3.8px;
+      }
+
+      .st5, .st13 {
+        fill: #241f20;
+      }
+
+      .st14 {
+        mix-blend-mode: overlay;
+      }
+
+      .st15 {
+        opacity: .9;
+      }
+
+      .st16 {
+        opacity: .8;
+      }
+
+      .st6 {
+        fill: #d1daaa;
+      }
+
+      .st17 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <filter id="drop-shadow-2" x="30.5" y="72.8" width="346.8" height="487.2" filterUnits="userSpaceOnUse">
+      <feOffset dx="5.6" dy="5.6"/>
+      <feGaussianBlur result="blur" stdDeviation="5.6"/>
+      <feFlood flood-color="#000" flood-opacity="0"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="New_Gradient_Swatch_4" data-name="New Gradient Swatch 4" x1="70.5" y1="248.6" x2="325.9" y2="248.6" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d1daaa"/>
+      <stop offset="1" stop-color="#bbdb0c"/>
+    </linearGradient>
+    <clipPath id="clippath">
+      <rect class="st0" x="-3264.5" y="1328.2" width="1633.8" height="201"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="st0" x="-3267.6" y="850.4" width="1640" height="2360"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="st12" x="-1443.8" y="1328.2" width="1633.8" height="201"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="st12" x="-1446.9" y="850.4" width="1640" height="2360"/>
+    </clipPath>
+  </defs>
+  <g class="st8">
+    <g id="Layer_1">
+      <g class="st1">
+        <g>
+          <ellipse class="st6" cx="198.2" cy="436.5" rx="154.4" ry="98.7"/>
+          <ellipse class="st4" cx="198.2" cy="407.4" rx="127.7" ry="81.6"/>
+          <ellipse class="st2" cx="198.2" cy="330" rx="127.7" ry="81.6"/>
+          <ellipse class="st3" cx="198.2" cy="248.6" rx="127.7" ry="81.6"/>
+          <ellipse class="st4" cx="198.2" cy="167.7" rx="127.7" ry="81.6"/>
+          <path class="st13" d="M258.3,164.3c-32.1,23.2-88.2,22.8-120.3-.3,0,0,.3-.9.3-.9,18,5.4,37.2,8.1,56,8.5,6.2.1,12.7,0,18.9-.3,7.5-.6,15.1-1.4,22.6-2.7,4.2-.9,10.7-2.1,14.8-3.3,0,0,7.3-1.9,7.3-1.9l.3.9h0Z"/>
+          <g>
+            <path class="st6" d="M230.5,165.2v2.1c0,1.2-1.2,2.2-3.6,2.9-2.4.8-6,1.4-10.8,1.8-4.8.4-10.7.6-17.8.6s-13.1-.2-17.8-.6c-4.8-.4-8.4-1-10.8-1.8-2.4-.8-3.6-1.8-3.6-2.9v-49.5h64.5v47.4Z"/>
+            <ellipse class="st5" cx="198.2" cy="117.8" rx="32.3" ry="20.7"/>
+          </g>
+        </g>
+      </g>
+      <g class="st17">
+        <g class="st15">
+          <g class="st9">
+            <g class="st14">
+              <g class="st7">
+                <image width="2100" height="3724" transform="translate(-3658.5 83) scale(2)" xlink:href="(2) elements-09-1.png"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g class="st16">
+        <g>
+          <rect class="st12" x="-1443.8" y="1328.2" width="1633.8" height="201"/>
+          <g class="st11">
+            <g class="st15">
+              <rect class="st12" x="-1446.9" y="850.4" width="1640" height="2360"/>
+              <g class="st10">
+                <g class="st14">
+                  <g class="st7">
+                    <image width="2100" height="3724" transform="translate(-1837.8 83) scale(2)" xlink:href="(2) elements-09-2.png"/>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

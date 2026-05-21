@@ -62,10 +62,10 @@ export default function HealthResultPage() {
         {entry ? (
           <Fragment>
             <header className="flex flex-col gap-2 md:gap-3">
-              <p className="text-xl font-bold tracking-[0.2em] text-neutral-800/75 md:text-6xl lg:text-8xl">
+              <p className="font-heading text-xl font-bold tracking-[0.2em] text-neutral-800/75 md:text-6xl lg:text-8xl">
               YOUR FUTURE <br /> FOOD MATCH
               </p>
-            <p className="text-sm md:text-base lg:text-lg">
+            <p className="font-thai text-sm md:text-base lg:text-lg">
               จากคำตอบของคุณระบบได้ตัดเลือกกลุ่มผลิตภัณฑ์ Future Food <br />
               ที่สอดคล้องกับสุขภาพ ไลฟ์สไตล์ และเป่าหมายของคุณ
             </p>
@@ -90,8 +90,8 @@ export default function HealthResultPage() {
           </Fragment>
         ) : (
           <div className="flex flex-col gap-4 text-neutral-900">
-            <p className="text-lg font-bold sm:text-xl">ยังโหลดผลการจับคู่ไม่ได้</p>
-            <p className="text-sm text-neutral-700 sm:text-base">
+            <p className="font-thai text-lg font-bold sm:text-xl">ยังโหลดผลการจับคู่ไม่ได้</p>
+            <p className="font-thai text-sm text-neutral-700 sm:text-base">
               ควรเข้ามาพร้อมพารามิเตอร์{' '}
               <code className="rounded bg-neutral-200/90 px-1">{HEALTH_GOAL_QUERY_KEY}</code> จาก STEP 2 และ{' '}
               <code className="rounded bg-neutral-200/90 px-1">{HEALTH_CATEGORY_QUERY_KEY}</code> จาก STEP 3{' '}

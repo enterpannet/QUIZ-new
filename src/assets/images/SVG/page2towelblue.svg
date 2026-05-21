@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 389 598">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0 {
+        filter: url(#drop-shadow-6);
+      }
+
+      .st1 {
+        fill: url(#linear-gradient);
+      }
+
+      .st1, .st2, .st3, .st4, .st5 {
+        stroke: #241f20;
+        stroke-miterlimit: 10;
+      }
+
+      .st1, .st3 {
+        stroke-width: 4px;
+      }
+
+      .st2, .st6 {
+        fill: #241f20;
+      }
+
+      .st2, .st4, .st5 {
+        stroke-width: 4px;
+      }
+
+      .st3 {
+        fill: #7ca0d0;
+      }
+
+      .st4 {
+        fill: #cbdcef;
+      }
+
+      .st5 {
+        fill: url(#linear-gradient1);
+      }
+    </style>
+    <filter id="drop-shadow-6" x="26.5" y="80.1" width="347" height="476.2" filterUnits="userSpaceOnUse">
+      <feOffset dx="5.6" dy="5.6"/>
+      <feGaussianBlur result="blur" stdDeviation="5.6"/>
+      <feFlood flood-color="#000" flood-opacity="0"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="66.6" y1="403.6" x2="322" y2="403.6" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2970d0"/>
+      <stop offset="1" stop-color="#4882d0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="66.6" y1="244.9" x2="322" y2="244.9" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2970d0"/>
+      <stop offset="1" stop-color="#7ca0d0"/>
+    </linearGradient>
+  </defs>
+  <g class="st0">
+    <g>
+      <ellipse class="st4" cx="194.3" cy="432.8" rx="154.4" ry="98.7"/>
+      <ellipse class="st1" cx="194.3" cy="403.6" rx="127.7" ry="81.6"/>
+      <ellipse class="st3" cx="194.3" cy="326.3" rx="127.7" ry="81.6"/>
+      <ellipse class="st5" cx="194.3" cy="244.9" rx="127.7" ry="81.6"/>
+      <path class="st6" d="M254.4,228.9c-32.1,23.2-88.2,22.8-120.3-.3,0,0,.3-.9.3-.9,18,5.4,37.2,8.1,56,8.5,6.2.1,12.7,0,18.9-.3,7.5-.6,15.1-1.4,22.6-2.7,4.2-.9,10.7-2.1,14.8-3.3,0,0,7.3-1.9,7.3-1.9,0,0,.3.9.3.9h0Z"/>
+      <g>
+        <path class="st4" d="M226.6,229.8v2.1c0,1.2-1.2,2.2-3.6,2.9-2.4.8-6,1.4-10.8,1.8-4.8.4-10.7.6-17.8.6s-13.1-.2-17.8-.6c-4.8-.4-8.4-1-10.8-1.8-2.4-.8-3.6-1.8-3.6-2.9v-117.8h64.5v115.7Z"/>
+        <ellipse class="st2" cx="194.3" cy="114.1" rx="32.3" ry="20.7"/>
+      </g>
+    </g>
+  </g>
+</svg>

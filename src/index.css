@@ -1,5 +1,18 @@
 @import 'tailwindcss';
 
+/** Montserrat = หัวข้อ EN | Noto Sans Thai = รายละเอียด TH */
+@theme {
+  --font-heading: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-thai: 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-thai);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-thai);
+  }
+}
+
 @media (pointer: coarse) {
   .kiosk-touch-hit {
     padding: max(8px, 1.5vmin);

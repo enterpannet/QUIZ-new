@@ -49,13 +49,13 @@ export default function Page1() {
 
         <div className="kiosk-enter-lines pointer-events-none absolute inset-0 z-50 flex flex-col items-center justify-center gap-1 px-2 text-center text-sm font-medium leading-snug text-neutral-800 [text-shadow:0_1px_0_rgb(255_255_255/0.4),0_0_14px_rgb(245_245_245/0.9)] max-xl:gap-1 max-xl:py-3 max-xl:sm:gap-1.5 max-xl:sm:px-4 max-xl:sm:text-base max-xl:md:gap-2 max-xl:md:py-8 max-xl:md:px-5 max-xl:md:text-lg max-xl:lg:gap-2.5 max-xl:lg:py-11 max-xl:lg:px-6 max-xl:lg:text-xl xl:gap-1 xl:px-4 xl:text-inherit xl:sm:gap-1.5 xl:sm:px-6 xl:sm:text-lg xl:md:text-xl">
 
-          <p className="font-bold max-xl:text-xl max-xl:sm:text-3xl max-xl:md:text-[2.375rem] max-xl:lg:text-6xl xl:text-7xl">
+          <p className="font-heading font-bold max-xl:text-xl max-xl:sm:text-3xl max-xl:md:text-[2.375rem] max-xl:lg:text-6xl xl:text-7xl">
 
             {middleFrameLines[0]}
 
           </p>
 
-          <p className="font-bold max-xl:text-sm max-xl:sm:text-lg max-xl:md:text-2xl max-xl:lg:text-[2rem] xl:text-4xl">
+          <p className="font-heading font-bold max-xl:text-sm max-xl:sm:text-lg max-xl:md:text-2xl max-xl:lg:text-[2rem] xl:text-4xl">
 
             {middleFrameLines[1]}
 
@@ -69,7 +69,7 @@ export default function Page1() {
 
           />
 
-          <p className="font-bold max-xl:text-xs max-xl:sm:text-base max-xl:md:text-xl max-xl:lg:text-[1.65rem] xl:text-3xl">
+          <p className="font-thai font-bold max-xl:text-xs max-xl:sm:text-base max-xl:md:text-xl max-xl:lg:text-[1.65rem] xl:text-3xl">
 
             {middleFrameLines[2]}
 

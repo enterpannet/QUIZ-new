@@ -163,12 +163,12 @@ export default function DetailsPage() {
               className="h-full min-h-0 w-full flex-1 bg-neutral-50"
             >
               <div className="flex h-full min-h-[10rem] flex-col items-center justify-center gap-3 bg-neutral-100 p-8 text-center text-neutral-900">
-                <p className="max-w-xs text-sm">เบราว์เซอร์เปิดไฟล์ภายในไม่ได้</p>
+                <p className="font-thai max-w-xs text-sm">เบราว์เซอร์เปิดไฟล์ภายในไม่ได้</p>
                 <a
                   href={fullOpenUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white no-underline"
+                  className="font-thai rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white no-underline"
                 >
                   เปิด PDF ในแท็บใหม่
                 </a>
@@ -179,14 +179,14 @@ export default function DetailsPage() {
       ) : (
         <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-6 px-6 py-16 text-center">
           <div className="max-w-lg space-y-2">
-            <p className="text-lg font-bold text-neutral-900">ไม่พบไฟล์ที่จะเปิด</p>
-            <p className="text-sm text-neutral-600">
+            <p className="font-thai text-lg font-bold text-neutral-900">ไม่พบไฟล์ที่จะเปิด</p>
+            <p className="font-thai text-sm text-neutral-600">
               ลิงก์อาจไม่ถูกต้องหรือหมดเวลา — โปรดกลับไปเลือกการ์ดจากผลการจับคู่ใหม่
             </p>
           </div>
           <Link
             to={backToResultHref}
-            className="text-sm font-semibold text-neutral-800 underline underline-offset-4"
+            className="font-thai text-sm font-semibold text-neutral-800 underline underline-offset-4"
           >
             กลับหน้าผลการจับคู่
           </Link>

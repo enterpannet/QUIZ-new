@@ -128,13 +128,13 @@ export function HealthResultDownloadQr({
             <span className="text-[10px] text-neutral-600 md:text-xs">กำลังสร้าง QR…</span>
           </div>
         )}
-        <figcaption
-          className={
-            compact
-              ? 'max-w-[6.5rem] text-center text-[10px] leading-tight text-neutral-700'
-              : 'max-w-[11rem] text-center text-xs font-semibold leading-snug text-neutral-800 md:text-sm'
-          }
-        >
+      <figcaption
+        className={
+          compact
+            ? 'font-thai max-w-[6.5rem] text-center text-[10px] leading-tight text-neutral-700'
+            : 'font-thai max-w-[11rem] text-center text-xs font-semibold leading-snug text-neutral-800 md:text-sm'
+        }
+      >
           {caption}
         </figcaption>
       </figure>
@@ -153,7 +153,7 @@ export function HealthResultDownloadQr({
           >
             <p
               id="health-result-qr-expanded-title"
-              className="text-center text-base font-bold text-neutral-900 sm:text-lg"
+              className="font-thai text-center text-base font-bold text-neutral-900 sm:text-lg"
             >
               สแกนเพื่อดาวน์โหลดบนมือถือ / แท็บเล็ต
             </p>
