@@ -7,8 +7,8 @@ type HealthResultDownloadQrProps = {
   className?: string
   /** ขนาดเล็กสำหรับแถบปุ่มฟุตเทอร์ — ไม่ดึงความสูงปุ่มข้างๆ */
   compact?: boolean
-  /** ระบุตำแหน่งใน metrics (result | details) */
-  placement?: 'result' | 'details'
+  /** ระบุตำแหน่งใน metrics (result | details | end_session) */
+  placement?: 'result' | 'details' | 'end_session'
 }
 
 const QR_SIZE = { default: 168, compact: 96, expanded: 280 } as const

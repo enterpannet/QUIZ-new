@@ -1,6 +1,8 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import Group from '../../assets/images/SVG/Group.svg'
-import { trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
+import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
+import { appendQrSourceToUrl, trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
 import { E_BOOKLET_PDF_URL, HEALTH_RESULT_CONTENT_PAD, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
 
 const END_SESSION_GROUP_IMG =
@@ -11,6 +13,11 @@ const END_SESSION_CTA_BTN =
   'font-heading inline-flex min-h-[2.875rem] min-w-[min(100%,13rem)] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#ffdd33] px-6 py-2.5 text-center text-sm font-bold leading-tight text-neutral-800 shadow-none transition-opacity active:opacity-85 md:min-h-[3.125rem] md:min-w-[14rem] md:px-8 md:text-base xl:min-h-[3.375rem] xl:min-w-[15.75rem] xl:px-10 xl:text-lg 2xl:min-h-[3.75rem] 2xl:min-w-[18rem] 2xl:px-12 2xl:text-xl'
 
 export default function EndSessionPage() {
+  const ebookletQrUrl = useMemo(() => {
+    if (typeof window === 'undefined') return ''
+    return appendQrSourceToUrl(`${window.location.origin}${E_BOOKLET_PDF_URL}`)
+  }, [])
+
   return (
     <div className={`relative ${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>
       {/* texture: noise overlay ใสบนพื้นเทาอ่อน — ประมาณพื้นในภาพ */}
@@ -62,7 +69,7 @@ export default function EndSessionPage() {
             <a
               href={E_BOOKLET_PDF_URL}
               download="ebooklet.pdf"
-              className={`${END_SESSION_CTA_BTN} flex-col no-underline`}
+              className={`${END_SESSION_CTA_BTN} flex-col no-underline lg:hidden`}
               onClick={() => trackKioskEvent('download_ebooklet', { screen: 'end_session' })}
             >
               <span className="flex flex-col items-center gap-0 leading-tight">
@@ -70,6 +77,11 @@ export default function EndSessionPage() {
                 <span>E - Booklet</span>
               </span>
             </a>
+            {ebookletQrUrl ? (
+              <div className="hidden shrink-0 lg:block">
+                <HealthResultDownloadQr url={ebookletQrUrl} compact placement="end_session" />
+              </div>
+            ) : null}
           </div>
 
           <footer className="space-y-2 pt-4 text-xs font-normal leading-relaxed text-neutral-700 md:text-sm xl:space-y-2.5 xl:pt-5 xl:text-base 2xl:space-y-3 2xl:pt-6 2xl:text-lg">
