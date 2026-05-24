@@ -174,7 +174,7 @@ export default function DetailsPage() {
               to={backToResultHref}
               className="font-thai shrink-0 rounded-full border border-neutral-700 bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 no-underline shadow-sm transition-opacity active:opacity-80"
             >
-              ← กลับผลการจับคู่
+              ← กลับไปที่คำตอบของคุณ
             </Link>
           </div>
 
