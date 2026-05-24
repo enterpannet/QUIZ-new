@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import circleBlueBlank from '../../assets/images/SVG/circleBlueBlank.svg'
@@ -45,17 +45,25 @@ function DetailsCircleBlankBackdrop() {
   )
 }
 
-/** พื้นที่ฝัง PDF: โมบายเลยใช้หน้าจอเกือบเต็ม จอใหญ่ย่อกลับกลาง (ไม่กินเต็มพื้นที่ความสูง) */
+/** พื้นที่ฝัง PDF — จอเล็กใช้ความกว้างเต็มที่ จอใหญ่ (lg+) ขนาด A5 แนวตั้ง 148×210mm */
 const pdfCardShell =
-  'flex w-full max-w-[min(100%-0.75rem,24rem)] flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-white shadow-xl sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-[min(94%,42rem)] xl:border-neutral-300/90 2xl:max-w-[min(94%,46rem)]'
+  'flex shrink-0 flex-col overflow-hidden rounded-2xl border border-neutral-200/90 bg-white shadow-xl w-full max-w-[min(100%-0.75rem,24rem)] sm:max-w-lg md:max-w-xl lg:w-[min(148mm,calc((100dvh-11rem)*148/210),calc(100%-1.5rem))] lg:max-w-none lg:border-neutral-300/90'
 const pdfCardHeight =
-  'h-[min(76dvh,34rem)] sm:h-[min(72dvh,36rem)] md:h-[min(68dvh,38rem)] xl:h-[min(52vh,32rem)] 2xl:h-[min(48vh,34rem)]'
+  'h-[min(76dvh,34rem)] sm:h-[min(72dvh,36rem)] md:h-[min(68dvh,38rem)] lg:h-auto lg:aspect-[148/210]'
+
+/** ความกว้างแถบหัว — จอใหญ่ให้เท่ากับการ์ด A5 */
+const pdfToolbarRowClass =
+  'flex w-full max-w-[min(94%,46rem)] shrink-0 items-center justify-between gap-3 px-1 lg:max-w-[min(148mm,calc((100dvh-11rem)*148/210),calc(100%-1.5rem))] lg:w-[min(148mm,calc((100dvh-11rem)*148/210),calc(100%-1.5rem))]'
+
+const PDF_FULLSCREEN_CLOSE_BTN =
+  'font-thai inline-flex min-h-[2.75rem] shrink-0 items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-2 text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-90 active:opacity-80'
 
 export default function DetailsPage() {
   const [searchParams] = useSearchParams()
   useKioskQrLanding('details')
 
   const [downloading, setDownloading] = useState(false)
+  const [pdfFullscreen, setPdfFullscreen] = useState(false)
 
   const pdfRaw = searchParams.get(DETAILS_PDF_URL_QUERY_KEY)
   const pdfPath = useMemo(() => parseSafeEmbeddedHealthPdfPath(pdfRaw), [pdfRaw])
@@ -75,11 +83,21 @@ export default function DetailsPage() {
         })}`
       : '/health/result'
 
-  const fullOpenUrl = useMemo(() => {
-    if (!pathNoHash) return ''
-    const pathForAbsolute = pathNoHash.startsWith('/') ? pathNoHash : `/${pathNoHash}`
-    return `${window.location.origin}${pathForAbsolute}`
-  }, [pathNoHash])
+  const closePdfFullscreen = useCallback(() => setPdfFullscreen(false), [])
+
+  useEffect(() => {
+    if (!pdfFullscreen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closePdfFullscreen()
+    }
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [pdfFullscreen, closePdfFullscreen])
 
   /** ลิงก์หน้า details ปัจจุบัน — QR บนจอใหญ่ให้สแกนเปิดบนมือถือแล้วดาวน์โหลด */
   const detailsShareUrl = useMemo(() => {
@@ -110,7 +128,7 @@ export default function DetailsPage() {
   }, [pathNoHash, goalId, categoryId])
 
   const objectSrc =
-    pathNoHash != null ? `${pathNoHash}#toolbar=0&navpanes=0&view=FitH` : ''
+    pathNoHash != null ? `${pathNoHash}#toolbar=0&navpanes=0&view=Fit` : ''
 
   const footer = (
     <div className="relative z-10 mt-auto shrink-0 w-full border-t border-neutral-200/95 bg-neutral-100 py-8">
@@ -171,21 +189,20 @@ export default function DetailsPage() {
 
       {hasPdf ? (
         <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-6 lg:gap-6 lg:py-8">
-          <div className="flex w-full max-w-[min(94%,46rem)] shrink-0 items-center justify-between gap-3 px-1">
+          <div className={pdfToolbarRowClass}>
             <Link
               to={backToResultHref}
               className="font-thai shrink-0 rounded-full border border-neutral-700 bg-white/95 px-4 py-2 text-sm font-semibold text-neutral-900 no-underline shadow-sm transition-opacity active:opacity-80"
             >
               ← กลับผลการจับคู่
             </Link>
-            <a
-              href={fullOpenUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-thai shrink-0 text-sm font-semibold text-neutral-800 underline underline-offset-4"
+            <button
+              type="button"
+              onClick={() => setPdfFullscreen(true)}
+              className="font-thai shrink-0 cursor-pointer border-0 bg-transparent p-0 text-sm font-semibold text-neutral-800 underline underline-offset-4"
             >
               เปิดเต็มจอ
-            </a>
+            </button>
           </div>
 
           <h1 id="details-pdf-heading" className="sr-only">
@@ -199,6 +216,32 @@ export default function DetailsPage() {
               className="h-full min-h-0 w-full flex-1 border-0 bg-neutral-50"
             />
           </div>
+
+          {pdfFullscreen ? (
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="details-pdf-fullscreen-title"
+              className="fixed inset-0 z-[200] flex flex-col bg-neutral-950/95"
+            >
+              <div className="flex shrink-0 items-center justify-between gap-3 border-b border-neutral-700/60 px-4 py-3 sm:px-6 sm:py-4">
+                <p
+                  id="details-pdf-fullscreen-title"
+                  className="font-thai min-w-0 truncate text-sm font-semibold text-white sm:text-base"
+                >
+                  {titleDisplay}
+                </p>
+                <button type="button" onClick={closePdfFullscreen} className={PDF_FULLSCREEN_CLOSE_BTN}>
+                  ปิด
+                </button>
+              </div>
+              <iframe
+                src={objectSrc}
+                title={titleDisplay}
+                className="min-h-0 w-full flex-1 border-0 bg-neutral-100"
+              />
+            </div>
+          ) : null}
         </div>
       ) : (
         <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-6 px-6 py-16 text-center">
