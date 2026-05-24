@@ -54,7 +54,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,webp}'],
         navigateFallback: 'index.html',
-        navigateFallbackDenylist: [/^\/api/],
+        /** อย่า fallback SPA สำหรับ PDF — ไม่งั้น iframe โหลด React แล้วขึ้น "No routes matched" */
+        navigateFallbackDenylist: [/^\/api/, /\.pdf$/i],
       },
       devOptions: {
         enabled: false,
