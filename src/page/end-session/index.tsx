@@ -58,7 +58,7 @@ export default function EndSessionPage() {
             </p>
           </section>
 
-          <div className="flex flex-wrap items-stretch justify-center gap-4 pt-4 xl:gap-5 xl:pt-6 2xl:gap-6 2xl:pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4 xl:gap-5 xl:pt-6 2xl:gap-6 2xl:pt-8">
             <Link
               to="/"
               className={`${END_SESSION_CTA_BTN} no-underline`}
