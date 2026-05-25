@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/** Montserrat = หัวข้อ EN | Noto Sans Thai = รายละเอียด TH */
+/** Montserrat  | Noto Sans Thai = รายละเอียด TH */
 @theme {
   --font-heading: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
   --font-thai: 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
