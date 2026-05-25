@@ -1,6 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { isQrSourceLanding, trackKioskEvent } from '../../lib/kioskMetrics'
+import {
+  KIOSK_METRICS_SOURCE_NFC,
+  KIOSK_METRICS_SOURCE_QR,
+  isNfcSourceLanding,
+  isQrSourceLanding,
+  parseDownloadSource,
+  trackKioskEvent,
+} from '../../lib/kioskMetrics'
 import { resolvePdfFetchUrl } from '../../lib/pdfCache'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
@@ -45,6 +52,10 @@ export default function QrDownloadPage() {
     () => parsePlacement(searchParams.get(QR_DOWNLOAD_PLACEMENT_KEY)),
     [searchParams],
   )
+  const downloadSource = useMemo(
+    () => parseDownloadSource(searchParams),
+    [searchParams],
+  )
   const pdfFetchUrl = useMemo(() => resolvePdfFetchUrl(pdfPath), [pdfPath])
 
   useEffect(() => {
@@ -66,9 +77,17 @@ export default function QrDownloadPage() {
       trackKioskEvent('qr_landing', {
         screen: placement,
         pdfUrl: pdfPath,
-        source: 'qr',
+        source: KIOSK_METRICS_SOURCE_QR,
+      })
+    } else if (isNfcSourceLanding(searchParams)) {
+      trackKioskEvent('nfc_landing', {
+        screen: placement,
+        pdfUrl: pdfPath,
+        source: KIOSK_METRICS_SOURCE_NFC,
       })
     }
+
+    const metricsSource = downloadSource ?? KIOSK_METRICS_SOURCE_QR
 
     const stem =
       decodeURIComponent(pdfPath.split('/').pop() ?? 'document.pdf').replace(/\.pdf$/i, '') || 'document'
@@ -87,7 +106,7 @@ export default function QrDownloadPage() {
         stem,
         {
           screen: placement,
-          source: 'qr',
+          source: metricsSource,
           pdfUrl: pdfPath,
         },
         setProgress,
@@ -104,14 +123,14 @@ export default function QrDownloadPage() {
         setState('error')
       }
     })()
-  }, [pdfFetchUrl, pdfPath, placement, searchParams])
+  }, [downloadSource, pdfFetchUrl, pdfPath, placement, searchParams])
 
   if (state === 'error' || !pdfPath) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-16 text-center">
         <p className="font-thai text-lg font-bold text-neutral-900">ไม่สามารถเปิดไฟล์ PDF ได้</p>
         <p className="font-thai max-w-md text-sm text-neutral-600">
-          ลิงก์อาจไม่ถูกต้องหรือหมดอายุ — ลองสแกน QR ใหม่จากหน้าจอ kiosk
+          ลิงก์อาจไม่ถูกต้องหรือหมดอายุ — ลองสแกน QR / แตะ NFC ใหม่จากหน้าจอ kiosk
         </p>
         <Link
           to="/"

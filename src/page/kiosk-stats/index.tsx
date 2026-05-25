@@ -16,6 +16,7 @@ const EVENT_LABELS: Record<string, string> = {
   qr_display: 'แสดง QR',
   qr_expand: 'ขยาย QR',
   qr_landing: 'เปิดจากสแกน QR',
+  nfc_landing: 'เปิดจากแตะ NFC',
 }
 
 function formatTs(ts: number) {

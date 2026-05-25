@@ -1,6 +1,9 @@
-/** คีย์ query สำหรับระบุว่าเปิดหน้าจากการสแกน QR */
+/** คีย์ query สำหรับระบุว่าเปิดจาก QR / NFC */
 export const KIOSK_METRICS_SOURCE_KEY = 'src'
 export const KIOSK_METRICS_SOURCE_QR = 'qr'
+export const KIOSK_METRICS_SOURCE_NFC = 'nfc'
+
+export type KioskDownloadSource = typeof KIOSK_METRICS_SOURCE_QR | typeof KIOSK_METRICS_SOURCE_NFC
 
 export type KioskMetricMeta = Record<string, string | number | boolean | undefined>
 
@@ -14,6 +17,7 @@ export type KioskMetricEventName =
   | 'qr_display'
   | 'qr_expand'
   | 'qr_landing'
+  | 'nfc_landing'
 
 type StoredEvent = {
   event: string
@@ -174,19 +178,38 @@ async function sendToServer(row: StoredEvent, sessionId: string) {
   else void flushPending()
 }
 
-/** เพิ่ม src=qr ใน URL ที่ใส่ใน QR — ใช้นับการเปิดหลังสแกน */
-export function appendQrSourceToUrl(url: string): string {
+/** เพิ่ม src=qr|nfc ใน URL ที่ใส่ใน QR / NFC tag */
+export function appendDownloadSourceToUrl(url: string, source: KioskDownloadSource): string {
   try {
     const u = new URL(url, window.location.origin)
-    u.searchParams.set(KIOSK_METRICS_SOURCE_KEY, KIOSK_METRICS_SOURCE_QR)
+    u.searchParams.set(KIOSK_METRICS_SOURCE_KEY, source)
     return u.toString()
   } catch {
     return url
   }
 }
 
+/** @deprecated ใช้ appendDownloadSourceToUrl(url, 'qr') */
+export function appendQrSourceToUrl(url: string): string {
+  return appendDownloadSourceToUrl(url, KIOSK_METRICS_SOURCE_QR)
+}
+
+export function parseDownloadSource(searchParams: URLSearchParams): KioskDownloadSource | null {
+  const raw = searchParams.get(KIOSK_METRICS_SOURCE_KEY)
+  if (raw === KIOSK_METRICS_SOURCE_QR || raw === KIOSK_METRICS_SOURCE_NFC) return raw
+  return null
+}
+
 export function isQrSourceLanding(searchParams: URLSearchParams): boolean {
   return searchParams.get(KIOSK_METRICS_SOURCE_KEY) === KIOSK_METRICS_SOURCE_QR
+}
+
+export function isNfcSourceLanding(searchParams: URLSearchParams): boolean {
+  return searchParams.get(KIOSK_METRICS_SOURCE_KEY) === KIOSK_METRICS_SOURCE_NFC
+}
+
+export function isRemoteDownloadLanding(searchParams: URLSearchParams): boolean {
+  return isQrSourceLanding(searchParams) || isNfcSourceLanding(searchParams)
 }
 
 export function trackKioskEvent(event: KioskMetricEventName, meta?: KioskMetricMeta) {

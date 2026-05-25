@@ -3,7 +3,12 @@ import {
   E_CATALOGUE_MEDICAL_FOOD_PDF_URL,
   E_CATALOGUE_PERSONALISED_FOOD_PDF_URL,
 } from '../healthResultNav'
-import { KIOSK_METRICS_SOURCE_KEY, KIOSK_METRICS_SOURCE_QR } from '../../lib/kioskMetrics'
+import {
+  KIOSK_METRICS_SOURCE_KEY,
+  KIOSK_METRICS_SOURCE_NFC,
+  KIOSK_METRICS_SOURCE_QR,
+  type KioskDownloadSource,
+} from '../../lib/kioskMetrics'
 
 export const QR_DOWNLOAD_PDF_QUERY_KEY = 'pdf'
 export const QR_DOWNLOAD_PLACEMENT_KEY = 'placement'
@@ -35,12 +40,29 @@ export function parseSafeQrDownloadPdfPath(rawPdfParam: string | null): string |
   }
 }
 
-export function buildQrDownloadHref(pdfPath: string, placement: QrDownloadPlacement): string {
+export function buildRemoteDownloadHref(
+  pdfPath: string,
+  placement: QrDownloadPlacement,
+  source: KioskDownloadSource,
+): string {
   const sp = new URLSearchParams()
   sp.set(QR_DOWNLOAD_PDF_QUERY_KEY, pdfPath.trim())
   sp.set(QR_DOWNLOAD_PLACEMENT_KEY, placement)
-  sp.set(KIOSK_METRICS_SOURCE_KEY, KIOSK_METRICS_SOURCE_QR)
+  sp.set(KIOSK_METRICS_SOURCE_KEY, source)
   return `/qr/download?${sp.toString()}`
+}
+
+export function buildQrDownloadHref(pdfPath: string, placement: QrDownloadPlacement): string {
+  return buildRemoteDownloadHref(pdfPath, placement, KIOSK_METRICS_SOURCE_QR)
+}
+
+export function buildNfcDownloadHref(pdfPath: string, placement: QrDownloadPlacement): string {
+  return buildRemoteDownloadHref(pdfPath, placement, KIOSK_METRICS_SOURCE_NFC)
+}
+
+function toAbsoluteAppUrl(relativeHref: string): string {
+  const relativePath = relativeHref.startsWith('/') ? relativeHref.slice(1) : relativeHref
+  return new URL(relativePath, `${window.location.origin}${import.meta.env.BASE_URL}`).href
 }
 
 /** URL เต็มสำหรับใส่ใน QR — สแกนแล้วเข้า SPA route ไม่ชน static file + query */
@@ -48,7 +70,21 @@ export function buildQrDownloadAbsoluteUrl(
   pdfPath: string,
   placement: QrDownloadPlacement,
 ): string {
-  const relative = buildQrDownloadHref(pdfPath, placement)
-  const relativePath = relative.startsWith('/') ? relative.slice(1) : relative
-  return new URL(relativePath, `${window.location.origin}${import.meta.env.BASE_URL}`).href
+  return toAbsoluteAppUrl(buildQrDownloadHref(pdfPath, placement))
+}
+
+/** URL เต็มสำหรับเขียนลง NFC tag — โหลด PDF + track src=nfc */
+export function buildNfcDownloadAbsoluteUrl(
+  pdfPath: string,
+  placement: QrDownloadPlacement,
+): string {
+  return toAbsoluteAppUrl(buildNfcDownloadHref(pdfPath, placement))
+}
+
+/** E-booklet บน NFC (end session) — production URL ตัวอย่าง */
+export function buildEbookletNfcDownloadAbsoluteUrl(): string {
+  if (typeof window === 'undefined') {
+    return buildNfcDownloadHref(E_BOOKLET_PDF_URL, 'end_session')
+  }
+  return buildNfcDownloadAbsoluteUrl(E_BOOKLET_PDF_URL, 'end_session')
 }
