@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import {
@@ -15,6 +15,7 @@ import { getHealthResultEntry } from '../Health/healthResultData'
 import { toHealthComboKey } from '../Health/healthResultCombo'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
 import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
+import { warmPdfCache, warmPdfCacheBatch } from '../../lib/pdfCache'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
@@ -80,6 +81,17 @@ export default function HealthResultPage() {
       setDownloading(false)
     }
   }, [goalId, categoryId])
+
+  /** prefetch PDF ของผลนี้ก่อน — object/iframe ไม่เข้า SW cache ต้อง fetch เอง */
+  useEffect(() => {
+    if (!entry?.products.length) return
+    const catalogueUrl = resolveResultCataloguePdfUrl(goalId)
+    if (catalogueUrl) warmPdfCache(catalogueUrl)
+    void warmPdfCacheBatch(
+      entry.products.map((p) => p.pdfUrl),
+      { concurrency: 3 },
+    )
+  }, [entry, goalId])
 
   return (
     <div className={`${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>

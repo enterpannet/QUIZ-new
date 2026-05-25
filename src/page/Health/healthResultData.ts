@@ -51,3 +51,15 @@ export function resolveHealthProductImageUrl(product: HealthResultProductPdf): s
   if (!u.endsWith('.pdf')) return '/logo1.svg'
   return u.replace('/health-product-pdfs/', '/health-product-images/').replace(/\.pdf$/i, '.svg')
 }
+
+/** รายการ PDF สินค้าไม่ซ้ำจาก lookup — ใช้ prefetch ลง Service Worker cache */
+export function getAllHealthProductPdfPaths(): string[] {
+  const seen = new Set<string>()
+  for (const entry of Object.values(HEALTH_RESULT_LOOKUP)) {
+    for (const product of entry.products) {
+      const path = product.pdfUrl.trim().split('#')[0]
+      if (path.endsWith('.pdf')) seen.add(path)
+    }
+  }
+  return [...seen]
+}

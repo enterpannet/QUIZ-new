@@ -63,6 +63,7 @@ export default function DetailsPage() {
   useKioskQrLanding('details')
 
   const [downloading, setDownloading] = useState(false)
+  const [pdfLoading, setPdfLoading] = useState(true)
 
   const pdfRaw = searchParams.get(DETAILS_PDF_URL_QUERY_KEY)
   const pdfPath = useMemo(() => parseSafeEmbeddedHealthPdfPath(pdfRaw), [pdfRaw])
@@ -115,6 +116,22 @@ export default function DetailsPage() {
 
   useEffect(() => {
     warmPdfCache(pathNoHash)
+  }, [pathNoHash])
+
+  useEffect(() => {
+    if (!pathNoHash) {
+      setPdfLoading(false)
+      return
+    }
+
+    setPdfLoading(true)
+    const timeoutId = window.setTimeout(() => {
+      setPdfLoading(false)
+    }, 15_000)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
   }, [pathNoHash])
 
   const footer = (
@@ -189,11 +206,28 @@ export default function DetailsPage() {
             {titleDisplay}
           </h1>
 
-          <div className={`${pdfCardShell} ${pdfCardHeight}`}>
+          <div className={`${pdfCardShell} ${pdfCardHeight} relative`}>
+            {pdfLoading ? (
+              <div
+                className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-neutral-50"
+                role="status"
+                aria-live="polite"
+                aria-busy="true"
+                aria-label="กำลังโหลด PDF"
+              >
+                <div
+                  className="h-10 w-10 animate-spin rounded-full border-2 border-neutral-200 border-t-neutral-700"
+                  aria-hidden
+                />
+                <p className="font-thai text-sm font-medium text-neutral-600">กำลังโหลด PDF…</p>
+              </div>
+            ) : null}
             <iframe
+              key={pathNoHash}
               src={objectSrc}
               title={titleDisplay}
-              className="h-full min-h-0 w-full flex-1 border-0 bg-neutral-50"
+              className={`h-full min-h-0 w-full flex-1 border-0 bg-neutral-50 transition-opacity duration-300 ${pdfLoading ? 'opacity-0' : 'opacity-100'}`}
+              onLoad={() => setPdfLoading(false)}
             />
           </div>
         </div>
