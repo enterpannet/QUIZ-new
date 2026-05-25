@@ -22,12 +22,12 @@ export function useKioskPdfCacheWarm() {
       void warmPdfCacheBatch(getAllHealthProductPdfPaths(), { concurrency: 4 })
     }
 
-    if ('requestIdleCallback' in window) {
+    if (typeof window.requestIdleCallback === 'function') {
       const id = window.requestIdleCallback(run, { timeout: 12_000 })
       return () => window.cancelIdleCallback(id)
     }
 
-    const id = window.setTimeout(run, 2_000)
-    return () => window.clearTimeout(id)
+    const id = globalThis.setTimeout(run, 2_000)
+    return () => globalThis.clearTimeout(id)
   }, [])
 }
