@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Group from '../../assets/images/SVG/Group.svg'
 import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import { appendQrSourceToUrl, trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
+import { resolvePdfFetchUrl } from '../../lib/pdfCache'
 import { E_BOOKLET_PDF_URL, HEALTH_RESULT_CONTENT_PAD, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
 
 const END_SESSION_GROUP_IMG =
@@ -14,8 +15,9 @@ const END_SESSION_CTA_BTN =
 
 export default function EndSessionPage() {
   const ebookletQrUrl = useMemo(() => {
-    if (typeof window === 'undefined') return ''
-    return appendQrSourceToUrl(`${window.location.origin}${E_BOOKLET_PDF_URL}`)
+    const pdfUrl = resolvePdfFetchUrl(E_BOOKLET_PDF_URL)
+    if (!pdfUrl) return ''
+    return appendQrSourceToUrl(pdfUrl)
   }, [])
 
   return (

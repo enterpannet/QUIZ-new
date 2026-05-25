@@ -15,7 +15,7 @@ import { getHealthResultEntry } from '../Health/healthResultData'
 import { toHealthComboKey } from '../Health/healthResultCombo'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
 import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
-import { warmPdfCache, warmPdfCacheBatch } from '../../lib/pdfCache'
+import { warmPdfCache, warmPdfCacheBatch, resolvePdfFetchUrl } from '../../lib/pdfCache'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
@@ -48,21 +48,12 @@ export default function HealthResultPage() {
 
   const { goalId, categoryId, entry } = parsed
 
-  /** ลิงก์เดียวกับหน้านี้ — ใช้ใน QR บนจอใหญ่ (สแกนแล้วเปิดบนมือถือเพื่อดาวน์โหลด) */
-  const resultShareUrl = useMemo(() => {
-    if (typeof window === 'undefined') return ''
-    const qs = searchParams.toString()
-    return `${window.location.origin}${window.location.pathname}${qs ? `?${qs}` : ''}`
-  }, [searchParams])
-
+  /** QR บนจอใหญ่ — ลิงก์ตรงไป catalogue PDF ให้มือถือเปิด/ดาวน์โหลดได้ */
   const resultQrShareUrl = useMemo(() => {
-    if (typeof window === 'undefined') return ''
-    const cataloguePath = resolveResultCataloguePdfUrl(goalId)
-    if (cataloguePath) {
-      return appendQrSourceToUrl(`${window.location.origin}${cataloguePath}`)
-    }
-    return resultShareUrl ? appendQrSourceToUrl(resultShareUrl) : ''
-  }, [goalId, resultShareUrl])
+    const pdfUrl = resolvePdfFetchUrl(resolveResultCataloguePdfUrl(goalId))
+    if (!pdfUrl) return ''
+    return appendQrSourceToUrl(pdfUrl)
+  }, [goalId])
 
   const [downloading, setDownloading] = useState(false)
 
