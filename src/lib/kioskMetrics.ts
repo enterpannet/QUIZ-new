@@ -63,10 +63,6 @@ function metricsEndpoint(): string | undefined {
   return envString('VITE_KIOSK_METRICS_ENDPOINT')
 }
 
-function kioskApiKey(): string | undefined {
-  return envString('VITE_KIOSK_API_KEY')
-}
-
 function loadStore(): MetricsStore {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
@@ -127,7 +123,6 @@ function toServerEvent(row: StoredEvent, sessionId: string): ServerEvent {
 
 async function postEvents(rows: ServerEvent[]): Promise<boolean> {
   const endpoint = metricsEndpoint()
-  const apiKey = kioskApiKey()
   if (!endpoint || !rows.length) return false
 
   const payload = rows.map((r) => ({
@@ -139,13 +134,11 @@ async function postEvents(rows: ServerEvent[]): Promise<boolean> {
   }))
 
   const body = JSON.stringify(payload.length === 1 ? payload[0] : payload)
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-  if (apiKey) headers['X-Api-Key'] = apiKey
 
   try {
     const res = await fetch(endpoint, {
       method: 'POST',
-      headers,
+      headers: { 'Content-Type': 'application/json' },
       body,
       keepalive: true,
     })

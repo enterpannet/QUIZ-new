@@ -10,8 +10,7 @@
 #   DEPLOY_HOST       — เช่น deploy.example.com
 #   DEPLOY_USER       — user SSH เช่น deploy
 #   DEPLOY_SSH_KEY    — private key แบบ multiline (OpenSSH PEM / ed25519)
-#   VITE_KIOSK_METRICS_ENDPOINT — URL production เช่น https://analytics.example.com/api/v1/events
-#   VITE_KIOSK_API_KEY          — ต้องตรงกับ KIOSK_API_KEY บน quiz-kiosk-api server
+#   VITE_KIOSK_METRICS_ENDPOINT — URL production เช่น https://api2.example.com/v1/events
 #
 # Variables:
 #   DEPLOY_REMOTE_PATH — เป้าหมายบนเซิร์ฟเวอร์ ไม่มีท้าย / เช่น /var/www/quiz
@@ -55,7 +54,6 @@ jobs:
         env:
           VITE_BASE_PATH: /
           VITE_KIOSK_METRICS_ENDPOINT: ${{ secrets.VITE_KIOSK_METRICS_ENDPOINT }}
-          VITE_KIOSK_API_KEY: ${{ secrets.VITE_KIOSK_API_KEY }}
         run: bun run build
 
       - name: Setup SSH key
