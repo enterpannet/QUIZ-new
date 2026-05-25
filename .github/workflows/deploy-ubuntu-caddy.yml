@@ -46,6 +46,10 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+          cache: false
+
+      - name: Clean
+        run: rm -rf node_modules dist
 
       - name: Install
         run: bun install --frozen-lockfile
