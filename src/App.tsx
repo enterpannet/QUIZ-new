@@ -13,6 +13,7 @@ import Page3 from './page/page3'
 import DetailsPage from './page/details'
 import EndSessionPage from './page/end-session'
 import KioskStatsPage from './page/kiosk-stats'
+import QrDownloadPage from './page/qr-download'
 
 function App() {
   useKioskRouteMetrics()
@@ -32,6 +33,7 @@ function App() {
           <Route path="/special/step2" element={<SpecialStep2 />} />
           <Route path="/special/step3" element={<SpecialStep3 />} />
           <Route path="/details" element={<DetailsPage />} />
+          <Route path="/qr/download" element={<QrDownloadPage />} />
           <Route path="/end-session" element={<EndSessionPage />} />
           <Route path="/kiosk-stats" element={<KioskStatsPage />} />
         </Routes>

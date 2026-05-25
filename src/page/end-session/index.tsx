@@ -2,8 +2,8 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import Group from '../../assets/images/SVG/Group.svg'
 import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
-import { appendQrSourceToUrl, trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
-import { resolvePdfFetchUrl } from '../../lib/pdfCache'
+import { trackKioskButton, trackKioskEvent } from '../../lib/kioskMetrics'
+import { buildQrDownloadAbsoluteUrl } from '../qr-download/qrDownloadRoute'
 import { E_BOOKLET_PDF_URL, HEALTH_RESULT_CONTENT_PAD, HEALTH_RESULT_PAGE_SHELL } from '../healthResultNav'
 
 const END_SESSION_GROUP_IMG =
@@ -14,11 +14,7 @@ const END_SESSION_CTA_BTN =
   'font-heading inline-flex min-h-[2.875rem] min-w-[min(100%,13rem)] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#ffdd33] px-6 py-2.5 text-center text-sm font-bold leading-tight text-neutral-800 shadow-none transition-opacity active:opacity-85 md:min-h-[3.125rem] md:min-w-[14rem] md:px-8 md:text-base xl:min-h-[3.375rem] xl:min-w-[15.75rem] xl:px-10 xl:text-lg 2xl:min-h-[3.75rem] 2xl:min-w-[18rem] 2xl:px-12 2xl:text-xl'
 
 export default function EndSessionPage() {
-  const ebookletQrUrl = useMemo(() => {
-    const pdfUrl = resolvePdfFetchUrl(E_BOOKLET_PDF_URL)
-    if (!pdfUrl) return ''
-    return appendQrSourceToUrl(pdfUrl)
-  }, [])
+  const ebookletQrUrl = useMemo(() => buildQrDownloadAbsoluteUrl(E_BOOKLET_PDF_URL, 'end_session'), [])
 
   return (
     <div className={`relative ${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>

@@ -6,8 +6,9 @@ import circleGreenBlank from '../../assets/images/SVG/circleGreenBlank.svg'
 import { HEALTH_CATEGORY_QUERY_KEY, parseHealthCategoryId } from '../Health/healthCategorySelection'
 import { HEALTH_GOAL_QUERY_KEY, parseHealthGoalId } from '../Health/healthGoalSelection'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
-import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
-import { warmPdfCache, resolvePdfFetchUrl } from '../../lib/pdfCache'
+import { trackKioskButton } from '../../lib/kioskMetrics'
+import { warmPdfCache } from '../../lib/pdfCache'
+import { buildQrDownloadAbsoluteUrl } from '../qr-download/qrDownloadRoute'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
@@ -85,9 +86,8 @@ export default function DetailsPage() {
 
   /** QR บนจอใหญ่ — ลิงก์ตรงไปไฟล์ PDF (เหมือน result/end-session) ให้มือถือเปิด/ดาวน์โหลดได้ */
   const detailsQrShareUrl = useMemo(() => {
-    const pdfUrl = resolvePdfFetchUrl(pathNoHash)
-    if (!pdfUrl) return ''
-    return appendQrSourceToUrl(pdfUrl)
+    if (!pathNoHash) return ''
+    return buildQrDownloadAbsoluteUrl(pathNoHash, 'details')
   }, [pathNoHash])
 
   const handleDownloadCurrent = useCallback(async () => {

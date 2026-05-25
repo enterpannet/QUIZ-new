@@ -14,8 +14,9 @@ import { HealthResultProductPdfSlider } from '../../components/HealthResultProdu
 import { getHealthResultEntry } from '../Health/healthResultData'
 import { toHealthComboKey } from '../Health/healthResultCombo'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
-import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
-import { warmPdfCache, warmPdfCacheBatch, resolvePdfFetchUrl } from '../../lib/pdfCache'
+import { trackKioskButton } from '../../lib/kioskMetrics'
+import { warmPdfCache, warmPdfCacheBatch } from '../../lib/pdfCache'
+import { buildQrDownloadAbsoluteUrl } from '../qr-download/qrDownloadRoute'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
@@ -50,9 +51,9 @@ export default function HealthResultPage() {
 
   /** QR บนจอใหญ่ — ลิงก์ตรงไป catalogue PDF ให้มือถือเปิด/ดาวน์โหลดได้ */
   const resultQrShareUrl = useMemo(() => {
-    const pdfUrl = resolvePdfFetchUrl(resolveResultCataloguePdfUrl(goalId))
-    if (!pdfUrl) return ''
-    return appendQrSourceToUrl(pdfUrl)
+    const cataloguePath = resolveResultCataloguePdfUrl(goalId)
+    if (!cataloguePath) return ''
+    return buildQrDownloadAbsoluteUrl(cataloguePath, 'result')
   }, [goalId])
 
   const [downloading, setDownloading] = useState(false)
