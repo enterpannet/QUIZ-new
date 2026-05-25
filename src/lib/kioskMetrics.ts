@@ -111,8 +111,10 @@ function countKey(event: KioskMetricEventName, meta?: KioskMetricMeta): string {
   if (event === 'button_click' && meta?.buttonId != null) {
     return `button_click:${String(meta.buttonId)}`
   }
-  if (event === 'product_open' && meta?.productIndex != null) {
-    return `product_open:${String(meta.productIndex)}`
+  if (event === 'product_open') {
+    if (meta?.pdfUrl != null) return `product_open:${String(meta.pdfUrl)}`
+    if (meta?.titleTh != null) return `product_open:${String(meta.titleTh)}`
+    if (meta?.productIndex != null) return `product_open:${String(meta.productIndex)}`
   }
   return event
 }

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import chevronPrev from '../assets/images/SVG/back.svg'
 import chevronNext from '../assets/images/SVG/Next.svg'
 import { Link } from 'react-router-dom'
-import { trackKioskEvent } from '../lib/kioskMetrics'
+import { trackKioskEvent, type KioskMetricMeta } from '../lib/kioskMetrics'
 import { buildDetailsPdfHref } from '../page/details/detailsPdfRoute'
 import { resolveHealthProductImageUrl, type HealthResultProductPdf } from '../page/Health/healthResultData'
 
@@ -13,6 +13,8 @@ type Props = {
    * (แทนการเปิดแท็บใหม่จากลิงก์ตรง)
    */
   detailsPdfLinkExtras?: Record<string, string>
+  /** meta เพิ่มเติมสำหรับ event product_open (เช่น screen, goalId) */
+  metricsMeta?: KioskMetricMeta
 }
 
 /** ควบคุมเลื่อนด้วยแค่รูป SVG (ไม่มีวงปุ่มห่อ) — เก็บ <button> เพื่อ a11y */
@@ -73,7 +75,7 @@ function PdfEmbeddedPreview({
   )
 }
 
-export function HealthResultProductPdfSlider({ products, detailsPdfLinkExtras }: Props) {
+export function HealthResultProductPdfSlider({ products, detailsPdfLinkExtras, metricsMeta }: Props) {
   const carouselTrackRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
   const settleRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
@@ -236,6 +238,8 @@ export function HealthResultProductPdfSlider({ products, detailsPdfLinkExtras }:
                       trackKioskEvent('product_open', {
                         productIndex: i,
                         titleTh: p.titleTh,
+                        pdfUrl: p.pdfUrl,
+                        ...metricsMeta,
                       })
                     }
                   >

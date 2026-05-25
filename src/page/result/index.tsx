@@ -118,6 +118,11 @@ export default function HealthResultPage() {
                       }
                     : undefined
                 }
+                metricsMeta={{
+                  screen: 'result',
+                  ...(goalId != null ? { goalId } : {}),
+                  ...(categoryId != null ? { categoryId } : {}),
+                }}
               />
             </section>
 
