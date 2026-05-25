@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import circleBlueBlank from '../../assets/images/SVG/circleBlueBlank.svg'
@@ -7,11 +7,14 @@ import { HEALTH_CATEGORY_QUERY_KEY, parseHealthCategoryId } from '../Health/heal
 import { HEALTH_GOAL_QUERY_KEY, parseHealthGoalId } from '../Health/healthGoalSelection'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
 import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
+import { warmPdfCache } from '../../lib/pdfCache'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
+  HEALTH_RESULT_FOOTER_BAR,
   HEALTH_RESULT_FOOTER_BUTTON_CLASS,
   HEALTH_RESULT_FOOTER_LINK_CLASS,
+  HEALTH_RESULT_FOOTER_MOUNT,
 } from '../healthResultNav'
 import {
   DETAILS_PDF_TITLE_QUERY_KEY,
@@ -110,8 +113,12 @@ export default function DetailsPage() {
   const objectSrc =
     pathNoHash != null ? `${pathNoHash}#toolbar=0&navpanes=0&view=Fit` : ''
 
+  useEffect(() => {
+    warmPdfCache(pathNoHash)
+  }, [pathNoHash])
+
   const footer = (
-    <div className="relative z-10 mt-auto shrink-0 w-full border-t border-neutral-200/95 bg-neutral-100 py-8">
+    <div className={`${HEALTH_RESULT_FOOTER_BAR} ${HEALTH_RESULT_FOOTER_MOUNT}`}>
       <div className={`mx-auto ${HEALTH_RESULT_FOOTER_ACTIONS_ROW}`}>
         <Link
           to="/"
@@ -168,7 +175,7 @@ export default function DetailsPage() {
       <DetailsCircleBlankBackdrop />
 
       {hasPdf ? (
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-6 lg:gap-6 lg:py-8">
+        <div className="relative z-10 flex min-h-0 max-lg:flex-1 max-lg:justify-center flex-col items-center gap-4 px-3 py-4 sm:gap-5 sm:px-6 sm:py-6 lg:flex-none lg:justify-start lg:gap-5 lg:pb-2 lg:mt-50">
           <div className={pdfToolbarRowClass}>
             <Link
               to={backToResultHref}
@@ -206,6 +213,11 @@ export default function DetailsPage() {
           </Link>
         </div>
       )}
+
+      <div
+        aria-hidden
+        className="min-h-0 w-full shrink grow basis-auto max-lg:max-h-0 lg:min-h-6 lg:max-h-[clamp(1.5rem,7vh,4rem)] xl:max-h-[clamp(2rem,9vh,5rem)]"
+      />
 
       {footer}
     </div>

@@ -56,6 +56,45 @@ export default defineConfig({
         navigateFallback: 'index.html',
         /** อย่า fallback SPA สำหรับ PDF — ไม่งั้น iframe โหลด React แล้วขึ้น "No routes matched" */
         navigateFallbackDenylist: [/^\/api/, /\.pdf$/i],
+        /** ครั้งแรกโหลดจาก network แล้วเก็บ cache — เปิด kiosk ครั้งถัดไปเปิด PDF เร็วขึ้น */
+        runtimeCaching: [
+          {
+            urlPattern: /\/health-product-pdfs\/.*\.pdf(\?.*)?$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'health-product-pdfs',
+              expiration: {
+                maxEntries: 120,
+                maxAgeSeconds: 60 * 60 * 24 * 60,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/ecatalogue-.*\.pdf(\?.*)?$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'catalogue-pdfs',
+              expiration: {
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 60,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/ebooklet\.pdf(\?.*)?$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'ebooklet-pdf',
+              expiration: {
+                maxEntries: 1,
+                maxAgeSeconds: 60 * 60 * 24 * 60,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
       },
       devOptions: {
         enabled: false,

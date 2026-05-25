@@ -22,6 +22,10 @@ type StoredEvent = {
   meta?: Record<string, string | number | boolean>
 }
 
+type ServerEvent = StoredEvent & {
+  sessionId: string
+}
+
 type MetricsStore = {
   sessionId: string
   counts: Record<string, number>
@@ -29,7 +33,9 @@ type MetricsStore = {
 }
 
 const STORAGE_KEY = 'kiosk-metrics-v1'
-const MAX_RECENT = 300
+const PENDING_KEY = 'kiosk-metrics-pending-v1'
+const MAX_RECENT = 50
+const MAX_PENDING = 500
 
 function cleanMeta(meta?: KioskMetricMeta): Record<string, string | number | boolean> | undefined {
   if (!meta) return undefined
@@ -44,21 +50,30 @@ function currentPath(): string {
   return `${window.location.pathname}${window.location.search}`
 }
 
+function envString(name: string): string | undefined {
+  const v = import.meta.env[name]
+  return typeof v === 'string' && v.trim() ? v.trim() : undefined
+}
+
+function metricsEndpoint(): string | undefined {
+  return envString('VITE_KIOSK_METRICS_ENDPOINT')
+}
+
+function kioskApiKey(): string | undefined {
+  return envString('VITE_KIOSK_API_KEY')
+}
+
 function loadStore(): MetricsStore {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) {
-      return {
-        sessionId: crypto.randomUUID(),
-        counts: {},
-        recent: [],
-      }
+      return { sessionId: crypto.randomUUID(), counts: {}, recent: [] }
     }
     const parsed = JSON.parse(raw) as Partial<MetricsStore>
     return {
       sessionId: typeof parsed.sessionId === 'string' ? parsed.sessionId : crypto.randomUUID(),
       counts: parsed.counts && typeof parsed.counts === 'object' ? parsed.counts : {},
-      recent: Array.isArray(parsed.recent) ? parsed.recent : [],
+      recent: Array.isArray(parsed.recent) ? parsed.recent.slice(-MAX_RECENT) : [],
     }
   } catch {
     return { sessionId: crypto.randomUUID(), counts: {}, recent: [] }
@@ -73,6 +88,25 @@ function saveStore(store: MetricsStore) {
   }
 }
 
+function loadPending(): ServerEvent[] {
+  try {
+    const raw = localStorage.getItem(PENDING_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw) as ServerEvent[]
+    return Array.isArray(parsed) ? parsed.slice(-MAX_PENDING) : []
+  } catch {
+    return []
+  }
+}
+
+function savePending(rows: ServerEvent[]) {
+  try {
+    localStorage.setItem(PENDING_KEY, JSON.stringify(rows.slice(-MAX_PENDING)))
+  } catch {
+    /* ignore */
+  }
+}
+
 function countKey(event: KioskMetricEventName, meta?: KioskMetricMeta): string {
   if (event === 'button_click' && meta?.buttonId != null) {
     return `button_click:${String(meta.buttonId)}`
@@ -83,30 +117,61 @@ function countKey(event: KioskMetricEventName, meta?: KioskMetricMeta): string {
   return event
 }
 
-function metricsEndpoint(): string | undefined {
-  const v = import.meta.env.VITE_KIOSK_METRICS_ENDPOINT
-  return typeof v === 'string' && v.trim() ? v.trim() : undefined
+function toServerEvent(row: StoredEvent, sessionId: string): ServerEvent {
+  return { ...row, sessionId }
 }
 
-async function postToEndpoint(payload: StoredEvent & { sessionId: string }) {
+async function postEvents(rows: ServerEvent[]): Promise<boolean> {
   const endpoint = metricsEndpoint()
-  if (!endpoint) return
+  const apiKey = kioskApiKey()
+  if (!endpoint || !rows.length) return false
 
-  const body = JSON.stringify(payload)
+  const payload = rows.map((r) => ({
+    sessionId: r.sessionId,
+    event: r.event,
+    ts: r.ts,
+    path: r.path,
+    meta: r.meta,
+  }))
+
+  const body = JSON.stringify(payload.length === 1 ? payload[0] : payload)
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  if (apiKey) headers['X-Api-Key'] = apiKey
+
   try {
-    if (navigator.sendBeacon) {
-      const ok = navigator.sendBeacon(endpoint, new Blob([body], { type: 'application/json' }))
-      if (ok) return
-    }
-    await fetch(endpoint, {
+    const res = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body,
       keepalive: true,
     })
+    return res.ok
   } catch {
-    /* offline kiosk */
+    return false
   }
+}
+
+async function flushPending() {
+  const pending = loadPending()
+  if (!pending.length) return
+
+  const ok = await postEvents(pending)
+  if (ok) savePending([])
+}
+
+function enqueuePending(row: ServerEvent) {
+  const pending = loadPending()
+  pending.push(row)
+  savePending(pending)
+}
+
+async function sendToServer(row: StoredEvent, sessionId: string) {
+  if (!metricsEndpoint()) return
+
+  const serverRow = toServerEvent(row, sessionId)
+  const ok = await postEvents([serverRow])
+  if (!ok) enqueuePending(serverRow)
+  else void flushPending()
 }
 
 /** เพิ่ม src=qr ใน URL ที่ใส่ใน QR — ใช้นับการเปิดหลังสแกน */
@@ -138,7 +203,7 @@ export function trackKioskEvent(event: KioskMetricEventName, meta?: KioskMetricM
     store.recent = store.recent.slice(-MAX_RECENT)
   }
   saveStore(store)
-  void postToEndpoint({ ...row, sessionId: store.sessionId })
+  void sendToServer(row, store.sessionId)
 }
 
 export function trackKioskButton(buttonId: string, meta?: KioskMetricMeta) {
@@ -152,13 +217,18 @@ export function getKioskMetricsSnapshot(): MetricsStore {
 export function clearKioskMetrics() {
   try {
     localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(PENDING_KEY)
   } catch {
     /* ignore */
   }
 }
 
 export function exportKioskMetricsJson(): string {
-  return JSON.stringify(getKioskMetricsSnapshot(), null, 2)
+  return JSON.stringify(
+    { ...getKioskMetricsSnapshot(), pending: loadPending() },
+    null,
+    2,
+  )
 }
 
 declare global {
@@ -167,6 +237,7 @@ declare global {
       snapshot: typeof getKioskMetricsSnapshot
       exportJson: typeof exportKioskMetricsJson
       clear: typeof clearKioskMetrics
+      flush: () => Promise<void>
     }
   }
 }
@@ -176,5 +247,10 @@ if (typeof window !== 'undefined') {
     snapshot: getKioskMetricsSnapshot,
     exportJson: exportKioskMetricsJson,
     clear: clearKioskMetrics,
+    flush: flushPending,
   }
+
+  window.addEventListener('online', () => {
+    void flushPending()
+  })
 }

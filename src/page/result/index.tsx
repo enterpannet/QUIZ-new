@@ -21,6 +21,8 @@ import {
   HEALTH_RESULT_FOOTER_BUTTON_CLASS,
   HEALTH_RESULT_CONTENT_PAD,
   HEALTH_RESULT_FOOTER_LINK_CLASS,
+  HEALTH_RESULT_FOOTER_MOUNT,
+  HEALTH_RESULT_MAIN_GROW,
   HEALTH_RESULT_PAGE_SHELL,
   resolveResultCataloguePdfUrl,
   resultCatalogueDownloadFilename,
@@ -97,7 +99,7 @@ export default function HealthResultPage() {
       ) : null}
 
       <div
-        className={`relative z-10 mx-auto flex w-full max-w-[min(100%,92rem)] flex-1 flex-col items-center gap-5 text-center md:gap-8 ${HEALTH_RESULT_CONTENT_PAD}`}
+        className={`relative z-10 mx-auto flex w-full max-w-[min(100%,92rem)] ${HEALTH_RESULT_MAIN_GROW} flex-col items-center gap-5 text-center md:gap-8 lg:gap-4 ${HEALTH_RESULT_CONTENT_PAD}`}
       >
         {entry ? (
           <Fragment>
@@ -120,7 +122,7 @@ export default function HealthResultPage() {
               alt=""
               loading="lazy"
               decoding="async"
-              className="mx-auto mt-8 w-full max-w-4xl object-contain px-2"
+              className="mx-auto mt-8 w-full max-w-4xl object-contain px-2 lg:mt-6 xl:mt-7"
             />
           </Fragment>
         ) : (
@@ -149,7 +151,7 @@ export default function HealthResultPage() {
           </div>
         )}
 
-        <div className={`mt-auto ${HEALTH_RESULT_FOOTER_ACTIONS_ROW}`}>
+        <div className={`${HEALTH_RESULT_FOOTER_MOUNT} ${HEALTH_RESULT_FOOTER_ACTIONS_ROW}`}>
           <Link
             to="/"
             className={HEALTH_RESULT_FOOTER_LINK_CLASS}
