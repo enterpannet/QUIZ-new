@@ -19,6 +19,7 @@ import page3towel from '../../assets/images/SVG/page3towel.svg'
 import Greenmushrooms from '../../assets/images/SVG/Greenmushrooms.svg'
 import DrinkGreen from '../../assets/images/SVG/DrinkGreen.svg'
 import FoodGreen from '../../assets/images/SVG/FoodGreen.svg'
+import condimentGreen from '../../assets/images/SVG/condimentGreen.svg'
 import Group from '../../assets/images/SVG/Group.svg'
 import {
   HEALTH_GOAL_QUERY_KEY,
@@ -37,7 +38,7 @@ const goalSubtitle =
 
 /** คอลัมน์ — มือถือจัดชิดขอบล่างแถวให้ป้ายระดับเดียวกัน; md+ ยืดเต็มความสูง */
 const goalColumn =
-  'flex min-h-0 min-w-0 flex-1 flex-col items-center md:h-full'
+  'flex min-h-0 min-w-0 flex-1 flex-col items-center md:h-full md:max-w-none'
 
 const goalSpringStack =
   'flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1.5 md:flex-1 md:justify-end lg:gap-2'
@@ -109,7 +110,8 @@ export default function HealthStep3() {
         className={`relative z-10 flex min-h-0 w-full flex-1 flex-col items-center gap-2 py-10 text-center sm:gap-4 sm:py-18 md:gap-6 md:py-22 lg:gap-8 lg:py-32 ${HEALTH_SAND_CONTENT_PAD}`}
       >
 
-        <div className='health-goal-col-grid mx-auto flex min-h-0 w-full max-w-[min(100%,92rem)] flex-1 flex-row items-start gap-1 px-1 sm:gap-2 sm:px-2 md:items-stretch md:gap-5 md:px-4 lg:gap-8 lg:px-6 xl:gap-12 xl:px-8'>
+        <div className="health-goal-col-grid mx-auto flex min-h-0 w-full max-w-[min(100%,120rem)] flex-1 flex-row flex-wrap items-start justify-center gap-1 px-1 sm:gap-2 sm:px-2 md:flex-nowrap md:items-stretch md:gap-3 md:px-4 lg:gap-5 lg:px-6 xl:gap-8 xl:px-8">
+          {/* Food */}
           <Link
             to={resultHref('food')}
             className={`health-goal-column ${goalColumn} ${goalColumnLink}`}
@@ -141,6 +143,35 @@ export default function HealthStep3() {
               <p className={goalSubtitle}>อาหาร</p>
             </div>
           </Link>
+          {/* Seasonings */}
+          <Link
+            to={resultHref('seasonings')}
+            className={`health-goal-column ${goalColumn} ${goalColumnLink}`}
+            aria-label="Seasonings — ดูผลลัพธ์"
+          >
+            <div className={`${goalSpringStack} spring-float-stagger`}>
+              <div>
+                <InteractiveSpringImg src={greenSpringW} alt="" className={`${imgSpringSm} rotate-12`} />
+              </div>
+              <div>
+                <InteractiveSpringImg src={condimentGreen} alt="" className={imgSpringSm} />
+              </div>
+              <div>
+                <InteractiveSpringImg
+                  src={page3towel}
+                  alt=""
+                  className={imgGoalHero}
+                  priority
+                  {...KIOSK_HERO_IMG_INTRINSIC}
+                />
+              </div>
+            </div>
+            <div className={goalTextBlock}>
+              <p className={goalTitlePillAccent}>Seasonings</p>
+              <p className={goalSubtitle}>เครื่องปรุง</p>
+            </div>
+          </Link>
+          {/* Beverages */}
           <Link
             to={resultHref('beverages')}
             className={`health-goal-column ${goalColumn} ${goalColumnLink}`}
@@ -158,7 +189,7 @@ export default function HealthStep3() {
                 <InteractiveSpringImg src={DrinkGreen} alt="" className={imgSpringSm} />
               </div>
               <div>
-              <InteractiveSpringImg
+                <InteractiveSpringImg
                   src={page3towel}
                   alt=""
                   className={imgGoalHero}
@@ -172,6 +203,7 @@ export default function HealthStep3() {
               <p className={goalSubtitle}>เครื่องดื่ม</p>
             </div>
           </Link>
+          {/* Snacks */}
           <Link
             to={resultHref('snacks')}
             className={`health-goal-column ${goalColumn} ${goalColumnLink}`}
@@ -185,7 +217,7 @@ export default function HealthStep3() {
                 <InteractiveSpringImg src={FoodGreen} alt="" className={imgSpringSm} />
               </div>
               <div>
-              <InteractiveSpringImg
+                <InteractiveSpringImg
                   src={page3towel}
                   alt=""
                   className={imgGoalHero}
@@ -199,8 +231,7 @@ export default function HealthStep3() {
               <p className={goalSubtitle}>ขนมทานเล่น</p>
             </div>
           </Link>
-        </div>
-      </div>
+        </div>      </div>
     </div>
   )
 }

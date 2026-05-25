@@ -1,3 +1,4 @@
+import type { HealthGoalId } from './Health/healthGoalSelection'
 import { KIOSK_STEP_CONTENT_PAD } from './kioskStepLayout'
 
 /** Shell ไม่ใส่ padding แนวนอน — padding บนเท่า Health step, pb ใหญ่กว่าสำหรับฟุตเทอร์ */
@@ -9,6 +10,25 @@ export const HEALTH_RESULT_CONTENT_PAD = KIOSK_STEP_CONTENT_PAD
 
 /** ใส่ไฟล์ `public/ebooklet.pdf` เมื่อมีต้นฉบับของ E booklet */
 export const E_BOOKLET_PDF_URL = '/ebooklet.pdf'
+
+/** E CATALOG รวม — Medical Food (สีเขียว) จากแคตตาล็อก FA2026 */
+export const E_CATALOGUE_MEDICAL_FOOD_PDF_URL = '/ecatalogue-medical-food.pdf'
+
+/** E CATALOG รวม — Personalised Food (สีฟ้า) จากแคตตาล็อก FA2026 */
+export const E_CATALOGUE_PERSONALISED_FOOD_PDF_URL = '/ecatalogue-personalised-food.pdf'
+
+/** ไฟล์รวมสำหรับดาวน์โหลดบนหน้า /health/result ตามเป้าหมาย STEP 2 */
+export function resolveResultCataloguePdfUrl(goalId: HealthGoalId | null): string | null {
+  if (goalId == null) return null
+  if (goalId === 'symptom-management') return E_CATALOGUE_MEDICAL_FOOD_PDF_URL
+  return E_CATALOGUE_PERSONALISED_FOOD_PDF_URL
+}
+
+export function resultCatalogueDownloadFilename(goalId: HealthGoalId): string {
+  return goalId === 'symptom-management'
+    ? 'ecatalogue-medical-food.pdf'
+    : 'ecatalogue-personalised-food.pdf'
+}
 
 /** แถบปุ่มด้านล่างแบบเดียวกับหน้า /health/result */
 export const HEALTH_RESULT_FOOTER_ACTIONS_ROW =

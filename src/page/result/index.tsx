@@ -15,13 +15,15 @@ import { getHealthResultEntry } from '../Health/healthResultData'
 import { toHealthComboKey } from '../Health/healthResultCombo'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
 import { appendQrSourceToUrl, trackKioskButton } from '../../lib/kioskMetrics'
-import { downloadListedPdfsSequentially } from '../healthResultDownload'
+import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
   HEALTH_RESULT_FOOTER_ACTIONS_ROW,
   HEALTH_RESULT_FOOTER_BUTTON_CLASS,
   HEALTH_RESULT_CONTENT_PAD,
   HEALTH_RESULT_FOOTER_LINK_CLASS,
   HEALTH_RESULT_PAGE_SHELL,
+  resolveResultCataloguePdfUrl,
+  resultCatalogueDownloadFilename,
 } from '../healthResultNav'
 import { KioskStepHeader } from '../../components/KioskStepHeader'
 import Group from '../../assets/images/SVG/Group.svg'
@@ -50,26 +52,32 @@ export default function HealthResultPage() {
     return `${window.location.origin}${window.location.pathname}${qs ? `?${qs}` : ''}`
   }, [searchParams])
 
-  const resultQrShareUrl = useMemo(
-    () => (resultShareUrl ? appendQrSourceToUrl(resultShareUrl) : ''),
-    [resultShareUrl],
-  )
+  const resultQrShareUrl = useMemo(() => {
+    if (typeof window === 'undefined') return ''
+    const cataloguePath = resolveResultCataloguePdfUrl(goalId)
+    if (cataloguePath) {
+      return appendQrSourceToUrl(`${window.location.origin}${cataloguePath}`)
+    }
+    return resultShareUrl ? appendQrSourceToUrl(resultShareUrl) : ''
+  }, [goalId, resultShareUrl])
 
   const [downloading, setDownloading] = useState(false)
 
   const handleDownloadAll = useCallback(async () => {
-    if (!entry?.products?.length) return
+    if (goalId == null) return
+    const catalogueUrl = resolveResultCataloguePdfUrl(goalId)
+    if (!catalogueUrl) return
     setDownloading(true)
     try {
-      await downloadListedPdfsSequentially(entry.products, 140, {
+      await downloadSinglePdfUrl(catalogueUrl, resultCatalogueDownloadFilename(goalId), {
         screen: 'result',
-        goalId: goalId ?? '',
+        goalId,
         categoryId: categoryId ?? '',
       })
     } finally {
       setDownloading(false)
     }
-  }, [entry, goalId, categoryId])
+  }, [goalId, categoryId])
 
   return (
     <div className={`${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>
@@ -150,7 +158,7 @@ export default function HealthResultPage() {
             Sorting Again
           </Link>
 
-          {entry ? (
+          {entry && goalId != null && resolveResultCataloguePdfUrl(goalId) ? (
             <>
               <button
                 type="button"
