@@ -1,4 +1,4 @@
-import type { KioskCatalogueProfile } from './healthResultCombo'
+import type { KioskCatalogueProfile } from './Health/healthResultCombo'
 
 /** Medical Food (สีเขียว) ↔ `/health/*` · Personalised Food (สีฟ้า) ↔ `/special/*` */
 export const KIOSK_CATALOGUE = {
