@@ -1,4 +1,5 @@
 import type { HealthGoalId } from './Health/healthGoalSelection'
+import type { KioskCatalogueProfile } from './Health/healthResultCombo'
 import { KIOSK_STEP_CONTENT_PAD } from './kioskStepLayout'
 
 /** Shell ไม่ใส่ padding แนวนอน — padding บนเท่า Health step, pb ใหญ่กว่าสำหรับฟุตเทอร์ */
@@ -17,7 +18,22 @@ export const E_CATALOGUE_MEDICAL_FOOD_PDF_URL = '/ecatalogue-medical-food.pdf'
 /** E CATALOG รวม — Personalised Food (สีฟ้า) จากแคตตาล็อก FA2026 */
 export const E_CATALOGUE_PERSONALISED_FOOD_PDF_URL = '/ecatalogue-personalised-food.pdf'
 
-/** ไฟล์รวมสำหรับดาวน์โหลดบนหน้า /health/result ตามเป้าหมาย STEP 2 */
+/** ไฟล์รวมตามเส้นทาง kiosk — medical = /health, personalised = /special */
+export function resolveCataloguePdfUrlByProfile(
+  profile: KioskCatalogueProfile | null,
+): string | null {
+  if (profile === 'medical') return E_CATALOGUE_MEDICAL_FOOD_PDF_URL
+  if (profile === 'personalised') return E_CATALOGUE_PERSONALISED_FOOD_PDF_URL
+  return null
+}
+
+export function catalogueDownloadFilenameByProfile(profile: KioskCatalogueProfile): string {
+  return profile === 'medical'
+    ? 'ecatalogue-medical-food.pdf'
+    : 'ecatalogue-personalised-food.pdf'
+}
+
+/** @deprecated ใช้ resolveCataloguePdfUrlByProfile ตามเส้นทางแทน */
 export function resolveResultCataloguePdfUrl(goalId: HealthGoalId | null): string | null {
   if (goalId == null) return null
   if (goalId === 'symptom-management') return E_CATALOGUE_MEDICAL_FOOD_PDF_URL

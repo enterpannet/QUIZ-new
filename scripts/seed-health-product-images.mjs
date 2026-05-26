@@ -1,36 +1,41 @@
 /**
- * คัดลอกรูป placeholder ไป public/health-product-images/<slug>/001.svg … 025.svg
- * (ตรงคู่กับ PDF — แทนที่ไฟล์จริงได้ทีละชิ้น)
+ * สร้าง placeholder SVG คู่กับทุก PDF ใน public/health-product-pdfs/
+ * รัน: node scripts/seed-health-product-images.mjs
  */
-import { mkdirSync, copyFileSync } from 'fs'
-import { join } from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 
-const ROOT = join(import.meta.dir, '..')
-const OUT = join(ROOT, 'public', 'health-product-images')
-const TEMPLATE = join(ROOT, 'public', 'logo1.svg')
+const ROOT = path.join(import.meta.dirname, '..')
+const PDF_ROOT = path.join(ROOT, 'public', 'health-product-pdfs')
+const OUT_ROOT = path.join(ROOT, 'public', 'health-product-images')
+const TEMPLATE = path.join(ROOT, 'public', 'logo1.svg')
 
-const COMBO_SLUGS = [
-  'symptom-management-food',
-  'symptom-management-beverages',
-  'symptom-management-snacks',
-  'nutritional-recovery-food',
-  'nutritional-recovery-beverages',
-  'nutritional-recovery-snacks',
-  'quality-of-life-food',
-  'quality-of-life-beverages',
-  'quality-of-life-snacks',
-]
-
-function pad3(n) {
-  return String(n).padStart(3, '0')
+if (!fs.existsSync(TEMPLATE)) {
+  console.error('Missing template:', TEMPLATE)
+  process.exit(1)
 }
 
-for (const slug of COMBO_SLUGS) {
-  const dir = join(OUT, slug)
-  mkdirSync(dir, { recursive: true })
-  for (let i = 1; i <= 25; i++) {
-    copyFileSync(TEMPLATE, join(dir, `${pad3(i)}.svg`))
+let total = 0
+for (const slugDir of fs.readdirSync(PDF_ROOT, { withFileTypes: true })) {
+  if (!slugDir.isDirectory()) continue
+  const slug = slugDir.name
+  const pdfDir = path.join(PDF_ROOT, slug)
+  const pdfs = fs
+    .readdirSync(pdfDir)
+    .filter((f) => f.toLowerCase().endsWith('.pdf'))
+    .sort((a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10))
+
+  if (pdfs.length === 0) continue
+
+  const outDir = path.join(OUT_ROOT, slug)
+  fs.mkdirSync(outDir, { recursive: true })
+
+  for (const pdf of pdfs) {
+    const stem = pdf.replace(/\.pdf$/i, '.svg')
+    fs.copyFileSync(TEMPLATE, path.join(outDir, stem))
+    total++
   }
+  console.log(`${slug}: ${pdfs.length}`)
 }
 
-console.log('Copied placeholder SVGs:', COMBO_SLUGS.length * 25)
+console.log(`Synced ${total} preview SVG(s)`)

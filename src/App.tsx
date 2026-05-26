@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { KioskNavbar } from './components/KioskNavbar'
 import { useKioskRouteMetrics } from './hooks/useKioskRouteMetrics'
-import { useKioskPdfCacheWarm } from './hooks/useKioskPdfCacheWarm'
 import HealthStep2 from './page/Health/step2'
 import HealthStep3 from './page/Health/step3'
 import HealthResultPage from './page/result'
@@ -17,7 +16,6 @@ import QrDownloadPage from './page/qr-download'
 
 function App() {
   useKioskRouteMetrics()
-  useKioskPdfCacheWarm()
 
   return (
     <div className="flex min-h-0 flex-1 touch-manipulation flex-col bg-neutral-100 [-webkit-overflow-scrolling:touch] [-webkit-touch-callout:none] select-none">

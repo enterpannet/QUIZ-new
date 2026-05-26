@@ -10,7 +10,12 @@ let mapText = fs.readFileSync(mapPath, 'utf8')
 if (mapText.charCodeAt(0) === 0xfeff) mapText = mapText.slice(1)
 const mapped = JSON.parse(mapText)
 
-/** @type {Map<string, string>} */
+if (!fs.existsSync(SRC_ROOT)) {
+  console.error('Source not found:', SRC_ROOT)
+  process.exit(1)
+}
+
+/** @type {Map<string, string>} basename → full path (fallback เก่า) */
 const srcIndex = new Map()
 function walk(dir) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -19,27 +24,56 @@ function walk(dir) {
     else if (ent.name.toLowerCase().endsWith('.pdf')) srcIndex.set(ent.name, full)
   }
 }
-if (!fs.existsSync(SRC_ROOT)) {
-  console.error('Source not found:', SRC_ROOT)
-  process.exit(1)
-}
 walk(SRC_ROOT)
+
+function resolveSrc(row) {
+  if (row.srcRel) {
+    const rel = row.srcRel.replace(/\//g, path.sep)
+    const full = path.join(SRC_ROOT, rel)
+    if (fs.existsSync(full)) return full
+  }
+  return srcIndex.get(row.src) ?? null
+}
+
+/** @type {Map<string, Set<string>>} */
+const expectedByDir = new Map()
 
 let ok = 0
 let missing = 0
 for (const row of mapped) {
-  const src = srcIndex.get(row.src)
+  const src = resolveSrc(row)
   const dst = path.join(ROOT, 'public', row.dst.replace(/^\//, ''))
+  const dstDir = path.dirname(dst)
+  const dstBase = path.basename(dst)
+
+  if (!expectedByDir.has(dstDir)) expectedByDir.set(dstDir, new Set())
+  expectedByDir.get(dstDir).add(dstBase)
+
   if (!src) {
-    console.warn('MISSING SRC:', row.src, '->', row.dst)
+    console.warn('MISSING SRC:', row.srcRel ?? row.src, '->', row.dst)
     missing++
     continue
   }
-  fs.mkdirSync(path.dirname(dst), { recursive: true })
+  fs.mkdirSync(dstDir, { recursive: true })
   fs.copyFileSync(src, dst)
   ok++
 }
 console.log(`Restored ${ok} product PDFs (${missing} missing)`)
+
+/** ลบ PDF ในโฟลเดอร์ปลายทางที่ไม่อยู่ใน map (เช่น seed เก่า) */
+let removed = 0
+for (const [dir, expected] of expectedByDir) {
+  if (!fs.existsSync(dir)) continue
+  for (const f of fs.readdirSync(dir)) {
+    if (!f.toLowerCase().endsWith('.pdf')) continue
+    if (!expected.has(f)) {
+      fs.unlinkSync(path.join(dir, f))
+      removed++
+      console.log('Removed stale:', path.relative(path.join(ROOT, 'public'), path.join(dir, f)))
+    }
+  }
+}
+if (removed) console.log(`Removed ${removed} stale PDF(s)`)
 
 for (const [label, sub] of [
   ['ecatalogue-medical-food.pdf', 'Medical Food'],

@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import {
@@ -6,16 +6,11 @@ import {
   HEALTH_CATEGORY_QUERY_KEY,
   parseHealthCategoryId,
 } from '../Health/healthCategorySelection'
-import {
-  HEALTH_GOAL_QUERY_KEY,
-  parseHealthGoalId,
-} from '../Health/healthGoalSelection'
 import { HealthResultProductPdfSlider } from '../../components/HealthResultProductPdfSlider'
 import { getHealthResultEntry } from '../Health/healthResultData'
-import { toHealthComboKey } from '../Health/healthResultCombo'
+import { KIOSK_PROFILE_QUERY_KEY, toHealthResultComboKey, parseKioskCatalogueProfile } from '../Health/healthResultCombo'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
 import { trackKioskButton } from '../../lib/kioskMetrics'
-import { warmPdfCache, warmPdfCacheBatch } from '../../lib/pdfCache'
 import { buildQrDownloadAbsoluteUrl } from '../qr-download/qrDownloadRoute'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
@@ -26,8 +21,8 @@ import {
   HEALTH_RESULT_FOOTER_MOUNT,
   HEALTH_RESULT_MAIN_GROW,
   HEALTH_RESULT_PAGE_SHELL,
-  resolveResultCataloguePdfUrl,
-  resultCatalogueDownloadFilename,
+  resolveCataloguePdfUrlByProfile,
+  catalogueDownloadFilenameByProfile,
 } from '../healthResultNav'
 import { KioskStepHeader } from '../../components/KioskStepHeader'
 import Group from '../../assets/images/SVG/Group.svg'
@@ -38,52 +33,41 @@ export default function HealthResultPage() {
   useKioskQrLanding('result')
 
   const parsed = useMemo(() => {
-    const goalId = parseHealthGoalId(searchParams.get(HEALTH_GOAL_QUERY_KEY))
     const categoryId = parseHealthCategoryId(searchParams.get(HEALTH_CATEGORY_QUERY_KEY))
+    const profile = parseKioskCatalogueProfile(searchParams.get(KIOSK_PROFILE_QUERY_KEY))
     let entry = undefined as ReturnType<typeof getHealthResultEntry>
-    if (goalId != null && categoryId != null) {
-      entry = getHealthResultEntry(toHealthComboKey(goalId, categoryId))
+    if (categoryId != null) {
+      const comboKey = toHealthResultComboKey(profile, categoryId)
+      if (comboKey) entry = getHealthResultEntry(comboKey)
     }
-    return { goalId, categoryId, entry }
+    return { categoryId, profile, entry }
   }, [searchParams])
 
-  const { goalId, categoryId, entry } = parsed
+  const { categoryId, profile, entry } = parsed
+
+  const cataloguePdfUrl = resolveCataloguePdfUrlByProfile(profile)
 
   /** QR บนจอใหญ่ — ลิงก์ตรงไป catalogue PDF ให้มือถือเปิด/ดาวน์โหลดได้ */
   const resultQrShareUrl = useMemo(() => {
-    const cataloguePath = resolveResultCataloguePdfUrl(goalId)
-    if (!cataloguePath) return ''
-    return buildQrDownloadAbsoluteUrl(cataloguePath, 'result')
-  }, [goalId])
+    if (!cataloguePdfUrl) return ''
+    return buildQrDownloadAbsoluteUrl(cataloguePdfUrl, 'result')
+  }, [cataloguePdfUrl])
 
   const [downloading, setDownloading] = useState(false)
 
   const handleDownloadAll = useCallback(async () => {
-    if (goalId == null) return
-    const catalogueUrl = resolveResultCataloguePdfUrl(goalId)
-    if (!catalogueUrl) return
+    if (profile == null || !cataloguePdfUrl) return
     setDownloading(true)
     try {
-      await downloadSinglePdfUrl(catalogueUrl, resultCatalogueDownloadFilename(goalId), {
+      await downloadSinglePdfUrl(cataloguePdfUrl, catalogueDownloadFilenameByProfile(profile), {
         screen: 'result',
-        goalId,
+        goalId: profile,
         categoryId: categoryId ?? '',
       })
     } finally {
       setDownloading(false)
     }
-  }, [goalId, categoryId])
-
-  /** prefetch PDF ของผลนี้ก่อน — object/iframe ไม่เข้า SW cache ต้อง fetch เอง */
-  useEffect(() => {
-    if (!entry?.products.length) return
-    const catalogueUrl = resolveResultCataloguePdfUrl(goalId)
-    if (catalogueUrl) warmPdfCache(catalogueUrl)
-    void warmPdfCacheBatch(
-      entry.products.map((p) => p.pdfUrl),
-      { concurrency: 3 },
-    )
-  }, [entry, goalId])
+  }, [profile, cataloguePdfUrl, categoryId])
 
   return (
     <div className={`${HEALTH_RESULT_PAGE_SHELL} min-h-0`}>
@@ -111,16 +95,16 @@ export default function HealthResultPage() {
               <HealthResultProductPdfSlider
                 products={entry.products}
                 detailsPdfLinkExtras={
-                  goalId != null && categoryId != null
+                  categoryId != null && profile != null
                     ? {
-                        [HEALTH_GOAL_QUERY_KEY]: goalId,
                         [HEALTH_CATEGORY_QUERY_KEY]: categoryId,
+                        [KIOSK_PROFILE_QUERY_KEY]: profile,
                       }
                     : undefined
                 }
                 metricsMeta={{
                   screen: 'result',
-                  ...(goalId != null ? { goalId } : {}),
+                  ...(profile != null ? { goalId: profile } : {}),
                   ...(categoryId != null ? { categoryId } : {}),
                 }}
               />
@@ -139,22 +123,17 @@ export default function HealthResultPage() {
             <p className="font-thai text-lg font-bold sm:text-xl">ยังโหลดผลการจับคู่ไม่ได้</p>
             <p className="font-thai text-sm text-neutral-700 sm:text-base">
               ควรเข้ามาพร้อมพารามิเตอร์{' '}
-              <code className="rounded bg-neutral-200/90 px-1">{HEALTH_GOAL_QUERY_KEY}</code> จาก STEP 2 และ{' '}
-              <code className="rounded bg-neutral-200/90 px-1">{HEALTH_CATEGORY_QUERY_KEY}</code> จาก STEP 3{' '}
-              (รูปแบบคีย์ใน JSON เช่น{' '}
-              <code className="rounded bg-neutral-200/90 px-1 text-xs">
-                {`${HEALTH_GOAL_QUERY_KEY}? + category`}
-              </code>
-              ).
+              <code className="rounded bg-neutral-200/90 px-1">{HEALTH_CATEGORY_QUERY_KEY}</code> จาก STEP 3 และ{' '}
+              <code className="rounded bg-neutral-200/90 px-1">{KIOSK_PROFILE_QUERY_KEY}</code> ตามเส้นทางสี (medical / personalised).
             </p>
-            {!goalId && categoryId ? (
+            {!profile && categoryId ? (
               <p className="text-sm text-amber-900/90">
-                พบเฉพาะหมวด &quot;{HEALTH_CATEGORY_LABELS[categoryId].titleTh}&quot; — กลับ STEP 2 เพื่อส่งเป้าหมาย
+                พบเฉพาะหมวด &quot;{HEALTH_CATEGORY_LABELS[categoryId].titleTh}&quot; — ยังไม่ระบุ catalogue profile
               </p>
             ) : null}
-            {goalId && !categoryId ? (
+            {profile && !categoryId ? (
               <p className="text-sm text-amber-900/90">
-                พบเฉพาะเป้า — ยังไม่ได้เลือกหมวดจาก STEP 3
+                พบเฉพาะเส้นทาง — ยังไม่ได้เลือกหมวดจาก STEP 3
               </p>
             ) : null}
           </div>
@@ -169,7 +148,7 @@ export default function HealthResultPage() {
             Sorting Again
           </Link>
 
-          {entry && goalId != null && resolveResultCataloguePdfUrl(goalId) ? (
+          {entry && cataloguePdfUrl ? (
             <>
               <button
                 type="button"

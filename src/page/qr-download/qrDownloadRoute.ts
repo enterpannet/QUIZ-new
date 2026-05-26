@@ -60,9 +60,30 @@ export function buildNfcDownloadHref(pdfPath: string, placement: QrDownloadPlace
   return buildRemoteDownloadHref(pdfPath, placement, KIOSK_METRICS_SOURCE_NFC)
 }
 
+const DEFAULT_KIOSK_PUBLIC_ORIGIN = 'https://quiz.d2km.online'
+
+/** Origin สำหรับ QR/NFC — ไม่ใช้ localhost ตอน dev บนเครื่อง kiosk */
+export function resolveKioskPublicOrigin(): string {
+  const raw = import.meta.env.VITE_KIOSK_PUBLIC_ORIGIN?.trim()
+  if (raw) {
+    try {
+      return new URL(raw).origin
+    } catch {
+      /* ใช้ค่า default */
+    }
+  }
+  return DEFAULT_KIOSK_PUBLIC_ORIGIN
+}
+
+function kioskPublicBaseUrl(): string {
+  const origin = resolveKioskPublicOrigin()
+  const basePath = import.meta.env.BASE_URL || '/'
+  return basePath.endsWith('/') ? `${origin}${basePath}` : `${origin}${basePath}/`
+}
+
 function toAbsoluteAppUrl(relativeHref: string): string {
   const relativePath = relativeHref.startsWith('/') ? relativeHref.slice(1) : relativeHref
-  return new URL(relativePath, `${window.location.origin}${import.meta.env.BASE_URL}`).href
+  return new URL(relativePath, kioskPublicBaseUrl()).href
 }
 
 /** URL เต็มสำหรับใส่ใน QR — สแกนแล้วเข้า SPA route ไม่ชน static file + query */

@@ -4,10 +4,10 @@
 
 ## โครงสร้าง Catalogue
 
-| โฟลเดอร์ Catalogue | ความหมายในแอป | Goal ในแอป |
+| โฟลเดอร์ Catalogue | เส้นทางในแอป | Goal ในแอป |
 |---|---|---|
-| **Medical Food** | อาหารทางการแพทย์ | `symptom-management` (ควบคุมอาการ) |
-| **Personalised Food** | อาหารเฉพาะบุคคล | `nutritional-recovery` + `quality-of-life` |
+| **Medical Food** | สีเขียว `/health/*` | `symptom-management` เท่านั้น |
+| **Personalised Food** | สีฟ้า `/special/*` | `nutritional-recovery`, `quality-of-life` |
 
 ## หมวดสินค้า (STEP 3)
 

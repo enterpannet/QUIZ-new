@@ -1,5 +1,4 @@
-import { useMemo } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   KIOSK_HERO_IMG_INTRINSIC,
   KIOSK_STEP_GROUP_IMG_CLASS,
@@ -21,10 +20,6 @@ import DrinkGreen from '../../assets/images/SVG/DrinkGreen.svg'
 import FoodGreen from '../../assets/images/SVG/FoodGreen.svg'
 import condimentGreen from '../../assets/images/SVG/condimentGreen.svg'
 import Group from '../../assets/images/SVG/Group.svg'
-import {
-  HEALTH_GOAL_QUERY_KEY,
-  parseHealthGoalId,
-} from './healthGoalSelection'
 import type { HealthCategoryId } from './healthCategorySelection'
 import { buildHealthResultHref } from './healthResultCombo'
 /** ป้ายหัวข้อคอลัมน์ — โตตาม breakpoint (ไม่ใส่ bg ตรงนี้ ให้กำหนดสีต่อคอลัมน์) */
@@ -77,15 +72,8 @@ const goalColumnLink =
   'text-inherit no-underline rounded-xl focus-visible:z-[1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-700 [-webkit-tap-highlight-color:transparent]'
 
 export default function HealthStep3() {
-  const [searchParams] = useSearchParams()
-
-  const selectedGoal = useMemo(
-    () => parseHealthGoalId(searchParams.get(HEALTH_GOAL_QUERY_KEY)),
-    [searchParams],
-  )
-
   const resultHref = (category: HealthCategoryId) =>
-    buildHealthResultHref(selectedGoal, category)
+    buildHealthResultHref(category, 'medical')
 
   return (
     <div className={`relative isolate ${HEALTH_STEP3_PAGE_SHELL} min-h-0`}>

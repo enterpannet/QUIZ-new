@@ -4,10 +4,9 @@ import { HealthResultDownloadQr } from '../../components/HealthResultDownloadQr'
 import circleBlueBlank from '../../assets/images/SVG/circleBlueBlank.svg'
 import circleGreenBlank from '../../assets/images/SVG/circleGreenBlank.svg'
 import { HEALTH_CATEGORY_QUERY_KEY, parseHealthCategoryId } from '../Health/healthCategorySelection'
-import { HEALTH_GOAL_QUERY_KEY, parseHealthGoalId } from '../Health/healthGoalSelection'
+import { KIOSK_PROFILE_QUERY_KEY, parseKioskCatalogueProfile } from '../Health/healthResultCombo'
 import { useKioskQrLanding } from '../../hooks/useKioskQrLanding'
 import { trackKioskButton } from '../../lib/kioskMetrics'
-import { warmPdfCache } from '../../lib/pdfCache'
 import { buildQrDownloadAbsoluteUrl } from '../qr-download/qrDownloadRoute'
 import { downloadSinglePdfUrl } from '../healthResultDownload'
 import {
@@ -73,14 +72,14 @@ export default function DetailsPage() {
   const titleQuoted = searchParams.get(DETAILS_PDF_TITLE_QUERY_KEY) ?? ''
   const titleDisplay = titleQuoted.trim() || 'PDF datasheet'
 
-  const goalId = parseHealthGoalId(searchParams.get(HEALTH_GOAL_QUERY_KEY))
   const categoryId = parseHealthCategoryId(searchParams.get(HEALTH_CATEGORY_QUERY_KEY))
+  const profile = parseKioskCatalogueProfile(searchParams.get(KIOSK_PROFILE_QUERY_KEY))
 
   const backToResultHref =
-    goalId != null && categoryId != null
+    categoryId != null && profile != null
       ? `/health/result?${new URLSearchParams({
-          [HEALTH_GOAL_QUERY_KEY]: goalId,
           [HEALTH_CATEGORY_QUERY_KEY]: categoryId,
+          [KIOSK_PROFILE_QUERY_KEY]: profile,
         })}`
       : '/health/result'
 
@@ -98,20 +97,16 @@ export default function DetailsPage() {
     try {
       await downloadSinglePdfUrl(pathNoHash, stem, {
         screen: 'details',
-        goalId: goalId ?? '',
+        goalId: profile ?? '',
         categoryId: categoryId ?? '',
       })
     } finally {
       setDownloading(false)
     }
-  }, [pathNoHash, goalId, categoryId])
+  }, [pathNoHash, profile, categoryId])
 
   const objectSrc =
     pathNoHash != null ? `${pathNoHash}#toolbar=0&navpanes=0&view=Fit` : ''
-
-  useEffect(() => {
-    warmPdfCache(pathNoHash)
-  }, [pathNoHash])
 
   useEffect(() => {
     if (!pathNoHash) {

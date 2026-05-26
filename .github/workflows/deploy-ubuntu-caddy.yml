@@ -58,6 +58,7 @@ jobs:
         env:
           VITE_BASE_PATH: /
           VITE_KIOSK_METRICS_ENDPOINT: ${{ secrets.VITE_KIOSK_METRICS_ENDPOINT }}
+          VITE_KIOSK_PUBLIC_ORIGIN: https://quiz.d2km.online
         run: bun run build
 
       - name: Setup SSH key

@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
 import chevronPrev from '../assets/images/SVG/back.svg'
 import chevronNext from '../assets/images/SVG/Next.svg'
 import { Link } from 'react-router-dom'
 import { trackKioskEvent, type KioskMetricMeta } from '../lib/kioskMetrics'
+import { canEmbedPdfInline } from '../lib/pdfEmbedSupport'
 import { buildDetailsPdfHref } from '../page/details/detailsPdfRoute'
 import { resolveHealthProductImageUrl, type HealthResultProductPdf } from '../page/Health/healthResultData'
 
@@ -25,8 +26,8 @@ const sliderNavHit =
 const slideSlideClass =
   'w-[calc((100%-0.75rem)/2)] shrink-0 snap-start py-2 sm:w-[calc((100%-2*0.75rem)/3)] lg:w-[calc((100%-3rem)/5)] xl:w-[calc((100%-3rem)/5)] xl:snap-normal'
 
-/** ภาพรองเมื่อเบราว์เซอร์ฝัง PDF เป็น object ไม่ได้ */
-function StaticPreviewImage({ src }: { src: string }) {
+/** ภาพรองเมื่อเบราว์เซอร์ฝัง PDF เป็น object ไม่ได้ (มือถือ) */
+function StaticPreviewImage({ src, eager }: { src: string; eager?: boolean }) {
   const [srcCurrent, setSrcCurrent] = useState(src)
 
   useEffect(() => {
@@ -37,12 +38,37 @@ function StaticPreviewImage({ src }: { src: string }) {
     <img
       src={srcCurrent}
       alt=""
-      decoding="async"
+      decoding={eager ? 'sync' : 'async'}
       draggable={false}
-      loading="lazy"
-      className="pointer-events-none absolute inset-0 h-full w-full object-contain p-2 sm:p-3"
+      loading={eager ? 'eager' : 'lazy'}
+      className="pointer-events-none absolute inset-0 h-full w-full object-contain bg-white p-2 sm:p-3"
       onError={() => setSrcCurrent('/logo1.svg')}
     />
+  )
+}
+
+const previewShellClass =
+  'pointer-events-none relative aspect-[5/7] w-full shrink-0 overflow-hidden rounded-t-lg bg-neutral-100 sm:rounded-t-xl'
+
+function subscribeEmbedPdf(cb: () => void) {
+  const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+  mq.addEventListener('change', cb)
+  return () => mq.removeEventListener('change', cb)
+}
+
+function useCanEmbedPdfInline() {
+  return useSyncExternalStore(
+    subscribeEmbedPdf,
+    () => canEmbedPdfInline(),
+    () => false,
+  )
+}
+
+function ImagePreview({ fallbackSrc }: { fallbackSrc: string }) {
+  return (
+    <div data-health-slider-preview className={previewShellClass}>
+      <StaticPreviewImage src={fallbackSrc} eager />
+    </div>
   )
 }
 
@@ -53,13 +79,16 @@ function PdfEmbeddedPreview({
   pdfUrl: string
   fallbackSrc: string
 }) {
+  const embedPdf = useCanEmbedPdfInline()
+
+  if (!embedPdf) {
+    return <ImagePreview fallbackSrc={fallbackSrc} />
+  }
+
   const src = `${pdfUrl}#toolbar=0&navpanes=0&view=FitH`
 
   return (
-    <div
-      data-health-slider-preview
-      className="pointer-events-none relative aspect-[5/7] w-full shrink-0 overflow-hidden rounded-t-lg bg-neutral-900/45 sm:rounded-t-xl"
-    >
+    <div data-health-slider-preview className={`${previewShellClass} bg-neutral-900/45`}>
       <p className="pointer-events-none absolute left-2 top-1.5 z-[1] rounded-full bg-neutral-950/70 px-1.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-wide text-white backdrop-blur-sm sm:left-3 sm:text-[0.6rem]">
         PDF
       </p>

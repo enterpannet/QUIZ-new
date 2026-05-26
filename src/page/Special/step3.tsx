@@ -1,5 +1,4 @@
-import { useMemo } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { InteractiveSpringImg } from '../../components/InteractiveSpringImg'
 import { KioskStepHeader } from '../../components/KioskStepHeader'
 
@@ -11,10 +10,6 @@ import specialSandHero from '../../assets/images/SVG/elements-10.svg'
 import condimentBlue from '../../assets/images/SVG/condimentBlue.svg'
 import Group from '../../assets/images/SVG/Group.svg'
 
-import {
-  HEALTH_GOAL_QUERY_KEY,
-  parseHealthGoalId,
-} from '../Health/healthGoalSelection'
 import type { HealthCategoryId } from '../Health/healthCategorySelection'
 import { buildHealthResultHref } from '../Health/healthResultCombo'
 import {
@@ -84,15 +79,8 @@ const goalColumnLink =
   'text-inherit no-underline rounded-xl focus-visible:z-[1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-700 [-webkit-tap-highlight-color:transparent]'
 
 export default function SpecialStep3() {
-  const [searchParams] = useSearchParams()
-
-  const selectedGoal = useMemo(
-    () => parseHealthGoalId(searchParams.get(HEALTH_GOAL_QUERY_KEY)),
-    [searchParams],
-  )
-
   const resultHref = (category: HealthCategoryId) =>
-    buildHealthResultHref(selectedGoal, category)
+    buildHealthResultHref(category, 'personalised')
 
   return (
     <div className={`relative isolate ${SPECIAL_STEP3_PAGE_SHELL} min-h-0`}>

@@ -19,6 +19,25 @@ export function parseHealthGoalId(raw: string | null | undefined): HealthGoalId 
   return raw as HealthGoalId
 }
 
+/** Medical Food catalogue — สีเขียว `/health` */
+export const MEDICAL_FOOD_GOAL = 'symptom-management' as const satisfies HealthGoalId
+
+/** Personalised Food catalogue — สีฟ้า `/special` (ดู kioskCatalogue.ts) */
+export const PERSONALISED_FOOD_GOALS = [
+  'nutritional-recovery',
+  'quality-of-life',
+] as const satisfies readonly HealthGoalId[]
+
+export function isMedicalFoodGoal(goal: HealthGoalId | null | undefined): goal is typeof MEDICAL_FOOD_GOAL {
+  return goal === MEDICAL_FOOD_GOAL
+}
+
+export function isPersonalisedFoodGoal(
+  goal: HealthGoalId | null | undefined,
+): goal is (typeof PERSONALISED_FOOD_GOALS)[number] {
+  return goal != null && (PERSONALISED_FOOD_GOALS as readonly string[]).includes(goal)
+}
+
 export const HEALTH_GOAL_META: Record<
   HealthGoalId,
   { titleEn: string; titleTh: string; searchKey: string }

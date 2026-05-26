@@ -1,772 +1,882 @@
 [
-    {
-        "goal":  "symptom-management",
-        "category":  "food",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
-        "dst":  "/health-product-pdfs/symptom-management-food/001.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "food",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/symptom-management-food/002.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "food",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/symptom-management-food/003.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "food",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/symptom-management-food/004.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "beverages",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
-        "dst":  "/health-product-pdfs/symptom-management-beverages/001.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "beverages",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/symptom-management-beverages/002.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "seasonings",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
-        "dst":  "/health-product-pdfs/symptom-management-seasonings/001.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "seasonings",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/symptom-management-seasonings/002.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "seasonings",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/symptom-management-seasonings/003.pdf"
-    },
-    {
-        "goal":  "symptom-management",
-        "category":  "snacks",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
-        "dst":  "/health-product-pdfs/symptom-management-snacks/001.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/001.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/002.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/003.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/004.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/005.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/006.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/007.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  8,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/008.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  9,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/009.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  10,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/010.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  11,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/011.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  12,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/012.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  13,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/013.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  14,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/014.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  15,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/015.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  16,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/016.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  17,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 17.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/017.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "food",
-        "num":  18,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 18.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-food/018.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/001.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/002.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/003.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/004.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/005.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/006.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/007.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  8,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/008.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  9,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/009.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  10,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/010.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  11,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/011.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  12,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/012.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  13,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/013.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  14,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/014.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  15,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/015.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "beverages",
-        "num":  16,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-beverages/016.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/001.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/002.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/003.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/004.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/005.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/006.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "seasonings",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-seasonings/007.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/001.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/002.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/003.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/004.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/005.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/006.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/007.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  8,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/008.pdf"
-    },
-    {
-        "goal":  "nutritional-recovery",
-        "category":  "snacks",
-        "num":  9,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
-        "dst":  "/health-product-pdfs/nutritional-recovery-snacks/009.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/001.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/002.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/003.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/004.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/005.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/006.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/007.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  8,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/008.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  9,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/009.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  10,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/010.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  11,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/011.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  12,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/012.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  13,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/013.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  14,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/014.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  15,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/015.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  16,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/016.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  17,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 17.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/017.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "food",
-        "num":  18,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 18.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-food/018.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/001.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/002.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/003.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/004.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/005.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/006.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/007.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  8,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/008.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  9,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/009.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  10,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/010.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  11,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/011.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  12,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/012.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  13,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/013.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  14,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/014.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  15,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/015.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "beverages",
-        "num":  16,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-beverages/016.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/001.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/002.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/003.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/004.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/005.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/006.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "seasonings",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-seasonings/007.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  1,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/001.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  2,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/002.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  3,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/003.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  4,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/004.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  5,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/005.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  6,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/006.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  7,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/007.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  8,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/008.pdf"
-    },
-    {
-        "goal":  "quality-of-life",
-        "category":  "snacks",
-        "num":  9,
-        "src":  "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
-        "dst":  "/health-product-pdfs/quality-of-life-snacks/009.pdf"
-    }
+  {
+    "goal": "symptom-management",
+    "category": "beverages",
+    "num": 1,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "srcRel": "Medical Food/BEVERAGES/2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "dst": "/health-product-pdfs/symptom-management-beverages/001.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "beverages",
+    "num": 2,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
+    "srcRel": "Medical Food/BEVERAGES/2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/symptom-management-beverages/002.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "food",
+    "num": 1,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "srcRel": "Medical Food/FOOD/2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "dst": "/health-product-pdfs/symptom-management-food/001.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "food",
+    "num": 2,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
+    "srcRel": "Medical Food/FOOD/2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/symptom-management-food/002.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "food",
+    "num": 3,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 3.pdf",
+    "srcRel": "Medical Food/FOOD/2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/symptom-management-food/003.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "food",
+    "num": 4,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 4.pdf",
+    "srcRel": "Medical Food/FOOD/2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/symptom-management-food/004.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "seasonings",
+    "num": 1,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "srcRel": "Medical Food/SEASONINGS/2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "dst": "/health-product-pdfs/symptom-management-seasonings/001.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "seasonings",
+    "num": 2,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
+    "srcRel": "Medical Food/SEASONINGS/2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/symptom-management-seasonings/002.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "seasonings",
+    "num": 3,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 3.pdf",
+    "srcRel": "Medical Food/SEASONINGS/2505 – E CATALOG – Medical Food (สีเขียว) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/symptom-management-seasonings/003.pdf"
+  },
+  {
+    "goal": "symptom-management",
+    "category": "snacks",
+    "num": 1,
+    "src": "2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "srcRel": "Medical Food/SNACKS/2505 – E CATALOG – Medical Food (สีเขียว) (dragged).pdf",
+    "dst": "/health-product-pdfs/symptom-management-snacks/001.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/001.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/002.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/003.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/004.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/005.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/006.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/007.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 8,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/008.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 9,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/009.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 10,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/010.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 11,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/011.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 12,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/012.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 13,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/013.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 14,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/014.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 15,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/015.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "beverages",
+    "num": 16,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-beverages/016.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/001.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/002.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/003.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/004.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/005.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/006.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/007.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 8,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/008.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 9,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/009.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 10,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/010.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 11,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/011.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 12,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/012.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 13,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/013.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 14,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/014.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 15,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/015.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 16,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/016.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 17,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 17.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 17.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/017.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "food",
+    "num": 18,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 18.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 18.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-food/018.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/001.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/002.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/003.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/004.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/005.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/006.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "seasonings",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-seasonings/007.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/001.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/002.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/003.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/004.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/005.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/006.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/007.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 8,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/008.pdf"
+  },
+  {
+    "goal": "nutritional-recovery",
+    "category": "snacks",
+    "num": 9,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "dst": "/health-product-pdfs/nutritional-recovery-snacks/009.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/001.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/002.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/003.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/004.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/005.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/006.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/007.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 8,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/008.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 9,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/009.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 10,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/010.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 11,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/011.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 12,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/012.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 13,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/013.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 14,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/014.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 15,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/015.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "beverages",
+    "num": 16,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "srcRel": "Personalised Food/BEVERAGES 16 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-beverages/016.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/001.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/002.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/003.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/004.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/005.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/006.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/007.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 8,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/008.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 9,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/009.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 10,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 10.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/010.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 11,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 11.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/011.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 12,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 12.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/012.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 13,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 13.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/013.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 14,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 14.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/014.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 15,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 15.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/015.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 16,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 16.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/016.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 17,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 17.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 17.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/017.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "food",
+    "num": 18,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 18.pdf",
+    "srcRel": "Personalised Food/FOOD 18 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 18.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-food/018.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/001.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/002.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/003.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/004.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/005.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/006.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "seasonings",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/SEASONINGS 7 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-seasonings/007.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 1,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged).pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/001.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 2,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 2.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/002.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 3,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 3.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/003.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 4,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 4.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/004.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 5,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 5.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/005.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 6,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 6.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/006.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 7,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 7.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/007.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 8,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 8.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/008.pdf"
+  },
+  {
+    "goal": "quality-of-life",
+    "category": "snacks",
+    "num": 9,
+    "src": "2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "srcRel": "Personalised Food/SNACKS 9 Brands/2505 – E CATALOG – Personalised Food (สีฟ้า) (dragged) 9.pdf",
+    "dst": "/health-product-pdfs/quality-of-life-snacks/009.pdf"
+  }
 ]

@@ -29,11 +29,9 @@ import {
 } from './specialStepContent'
 import { SpecialEnglishPill } from './SpecialEnglishPill'
 
-/** ป้ายหัวข้อคอลัมน์ — โตตาม breakpoint (ไม่ใส่ bg ตรงนี้ ให้กำหนดสีต่อคอลัมน์) */
 const goalTitlePill =
   'font-thai flex min-h-[3.5rem] shadow-md shadow-neutral-900/10 w-full items-center justify-center px-4 py-2 text-center text-xs font-bold leading-snug rounded-full sm:min-h-[4rem] sm:px-5 sm:text-sm md:min-h-[4.5rem] md:px-6 md:text-base lg:min-h-[5rem] lg:text-lg xl:min-h-[5.25rem] xl:text-xl'
 
-/** สีพื้นหลังป้ายแต่ละคอลัมน์ — แก้ได้ที่นี่ */
 const goalTitlePillCol1 = `${goalTitlePill} bg-yellow-400`
 const goalTitlePillCol2 = `${goalTitlePill} bg-yellow-400`
 const goalTitlePillCol3 = `${goalTitlePill} bg-yellow-400`
@@ -41,22 +39,18 @@ const goalTitlePillCol3 = `${goalTitlePill} bg-yellow-400`
 const goalSubtitle =
   'mt-1 max-w-[min(100%,22rem)] text-xs text-center text-neutral-900/90 sm:max-w-none sm:text-sm md:text-base lg:text-lg xl:text-xl'
 
-/** คอลัมน์ — มือถือจัดชิดขอบล่างแถวให้ป้ายระดับเดียวกัน; md+ ยืดเต็มความสูง */
 const goalColumn =
   'flex min-h-0 min-w-0 flex-1 flex-col items-center md:h-full'
 
 const goalSpringStack =
   'flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1.5 md:flex-1 md:justify-end lg:gap-2'
 
-/** สปริงเล็ก */
 const imgSpringSm =
   'h-auto w-[4.25rem] object-contain sm:w-20 md:w-24 lg:w-36 xl:w-40 2xl:w-48'
 
-/** ไอคอนตัวใหญ่คอลัมน์ */
 const imgGoalHero =
   'h-auto w-24 object-contain sm:w-[6.75rem] md:w-36 lg:w-52 xl:w-56 2xl:w-64'
 
-/** กลุ่มป้าย — แตะแล้วย่อเล็กน้อย */
 const goalTextBlock =
   'w-full shrink-0 touch-manipulation transition-transform duration-150 will-change-transform active:scale-[0.98]'
 

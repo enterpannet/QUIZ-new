@@ -12,6 +12,7 @@ import {
   KIOSK_STEP_CONTENT_PAD,
   KIOSK_STEP_HEADER_SECTION,
 } from './kioskStepLayout'
+import { KIOSK_CATALOGUE } from './kioskCatalogue'
 import { Link } from 'react-router-dom'
 import { trackKioskButton } from '../lib/kioskMetrics'
 
@@ -57,7 +58,7 @@ export default function Page3() {
       >
         <div className="kiosk-enter-cols flex w-full max-w-[min(100%,40rem)] flex-row items-stretch justify-center gap-2 px-0.5 min-[390px]:gap-3 min-[400px]:max-w-[min(100%,44rem)] sm:gap-5 md:max-w-3xl md:gap-8 lg:max-w-4xl lg:gap-12 xl:max-w-5xl xl:gap-16 2xl:max-w-6xl 2xl:gap-20">
           <Link
-            to="/health/step2"
+            to={`${KIOSK_CATALOGUE.medical.pathPrefix}/step2`}
             className="flex min-h-0 min-w-0 flex-1 touch-manipulation flex-col items-center gap-3 self-stretch rounded-2xl px-2 py-2 text-inherit no-underline [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-700 sm:gap-4 sm:px-3 sm:py-3 md:py-4"
             aria-labelledby="page3-option-green-title"
             onClick={() => trackKioskButton('path_health', { screen: 'page3' })}
@@ -81,11 +82,10 @@ export default function Page3() {
             </div>
             <div id="page3-option-green-title" className="flex flex-col items-center gap-1 text-center text-[#4a4456]">
               <h2 className="font-heading text-sm font-bold leading-tight sm:text-base md:text-lg lg:text-xl">
-                <span className="block">Special</span>
-                <span className="block">Health Needs</span>
+                {KIOSK_CATALOGUE.medical.labelEn}
               </h2>
               <p className="font-thai max-w-[15.5rem] text-[0.7rem] leading-snug sm:max-w-[18rem] sm:text-xs md:max-w-none md:text-sm lg:text-base">
-                มีภาวะสุขภาพที่ต้องดูแลเป็นพิเศษ
+                {KIOSK_CATALOGUE.medical.labelTh}
               </p>
             </div>
             <div className="tap-hand-hint mt-auto flex shrink-0 justify-center pt-2 sm:pt-2.5 md:pt-3" aria-hidden>
@@ -103,7 +103,7 @@ export default function Page3() {
           </Link>
 
           <Link
-            to="/special/step2"
+            to={`${KIOSK_CATALOGUE.personalised.pathPrefix}/step2`}
             className="flex min-h-0 min-w-0 flex-1 touch-manipulation flex-col items-center gap-3 self-stretch rounded-2xl px-2 py-2 text-inherit no-underline [-webkit-tap-highlight-color:transparent] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-700 sm:gap-4 sm:px-3 sm:py-3 md:py-4"
             aria-labelledby="page3-option-blue-title"
             onClick={() => trackKioskButton('path_special', { screen: 'page3' })}
@@ -121,11 +121,10 @@ export default function Page3() {
             </div>
             <div id="page3-option-blue-title" className="flex flex-col items-center gap-1 text-center text-[#4a4456]">
               <h2 className="font-heading text-sm font-bold leading-tight sm:text-base md:text-lg lg:text-xl">
-                <span className="block">Health &</span>
-                <span className="block">Wellness Support</span>
+                {KIOSK_CATALOGUE.personalised.labelEn}
               </h2>
               <p className="font-thai max-w-[15.5rem] text-[0.7rem] leading-snug sm:max-w-[18rem] sm:text-xs md:max-w-none md:text-sm lg:text-base">
-                ต้องการดูแลสุขภาพและเสริมสุขภาวะ
+                {KIOSK_CATALOGUE.personalised.labelTh}
               </p>
             </div>
             <div className="tap-hand-hint mt-auto flex shrink-0 justify-center pt-2 sm:pt-2.5 md:pt-3" aria-hidden>
